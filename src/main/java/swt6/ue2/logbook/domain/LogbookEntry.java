@@ -14,13 +14,26 @@ import javax.persistence.ManyToOne;
 @Entity
 public class LogbookEntry implements Serializable {
 
+    @Id
+    @GeneratedValue
     private Long id;
     private String activity;
     private Date startTime;
     private Date endTime;
 
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE},
+            fetch = FetchType.EAGER,
+            optional = false)
     private Employee employee;
+
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE},
+            fetch = FetchType.EAGER,
+            optional = true)
     private Module module;
+
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE},
+            fetch = FetchType.EAGER,
+            optional = true)
     private Phase phase;
 
     public LogbookEntry() {
@@ -33,8 +46,6 @@ public class LogbookEntry implements Serializable {
         this.endTime = endTime;
     }
 
-    @Id
-    @GeneratedValue
     public Long getId() {
         return id;
     }
@@ -67,9 +78,6 @@ public class LogbookEntry implements Serializable {
         this.endTime = endTime;
     }
 
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE},
-            fetch = FetchType.EAGER,
-            optional = false)
     public Employee getEmployee() {
         return employee;
     }
@@ -78,9 +86,6 @@ public class LogbookEntry implements Serializable {
         this.employee = employee;
     }
 
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE},
-            fetch = FetchType.EAGER,
-            optional = true)
     public Module getModule() {
         return module;
     }
@@ -89,9 +94,6 @@ public class LogbookEntry implements Serializable {
         this.module = module;
     }
 
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE},
-            fetch = FetchType.EAGER,
-            optional = true)
     public Phase getPhase() {
         return phase;
     }

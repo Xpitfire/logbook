@@ -11,14 +11,22 @@ import java.util.Set;
 @Entity
 public class Module {
 
-    private Long id;
-    private String name;
-    private Project project;
-
-    private Set<LogbookEntry> logbookEntries = new HashSet<>();
-
     @Id
     @GeneratedValue
+    private Long id;
+    private String name;
+
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE},
+            fetch = FetchType.EAGER,
+            optional = false)
+    private Project project;
+
+    @OneToMany(mappedBy = "module",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY,
+            orphanRemoval = true)
+    private Set<LogbookEntry> logbookEntries = new HashSet<>();
+
     public Long getId() {
         return id;
     }
@@ -35,11 +43,6 @@ public class Module {
         this.name = name;
     }
 
-    @OneToMany(mappedBy = "module",
-            cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY,
-            orphanRemoval = true
-    )
     public Set<LogbookEntry> getLogbookEntries() {
         return logbookEntries;
     }
@@ -48,9 +51,6 @@ public class Module {
         this.logbookEntries = logbookEntries;
     }
 
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE},
-            fetch = FetchType.EAGER,
-            optional = false)
     public Project getProject() {
         return project;
     }

@@ -12,13 +12,25 @@ import javax.persistence.*;
 @DiscriminatorColumn(name = "employeeType")
 public class Employee implements Serializable {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.TABLE)
     private Long id;
     private String firstName;
     private String lastName;
     private Date dateOfBirth;
+
+    @Embedded
     private Address address;
 
+    @OneToMany(mappedBy = "employee",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.EAGER,
+            orphanRemoval = true)
     private Set<LogbookEntry> logbookEntries = new HashSet<>();
+
+    @ManyToMany(mappedBy = "members",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY)
     private Set<Project> projects = new HashSet<>();
 
     // Classes persisted with Hibernate must have a
@@ -39,8 +51,6 @@ public class Employee implements Serializable {
         this.address = address;
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
     public Long getId() {
         return id;
     }
@@ -73,10 +83,6 @@ public class Employee implements Serializable {
         this.dateOfBirth = dateOfBirth;
     }
 
-    @OneToMany(mappedBy = "employee",
-            cascade = CascadeType.ALL,
-            fetch = FetchType.EAGER,
-            orphanRemoval = true)
     public Set<LogbookEntry> getLogbookEntries() {
         return logbookEntries;
     }
@@ -111,9 +117,6 @@ public class Employee implements Serializable {
         entry.setEmployee(null);
     }
 
-    @ManyToMany(mappedBy = "members",
-            cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY)
     public Set<Project> getProjects() {
         return projects;
     }
@@ -131,7 +134,6 @@ public class Employee implements Serializable {
         project.getMembers().add(this);
     }
 
-    @Embedded
     public Address getAddress() {
         return address;
     }

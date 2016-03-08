@@ -12,13 +12,18 @@ import java.util.Set;
 @Entity
 public class Phase implements Serializable {
 
+    @Id
+    @GeneratedValue
     private Long id;
     private String name;
 
+    @OneToMany(mappedBy = "phase",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY,
+            orphanRemoval = true)
     private Set<LogbookEntry> logbookEntries = new HashSet<>();
 
-    @Id
-    @GeneratedValue
+
     public Long getId() {
         return id;
     }
@@ -35,11 +40,6 @@ public class Phase implements Serializable {
         this.name = name;
     }
 
-    @OneToMany(mappedBy = "phase",
-            cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY,
-            orphanRemoval = true
-    )
     public Set<LogbookEntry> getLogbookEntries() {
         return logbookEntries;
     }

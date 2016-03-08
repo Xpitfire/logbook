@@ -20,7 +20,7 @@
       <column name="HOURLYRATE" sqlType="DOUBLE" precision="52" scale="0" nullable="true" jdbcType="8"/>
       <column name="RENTER" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
       <column name="STARTDATE" sqlType="TIMESTAMP" precision="29" scale="9" nullable="true" jdbcType="93"/>
-      <primary-key name="SQL160308200537680" columns="ID"/>
+      <primary-key name="SQL160308210548320" columns="ID"/>
     </table>
     <table name="HIBERNATE_SEQUENCES" schema="APP" catalog="" type="TABLE">
       <column name="SEQUENCE_NAME" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
@@ -32,39 +32,36 @@
       <column name="ENDTIME" sqlType="TIMESTAMP" precision="29" scale="9" nullable="true" jdbcType="93"/>
       <column name="STARTTIME" sqlType="TIMESTAMP" precision="29" scale="9" nullable="true" jdbcType="93"/>
       <column name="EMPLOYEE_ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
-      <primary-key name="SQL160308200537830" columns="ID"/>
+      <column name="MODULE_ID" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="PHASE_ID" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <primary-key name="SQL160308210548450" columns="ID"/>
       <foreign-key name="FK_MEU1QI22LMWA65BJSHLPOMLR3" columns="EMPLOYEE_ID" ref-table="EMPLOYEE" ref-schema="APP" ref-catalog="" ref-columns="ID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_FYO16DPEPKQV2D08WMFPT5LXC" columns="MODULE_ID" ref-table="MODULE" ref-schema="APP" ref-catalog="" ref-columns="ID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_AQC18F5G4IW1E45I99J8A69VJ" columns="PHASE_ID" ref-table="PHASE" ref-schema="APP" ref-catalog="" ref-columns="ID" update-rule="3" delete-rule="3" deferrability="2"/>
     </table>
     <table name="MODULE" schema="APP" catalog="" type="TABLE">
       <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" def="R0VORVJBVEVEX0JZX0RFRkFVTFQ=" autoIncrement="true"/>
       <column name="NAME" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
-      <primary-key name="SQL160308200537960" columns="ID"/>
+      <column name="PROJECT_ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <primary-key name="SQL160308210548590" columns="ID"/>
+      <foreign-key name="FK_O1T7AX9QJW28D87MF8PKLROT2" columns="PROJECT_ID" ref-table="PROJECT" ref-schema="APP" ref-catalog="" ref-columns="ID" update-rule="3" delete-rule="3" deferrability="2"/>
     </table>
-    <table name="MODULE_LOGBOOKENTRY" schema="APP" catalog="" type="TABLE">
-      <column name="MODULE_ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
-      <column name="LOGBOOKENTRIES_ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
-      <primary-key name="SQL160308200538090" columns="MODULE_ID,LOGBOOKENTRIES_ID"/>
-      <foreign-key name="FK_TYNLTDWGA8CD7Y6T0D7DUUFK" columns="LOGBOOKENTRIES_ID" ref-table="LOGBOOKENTRY" ref-schema="APP" ref-catalog="" ref-columns="ID" update-rule="3" delete-rule="3" deferrability="2"/>
-      <foreign-key name="FK_D5IJX74MX5F6LKQXNP2UUQUAE" columns="MODULE_ID" ref-table="MODULE" ref-schema="APP" ref-catalog="" ref-columns="ID" update-rule="3" delete-rule="3" deferrability="2"/>
+    <table name="PHASE" schema="APP" catalog="" type="TABLE">
+      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" def="R0VORVJBVEVEX0JZX0RFRkFVTFQ=" autoIncrement="true"/>
+      <column name="NAME" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="SQL160308210548700" columns="ID"/>
     </table>
     <table name="PROJECT" schema="APP" catalog="" type="TABLE">
       <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" def="R0VORVJBVEVEX0JZX0RFRkFVTFQ=" autoIncrement="true"/>
       <column name="NAME" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
-      <primary-key name="SQL160308200538220" columns="ID"/>
+      <primary-key name="SQL160308210548840" columns="ID"/>
     </table>
     <table name="PROJECTEMPLOYEE" schema="APP" catalog="" type="TABLE">
       <column name="PROJECTID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
       <column name="EMPLOYEEID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
-      <primary-key name="SQL160308200538340" columns="PROJECTID,EMPLOYEEID"/>
+      <primary-key name="SQL160308210548990" columns="PROJECTID,EMPLOYEEID"/>
       <foreign-key name="FK_5IMP10X3C28XYG0K7TF3RECC2" columns="EMPLOYEEID" ref-table="EMPLOYEE" ref-schema="APP" ref-catalog="" ref-columns="ID" update-rule="3" delete-rule="3" deferrability="2"/>
       <foreign-key name="FK_LXWIABDR339OF8AKSPFTW9N48" columns="PROJECTID" ref-table="PROJECT" ref-schema="APP" ref-catalog="" ref-columns="ID" update-rule="3" delete-rule="3" deferrability="2"/>
-    </table>
-    <table name="PROJECT_MODULE" schema="APP" catalog="" type="TABLE">
-      <column name="PROJECT_ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
-      <column name="MODULES_ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
-      <primary-key name="SQL160308200538460" columns="PROJECT_ID,MODULES_ID"/>
-      <foreign-key name="FK_46F7YOLB04CU9WAY4FTPLEEBY" columns="MODULES_ID" ref-table="MODULE" ref-schema="APP" ref-catalog="" ref-columns="ID" update-rule="3" delete-rule="3" deferrability="2"/>
-      <foreign-key name="FK_IWTULE4LIJ820VLCNIQD42PO3" columns="PROJECT_ID" ref-table="PROJECT" ref-schema="APP" ref-catalog="" ref-columns="ID" update-rule="3" delete-rule="3" deferrability="2"/>
     </table>
   </data-source>
 </component>

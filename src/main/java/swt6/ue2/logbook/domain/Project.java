@@ -9,13 +9,23 @@ import javax.persistence.*;
 @Entity
 public class Project implements Serializable {
 
-    private Long id;
-    private String name;
-    private Set<Employee> members = new HashSet<>();
-    private Set<Module> modules = new HashSet<>();
-
     @Id
     @GeneratedValue
+    private Long id;
+    private String name;
+
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinTable(name = "ProjectEmployee",
+            joinColumns = {@JoinColumn(name = "projectId")},
+            inverseJoinColumns = {@JoinColumn(name = "employeeId")})
+    private Set<Employee> members = new HashSet<>();
+
+    @OneToMany(mappedBy = "project",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY,
+            orphanRemoval = true)
+    private Set<Module> modules = new HashSet<>();
+
     public Long getId() {
         return id;
     }
@@ -39,10 +49,6 @@ public class Project implements Serializable {
         this.name = name;
     }
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinTable(name = "ProjectEmployee",
-            joinColumns = {@JoinColumn(name = "projectId")},
-            inverseJoinColumns = {@JoinColumn(name = "employeeId")})
     public Set<Employee> getMembers() {
         return members;
     }
@@ -60,10 +66,6 @@ public class Project implements Serializable {
         empl.getProjects().add(this);
     }
 
-    @OneToMany(cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY,
-            orphanRemoval = true
-    )
     public Set<Module> getModules() {
         return modules;
     }

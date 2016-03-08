@@ -3,11 +3,11 @@ package swt6.ue2.logbook.domain;
 import java.text.DateFormat;
 import java.util.Date;
 
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 @Entity
-//V1: table per class hierarchy
-//@DiscriminatorValue("T")
+@DiscriminatorValue("T")
 public class TemporaryEmployee extends Employee {
 
     private static final DateFormat fmt = DateFormat.getDateInstance();

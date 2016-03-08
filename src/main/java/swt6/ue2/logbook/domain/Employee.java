@@ -5,32 +5,11 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.AttributeOverride;
-import javax.persistence.AttributeOverrides;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Embedded;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 
 @Entity
-// V1: table per class hierarchy
-//@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
-//@DiscriminatorColumn(name="employeeType", discriminatorType=DiscriminatorType.STRING)
-//@DiscriminatorValue("E")
-
-// V2: table per subclass (joined-subclass in hibernate)
-@Inheritance(strategy = InheritanceType.JOINED)
-
-// V3. table per concrete class
-//@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
+@Inheritance
+@DiscriminatorColumn(name = "employeeType")
 public class Employee implements Serializable {
 
     private Long id;
@@ -61,12 +40,11 @@ public class Employee implements Serializable {
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.TABLE)
     public Long getId() {
         return id;
     }
 
-    @SuppressWarnings("unused")
     private void setId(Long id) {
         this.id = id;
     }
@@ -154,11 +132,6 @@ public class Employee implements Serializable {
     }
 
     @Embedded
-    @AttributeOverrides({
-            @AttributeOverride(name = "zipCode", column = @Column(name = "address_zipCode")),
-            @AttributeOverride(name = "city", column = @Column(name = "address_city")),
-            @AttributeOverride(name = "street", column = @Column(name = "address_street"))
-    })
     public Address getAddress() {
         return address;
     }

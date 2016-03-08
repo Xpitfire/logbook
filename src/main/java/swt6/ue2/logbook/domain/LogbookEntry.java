@@ -20,6 +20,8 @@ public class LogbookEntry implements Serializable {
     private Date endTime;
 
     private Employee employee;
+    private Module module;
+    private Phase phase;
 
     public LogbookEntry() {
     }
@@ -37,7 +39,6 @@ public class LogbookEntry implements Serializable {
         return id;
     }
 
-    @SuppressWarnings("unused")
     private void setId(Long id) {
         this.id = id;
     }
@@ -77,6 +78,28 @@ public class LogbookEntry implements Serializable {
         this.employee = employee;
     }
 
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE},
+            fetch = FetchType.EAGER,
+            optional = true)
+    public Module getModule() {
+        return module;
+    }
+
+    public void setModule(Module module) {
+        this.module = module;
+    }
+
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE},
+            fetch = FetchType.EAGER,
+            optional = true)
+    public Phase getPhase() {
+        return phase;
+    }
+
+    public void setPhase(Phase phase) {
+        this.phase = phase;
+    }
+
     public void attachEmployee(Employee employee) {
         if (employee == null) {
             throw new IllegalArgumentException("Employee must not be null");
@@ -99,9 +122,51 @@ public class LogbookEntry implements Serializable {
         this.employee = null;
     }
 
+    public void attachModule(Module module) {
+        if (module == null) {
+            throw new IllegalArgumentException("Module must not be null");
+        }
+
+        if (this.getModule() != null) {
+            this.getModule().getLogbookEntries().remove(this);
+        }
+
+        this.module = module;
+        this.module.getLogbookEntries().add(this);
+    }
+
+    public void detachModule() {
+        if (this.module != null) {
+            this.module.getLogbookEntries().remove(this);
+        }
+        this.module = null;
+    }
+
+    public void attachPhase(Phase phase) {
+        if (phase == null) {
+            throw new IllegalArgumentException("Phase must not be null");
+        }
+
+        if (this.getPhase() != null) {
+            this.getPhase().getLogbookEntries().remove(this);
+        }
+
+        this.phase = phase;
+        this.phase.getLogbookEntries().add(this);
+    }
+
+    public void detachPhase() {
+        if (this.phase != null) {
+            this.phase.getLogbookEntries().remove(this);
+        }
+        this.phase = null;
+    }
+
+
     @Override
     public String toString() {
         DateFormat fmt = DateFormat.getDateTimeInstance();
         return activity + ": " + fmt.format(startTime) + " - " + fmt.format(endTime) + "(" + employee.getLastName() + ")";
     }
+
 }

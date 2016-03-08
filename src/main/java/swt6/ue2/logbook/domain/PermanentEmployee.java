@@ -2,11 +2,11 @@ package swt6.ue2.logbook.domain;
 
 import java.util.Date;
 
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 @Entity
-//V1: table per class hierarchy
-//@DiscriminatorValue("P")
+@DiscriminatorValue("P")
 public class PermanentEmployee extends Employee {
 
     private double salary;
@@ -33,4 +33,5 @@ public class PermanentEmployee extends Employee {
     public String toString() {
         return super.toString() + ", salary=" + salary;
     }
+
 }

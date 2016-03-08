@@ -4,14 +4,7 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 
 @Entity
 public class Project implements Serializable {
@@ -19,6 +12,7 @@ public class Project implements Serializable {
     private Long id;
     private String name;
     private Set<Employee> members = new HashSet<>();
+    private Set<Module> modules = new HashSet<>();
 
     @Id
     @GeneratedValue
@@ -45,9 +39,6 @@ public class Project implements Serializable {
         this.name = name;
     }
 
-    // The join table annotation is superfluous in this case.
-    // The name of the table and its attributes are generated
-    // automatically if the annotation is omitted.
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinTable(name = "ProjectEmployee",
             joinColumns = {@JoinColumn(name = "projectId")},
@@ -69,7 +60,20 @@ public class Project implements Serializable {
         empl.getProjects().add(this);
     }
 
+    @OneToMany(cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY,
+            orphanRemoval = true
+    )
+    public Set<Module> getModules() {
+        return modules;
+    }
+
+    public void setModules(Set<Module> modules) {
+        this.modules = modules;
+    }
+
     public String toString() {
         return name;
     }
+
 }

@@ -33,8 +33,12 @@ public class Employee implements Serializable {
             fetch = FetchType.LAZY)
     private Set<Project> projects = new HashSet<>();
 
-    // Classes persisted with Hibernate must have a
-    // default constructor
+    @OneToMany(mappedBy = "leader",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.EAGER,
+            orphanRemoval = true)
+    private Set<Project> projectsLeader = new HashSet<>();
+
     public Employee() {
     }
 
@@ -140,6 +144,14 @@ public class Employee implements Serializable {
 
     public void setAddress(Address address) {
         this.address = address;
+    }
+
+    public Set<Project> getProjectsLeader() {
+        return projectsLeader;
+    }
+
+    public void setProjectsLeader(Set<Project> projectsLeader) {
+        this.projectsLeader = projectsLeader;
     }
 
     @Override

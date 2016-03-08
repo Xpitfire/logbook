@@ -26,6 +26,11 @@ public class Project implements Serializable {
             orphanRemoval = true)
     private Set<Module> modules = new HashSet<>();
 
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE},
+            fetch = FetchType.EAGER,
+            optional = false)
+    private Employee leader;
+
     public Long getId() {
         return id;
     }
@@ -72,6 +77,34 @@ public class Project implements Serializable {
 
     public void setModules(Set<Module> modules) {
         this.modules = modules;
+    }
+
+    public Employee getLeader() {
+        return leader;
+    }
+
+    public void setLeader(Employee leader) {
+        this.leader = leader;
+    }
+
+    public void attachLeader(Employee leader) {
+        if (leader == null) {
+            throw new IllegalArgumentException("Employee leader must not be null");
+        }
+
+        if (this.getLeader() != null) {
+            this.getLeader().getProjectsLeader().remove(this);
+        }
+
+        this.leader = leader;
+        this.leader.getProjectsLeader().add(this);
+    }
+
+    public void detachLeader() {
+        if (this.leader != null) {
+            this.leader.getProjectsLeader().remove(this);
+        }
+        this.leader = null;
     }
 
     public String toString() {

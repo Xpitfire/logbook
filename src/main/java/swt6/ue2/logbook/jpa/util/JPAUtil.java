@@ -5,10 +5,10 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
-public class JPAUtil {
+public class JpaUtil {
 
     private static EntityManagerFactory emFactory;
-    private static ThreadLocal<EntityManager> emThread = new ThreadLocal<EntityManager>();
+    private static ThreadLocal<EntityManager> emThread = new ThreadLocal<>();
 
     public static EntityManagerFactory getEntityManagerFactory() {
         if (emFactory == null) {

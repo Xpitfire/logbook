@@ -14,17 +14,17 @@ import swt6.ue2.logbook.domain.TemporaryEmployee;
 import swt6.ue2.util.DateUtil;
 
 
-public class JPAWorklogManager {
+public class JpaWorklogManager {
 
     private static Employee saveEmployee(Employee empl) {
-        EntityManager em = JPAUtil.getTransactedEntityManager();
+        EntityManager em = JpaUtil.getTransactedEntityManager();
         em.persist(empl);
-        JPAUtil.commit();
+        JpaUtil.commit();
         return empl;
     }
 
     private static void listEmployees() {
-        EntityManager em = JPAUtil.getTransactedEntityManager();
+        EntityManager em = JpaUtil.getTransactedEntityManager();
 
         List<Employee> empls = em.createQuery("select e from Employee e", Employee.class).getResultList();
 
@@ -45,30 +45,30 @@ public class JPAWorklogManager {
             }
         }
 
-        JPAUtil.commit();
+        JpaUtil.commit();
     }
 
     private static void addLogbookEntries(Employee empl, LogbookEntry... entries) {
-        EntityManager em = JPAUtil.getTransactedEntityManager();
+        EntityManager em = JpaUtil.getTransactedEntityManager();
         empl = em.merge(empl);
         for (LogbookEntry entry : entries) {
             entry.attachEmployee(empl);
         }
-        JPAUtil.commit();
+        JpaUtil.commit();
     }
 
     private static void assignProjectsToEmployee(Employee empl, Project... projects) {
-        EntityManager em = JPAUtil.getTransactedEntityManager();
+        EntityManager em = JpaUtil.getTransactedEntityManager();
         empl = em.merge(empl);
         for (Project project : projects) {
             project = em.merge(project);
             empl.addProject(project);
         }
-        JPAUtil.commit();
+        JpaUtil.commit();
     }
 
     private static void listLogbookEntriesOfEmployee(Employee empl) {
-        EntityManager em = JPAUtil.getTransactedEntityManager();
+        EntityManager em = JpaUtil.getTransactedEntityManager();
         System.out.println("logbook entries of employee:");
         TypedQuery<LogbookEntry> qry = em.createQuery("from LogbookEntry where employee.id=:emplId", LogbookEntry.class);
         qry.setParameter("emplId", empl.getId());
@@ -76,7 +76,7 @@ public class JPAWorklogManager {
         for (LogbookEntry entry : entries) {
             System.out.println("   " + entry);
         }
-        JPAUtil.commit();
+        JpaUtil.commit();
     }
 
     public static void main(String[] args) {
@@ -131,6 +131,6 @@ public class JPAWorklogManager {
         System.out.println("----- listLogbookEntriesOfEmployee -----");
         listLogbookEntriesOfEmployee(empl1);
 
-        JPAUtil.closeEntityManagerFactory();
+        JpaUtil.closeEntityManagerFactory();
     }
 }

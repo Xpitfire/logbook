@@ -1,6 +1,7 @@
 package swt6.ue2.logbook.domain;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -9,7 +10,7 @@ import java.util.Set;
  * @date: 08.03.2016
  */
 @Entity
-public class Module {
+public class Module implements Serializable {
 
     @Id
     @GeneratedValue

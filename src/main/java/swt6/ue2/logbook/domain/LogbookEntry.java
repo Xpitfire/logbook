@@ -107,12 +107,10 @@ public class LogbookEntry implements Serializable {
             throw new IllegalArgumentException("Employee must not be null");
         }
 
-        // If entry is already linked to some employee, remove this link
-        if (this.getEmployee() != null) {
-            this.getEmployee().getLogbookEntries().remove(this);
+        if (this.employee != null) {
+            this.employee.getLogbookEntries().remove(this);
         }
 
-        // Add a bidirectional link between this entry and employee
         this.employee = employee;
         this.employee.getLogbookEntries().add(this);
     }
@@ -129,8 +127,8 @@ public class LogbookEntry implements Serializable {
             throw new IllegalArgumentException("Module must not be null");
         }
 
-        if (this.getModule() != null) {
-            this.getModule().getLogbookEntries().remove(this);
+        if (this.module != null) {
+            this.module.getLogbookEntries().remove(this);
         }
 
         this.module = module;
@@ -149,8 +147,8 @@ public class LogbookEntry implements Serializable {
             throw new IllegalArgumentException("Phase must not be null");
         }
 
-        if (this.getPhase() != null) {
-            this.getPhase().getLogbookEntries().remove(this);
+        if (this.phase != null) {
+            this.phase.getLogbookEntries().remove(this);
         }
 
         this.phase = phase;
@@ -163,7 +161,6 @@ public class LogbookEntry implements Serializable {
         }
         this.phase = null;
     }
-
 
     @Override
     public String toString() {

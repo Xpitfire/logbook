@@ -31,7 +31,7 @@ public class Module {
         return id;
     }
 
-    public void setId(Long id) {
+    private void setId(Long id) {
         this.id = id;
     }
 
@@ -64,8 +64,8 @@ public class Module {
             throw new IllegalArgumentException("Module must not be null");
         }
 
-        if (this.getProject() != null) {
-            this.getProject().getModules().remove(this);
+        if (this.project != null) {
+            this.project.getModules().remove(this);
         }
 
         this.project = project;
@@ -77,5 +77,31 @@ public class Module {
             this.project.getModules().remove(this);
         }
         this.project = null;
+    }
+
+    public void addLogbookEntry(LogbookEntry logbookEntry) {
+        if (logbookEntry == null) {
+            throw new IllegalArgumentException("LogbookEntry must not be null");
+        }
+
+        if (logbookEntry.getModule() != null) {
+            logbookEntry.getModule().getLogbookEntries().remove(logbookEntry);
+        }
+
+        this.logbookEntries.add(logbookEntry);
+        logbookEntry.setModule(this);
+    }
+
+    public void removeLogbookEntry(LogbookEntry logbookEntry) {
+        if (logbookEntry == null) {
+            throw new IllegalArgumentException("LogbookEntry must not be null");
+        }
+
+        if (logbookEntry.getModule() != null && logbookEntry.getModule() != this) {
+            throw new IllegalArgumentException("LogbookEntry is associated with another module");
+        }
+
+        this.logbookEntries.remove(logbookEntry);
+        logbookEntry.setModule(null);
     }
 }

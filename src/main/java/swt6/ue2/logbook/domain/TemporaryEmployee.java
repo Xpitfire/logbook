@@ -13,7 +13,7 @@ public class TemporaryEmployee extends Employee {
     private static final DateFormat fmt = DateFormat.getDateInstance();
 
     private String renter;
-    private double hourlyRate;
+    private Double hourlyRate;
     private Date startDate;
     private Date endDate;
 

@@ -26,6 +26,18 @@ public class Project implements Serializable {
             orphanRemoval = true)
     private Set<Module> modules = new HashSet<>();
 
+    @OneToMany(mappedBy = "project",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY,
+            orphanRemoval = true)
+    private Set<Sprint> sprints = new HashSet<>();
+
+    @OneToMany(mappedBy = "project",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY,
+            orphanRemoval = true)
+    private Set<Requirement> requirements = new HashSet<>();
+
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE},
             fetch = FetchType.EAGER,
             optional = false)
@@ -62,13 +74,12 @@ public class Project implements Serializable {
         this.members = members;
     }
 
-    public void addMember(Employee empl) {
-        if (empl == null) {
-            throw new IllegalArgumentException("Employee must not be null");
-        }
+    public Employee getLeader() {
+        return leader;
+    }
 
-        this.members.add(empl);
-        empl.getProjects().add(this);
+    public void setLeader(Employee leader) {
+        this.leader = leader;
     }
 
     public Set<Module> getModules() {
@@ -79,12 +90,116 @@ public class Project implements Serializable {
         this.modules = modules;
     }
 
-    public Employee getLeader() {
-        return leader;
+    public Set<Requirement> getRequirements() {
+        return requirements;
     }
 
-    public void setLeader(Employee leader) {
-        this.leader = leader;
+    public void setRequirements(Set<Requirement> requirements) {
+        this.requirements = requirements;
+    }
+
+    public Set<Sprint> getSprints() {
+        return sprints;
+    }
+
+    public void setSprints(Set<Sprint> sprints) {
+        this.sprints = sprints;
+    }
+
+    public void addMember(Employee employee) {
+        if (employee == null) {
+            throw new IllegalArgumentException("Employee must not be null");
+        }
+
+        this.members.add(employee);
+        employee.getProjects().add(this);
+    }
+
+    public void removeMember(Employee employee) {
+        if (employee == null) {
+            throw new IllegalArgumentException("Employee must not be null");
+        }
+
+        this.members.remove(employee);
+        employee.getProjects().remove(this);
+    }
+
+    public void addModule(Module module) {
+        if (module == null) {
+            throw new IllegalArgumentException("Module must not be null");
+        }
+
+        if (module.getProject() != null) {
+            module.getProject().getModules().remove(module);
+        }
+
+        this.modules.add(module);
+        module.setProject(this);
+    }
+
+    public void removeModule(Module module) {
+        if (module == null) {
+            throw new IllegalArgumentException("Module must not be null");
+        }
+
+        if (module.getProject() != null && module.getProject() != this) {
+            throw new IllegalArgumentException("Module is associated with another project");
+        }
+
+        this.modules.remove(module);
+        module.setProject(null);
+    }
+
+    public void addSprint(Sprint sprint) {
+        if (sprint == null) {
+            throw new IllegalArgumentException("Sprint must not be null");
+        }
+
+        if (sprint.getProject() != null) {
+            sprint.getProject().getModules().remove(sprint);
+        }
+
+        this.sprints.add(sprint);
+        sprint.setProject(this);
+    }
+
+    public void removeSprint(Sprint sprint) {
+        if (sprint == null) {
+            throw new IllegalArgumentException("Sprint must not be null");
+        }
+
+        if (sprint.getProject() != null && sprint.getProject() != this) {
+            throw new IllegalArgumentException("Sprint is associated with another project");
+        }
+
+        this.sprints.remove(sprint);
+        sprint.setProject(null);
+    }
+
+    public void addRequirement(Requirement requirement) {
+        if (requirement == null) {
+            throw new IllegalArgumentException("Requirement must not be null");
+        }
+
+        if (requirement.getProject() != null) {
+            requirement.getProject().getModules().remove(requirement);
+        }
+
+        this.requirements.add(requirement);
+        requirement.setProject(this);
+    }
+
+    public void removeRequirement(Requirement requirement) {
+        if (requirement == null) {
+            throw new IllegalArgumentException("Requirement must not be null");
+        }
+
+        if (requirement.getProject() != null && requirement.getProject() != this) {
+            throw new IllegalArgumentException("Requirement is associated with another project");
+        }
+
+        this.requirements.remove(requirement);
+        requirement.setProject(null);
     }
 
     public void attachLeader(Employee leader) {
@@ -92,17 +207,17 @@ public class Project implements Serializable {
             throw new IllegalArgumentException("Employee leader must not be null");
         }
 
-        if (this.getLeader() != null) {
-            this.getLeader().getProjectsLeader().remove(this);
+        if (this.leader != null) {
+            this.leader.getSupervisedProjects().remove(this);
         }
 
         this.leader = leader;
-        this.leader.getProjectsLeader().add(this);
+        this.leader.getSupervisedProjects().add(this);
     }
 
     public void detachLeader() {
         if (this.leader != null) {
-            this.leader.getProjectsLeader().remove(this);
+            this.leader.getSupervisedProjects().remove(this);
         }
         this.leader = null;
     }

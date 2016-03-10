@@ -28,7 +28,7 @@ public class Phase implements Serializable {
         return id;
     }
 
-    public void setId(Long id) {
+    private void setId(Long id) {
         this.id = id;
     }
 
@@ -47,4 +47,31 @@ public class Phase implements Serializable {
     public void setLogbookEntries(Set<LogbookEntry> logbookEntries) {
         this.logbookEntries = logbookEntries;
     }
+
+    public void addLogbookEntry(LogbookEntry logbookEntry) {
+        if (logbookEntry == null) {
+            throw new IllegalArgumentException("LogbookEntry must not be null");
+        }
+
+        if (logbookEntry.getPhase() != null) {
+            logbookEntry.getPhase().getLogbookEntries().remove(logbookEntry);
+        }
+
+        this.logbookEntries.add(logbookEntry);
+        logbookEntry.setPhase(this);
+    }
+
+    public void removeLogbookEntry(LogbookEntry logbookEntry) {
+        if (logbookEntry == null) {
+            throw new IllegalArgumentException("LogbookEntry must not be null");
+        }
+
+        if (logbookEntry.getPhase() != null && logbookEntry.getPhase() != this) {
+            throw new IllegalArgumentException("LogbookEntry is associated with another phase");
+        }
+
+        this.logbookEntries.remove(logbookEntry);
+        logbookEntry.setPhase(null);
+    }
+
 }

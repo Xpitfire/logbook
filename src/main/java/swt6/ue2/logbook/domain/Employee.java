@@ -28,16 +28,16 @@ public class Employee implements Serializable {
             orphanRemoval = true)
     private Set<LogbookEntry> logbookEntries = new HashSet<>();
 
-    @ManyToMany(mappedBy = "members",
-            cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY)
-    private Set<Project> projects = new HashSet<>();
-
     @OneToMany(mappedBy = "leader",
             cascade = CascadeType.ALL,
             fetch = FetchType.EAGER,
             orphanRemoval = true)
-    private Set<Project> projectsLeader = new HashSet<>();
+    private Set<Project> supervisedProjects = new HashSet<>();
+
+    @ManyToMany(mappedBy = "members",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY)
+    private Set<Project> projects = new HashSet<>();
 
     public Employee() {
     }
@@ -45,7 +45,6 @@ public class Employee implements Serializable {
     public Employee(String firstName, String lastName, Date dateOfBirth) {
         this(firstName, lastName, dateOfBirth, null);
     }
-
 
     public Employee(String firstName, String lastName, Date dateOfBirth, Address address) {
         super();
@@ -95,6 +94,40 @@ public class Employee implements Serializable {
         this.logbookEntries = logbookEntries;
     }
 
+    public Set<Project> getProjects() {
+        return projects;
+    }
+
+    public void setProjects(Set<Project> projects) {
+        this.projects = projects;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    public void addProject(Project project) {
+        if (project == null) {
+            throw new IllegalArgumentException("Project must not be null");
+        }
+
+        this.projects.add(project);
+        project.getMembers().add(this);
+    }
+
+    public void removeProject(Project project) {
+        if (project == null) {
+            throw new IllegalArgumentException("Project must not be null");
+        }
+
+        this.projects.remove(project);
+        project.getMembers().remove(this);
+    }
+
     public void addLogbookEntry(LogbookEntry entry) {
         if (entry == null) {
             throw new IllegalArgumentException("LogbookEntry must not be null");
@@ -117,41 +150,42 @@ public class Employee implements Serializable {
             throw new IllegalArgumentException("LogbookEntry is associated with another employee");
         }
 
-        this.getLogbookEntries().remove(entry);
+        this.logbookEntries.remove(entry);
         entry.setEmployee(null);
     }
 
-    public Set<Project> getProjects() {
-        return projects;
+    public Set<Project> getSupervisedProjects() {
+        return supervisedProjects;
     }
 
-    public void setProjects(Set<Project> projects) {
-        this.projects = projects;
+    public void setSupervisedProjects(Set<Project> projectsLeader) {
+        this.supervisedProjects = projectsLeader;
     }
 
-    public void addProject(Project project) {
+    public void addSupervisedProject(Project project) {
         if (project == null) {
             throw new IllegalArgumentException("Project must not be null");
         }
 
-        this.projects.add(project);
-        project.getMembers().add(this);
+        if (project.getLeader() != null) {
+            project.getLeader().getLogbookEntries().remove(project);
+        }
+
+        this.supervisedProjects.add(project);
+        project.setLeader(this);
     }
 
-    public Address getAddress() {
-        return address;
-    }
+    public void removeSupervisedProject(Project project) {
+        if (project == null) {
+            throw new IllegalArgumentException("Project must not be null");
+        }
 
-    public void setAddress(Address address) {
-        this.address = address;
-    }
+        if (project.getLeader() != null && project.getLeader() != this) {
+            throw new IllegalArgumentException("Project is associated with another leader");
+        }
 
-    public Set<Project> getProjectsLeader() {
-        return projectsLeader;
-    }
-
-    public void setProjectsLeader(Set<Project> projectsLeader) {
-        this.projectsLeader = projectsLeader;
+        this.supervisedProjects.remove(project);
+        project.setLeader(null);
     }
 
     @Override

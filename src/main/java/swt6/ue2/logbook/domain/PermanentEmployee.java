@@ -9,7 +9,9 @@ import javax.persistence.Entity;
 @DiscriminatorValue("P")
 public class PermanentEmployee extends Employee {
 
-    private double salary;
+    private Double salary;
+
+    private Integer hoursPerWeek;
 
     public PermanentEmployee() {
     }
@@ -22,12 +24,20 @@ public class PermanentEmployee extends Employee {
         super(firstName, lastName, dateOfBirth, address);
     }
 
-    public double getSalary() {
+    public Double getSalary() {
         return salary;
     }
 
-    public void setSalary(double salary) {
+    public void setSalary(Double salary) {
         this.salary = salary;
+    }
+
+    public Integer getHoursPerWeek() {
+        return hoursPerWeek;
+    }
+
+    public void setHoursPerWeek(Integer hoursPerWeek) {
+        this.hoursPerWeek = hoursPerWeek;
     }
 
     public String toString() {

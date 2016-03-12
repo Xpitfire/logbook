@@ -21,7 +21,7 @@ public class Task implements Serializable {
             cascade = CascadeType.ALL,
             fetch = FetchType.EAGER,
             orphanRemoval = true)
-    private Set<Timestamp> timestamps = new HashSet<>();
+    private Set<LogbookEntry> logbookEntries = new HashSet<>();
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE},
             fetch = FetchType.EAGER,
@@ -60,38 +60,38 @@ public class Task implements Serializable {
         this.requirement = requirement;
     }
 
-    public Set<Timestamp> getTimestamps() {
-        return timestamps;
+    public Set<LogbookEntry> getLogbookEntries() {
+        return logbookEntries;
     }
 
-    public void setTimestamps(Set<Timestamp> timestamps) {
-        this.timestamps = timestamps;
+    public void setLogbookEntries(Set<LogbookEntry> logbookEntries) {
+        this.logbookEntries = logbookEntries;
     }
 
-    public void addTimestamp(Timestamp timestamp) {
-        if (timestamp == null) {
-            throw new IllegalArgumentException("Timestamp must not be null");
+    public void addLogbookEntries(LogbookEntry logbookEntry) {
+        if (logbookEntry == null) {
+            throw new IllegalArgumentException("LogbookEntry must not be null");
         }
 
-        if (timestamp.getTask() != null) {
-            timestamp.getTask().getTimestamps().remove(timestamp);
+        if (logbookEntry.getTask() != null) {
+            logbookEntry.getTask().getLogbookEntries().remove(logbookEntry);
         }
 
-        this.timestamps.add(timestamp);
-        timestamp.setTask(this);
+        this.logbookEntries.add(logbookEntry);
+        logbookEntry.setTask(this);
     }
 
-    public void removeTimestamp(Timestamp timestamp) {
-        if (timestamp == null) {
-            throw new IllegalArgumentException("Timestamp must not be null");
+    public void removeLogbookEntry(LogbookEntry logbookEntry) {
+        if (logbookEntry == null) {
+            throw new IllegalArgumentException("LogbookEntry must not be null");
         }
 
-        if (timestamp.getTask() != null && timestamp.getTask() != this) {
-            throw new IllegalArgumentException("Timestamp is associated with another task");
+        if (logbookEntry.getTask() != null && logbookEntry.getTask() != this) {
+            throw new IllegalArgumentException("LogbookEntry is associated with another task");
         }
 
-        this.timestamps.remove(timestamp);
-        timestamp.setTask(null);
+        this.logbookEntries.remove(logbookEntry);
+        logbookEntry.setTask(null);
     }
 
     public void attachRequirement(Requirement requirement) {

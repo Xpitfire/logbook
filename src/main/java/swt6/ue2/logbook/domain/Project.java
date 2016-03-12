@@ -24,12 +24,6 @@ public class Project implements Serializable {
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY,
             orphanRemoval = true)
-    private Set<Module> modules = new HashSet<>();
-
-    @OneToMany(mappedBy = "project",
-            cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY,
-            orphanRemoval = true)
     private Set<Sprint> sprints = new HashSet<>();
 
     @OneToMany(mappedBy = "project",
@@ -82,14 +76,6 @@ public class Project implements Serializable {
         this.leader = leader;
     }
 
-    public Set<Module> getModules() {
-        return modules;
-    }
-
-    public void setModules(Set<Module> modules) {
-        this.modules = modules;
-    }
-
     public Set<Requirement> getRequirements() {
         return requirements;
     }
@@ -124,39 +110,13 @@ public class Project implements Serializable {
         employee.getProjects().remove(this);
     }
 
-    public void addModule(Module module) {
-        if (module == null) {
-            throw new IllegalArgumentException("Module must not be null");
-        }
-
-        if (module.getProject() != null) {
-            module.getProject().getModules().remove(module);
-        }
-
-        this.modules.add(module);
-        module.setProject(this);
-    }
-
-    public void removeModule(Module module) {
-        if (module == null) {
-            throw new IllegalArgumentException("Module must not be null");
-        }
-
-        if (module.getProject() != null && module.getProject() != this) {
-            throw new IllegalArgumentException("Module is associated with another project");
-        }
-
-        this.modules.remove(module);
-        module.setProject(null);
-    }
-
     public void addSprint(Sprint sprint) {
         if (sprint == null) {
             throw new IllegalArgumentException("Sprint must not be null");
         }
 
         if (sprint.getProject() != null) {
-            sprint.getProject().getModules().remove(sprint);
+            sprint.getProject().getSprints().remove(sprint);
         }
 
         this.sprints.add(sprint);
@@ -182,7 +142,7 @@ public class Project implements Serializable {
         }
 
         if (requirement.getProject() != null) {
-            requirement.getProject().getModules().remove(requirement);
+            requirement.getProject().getRequirements().remove(requirement);
         }
 
         this.requirements.add(requirement);

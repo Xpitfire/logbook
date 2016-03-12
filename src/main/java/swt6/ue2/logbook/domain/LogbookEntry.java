@@ -28,13 +28,8 @@ public class LogbookEntry implements Serializable {
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE},
             fetch = FetchType.EAGER,
-            optional = true)
-    private Module module;
-
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE},
-            fetch = FetchType.EAGER,
-            optional = true)
-    private Phase phase;
+            optional = false)
+    private Task task;
 
     public LogbookEntry() {
     }
@@ -86,20 +81,32 @@ public class LogbookEntry implements Serializable {
         this.employee = employee;
     }
 
-    public Module getModule() {
-        return module;
+    public Task getTask() {
+        return task;
     }
 
-    public void setModule(Module module) {
-        this.module = module;
+    public void setTask(Task task) {
+        this.task = task;
     }
 
-    public Phase getPhase() {
-        return phase;
+    public void attachTask(Task task) {
+        if (task == null) {
+            throw new IllegalArgumentException("Task must not be null");
+        }
+
+        if (this.task != null) {
+            this.task.getLogbookEntries().remove(this);
+        }
+
+        this.task = task;
+        this.task.getLogbookEntries().add(this);
     }
 
-    public void setPhase(Phase phase) {
-        this.phase = phase;
+    public void detachRequirement() {
+        if (this.task != null) {
+            this.task.getLogbookEntries().remove(this);
+        }
+        this.task = null;
     }
 
     public void attachEmployee(Employee employee) {
@@ -120,46 +127,6 @@ public class LogbookEntry implements Serializable {
             this.employee.getLogbookEntries().remove(this);
         }
         this.employee = null;
-    }
-
-    public void attachModule(Module module) {
-        if (module == null) {
-            throw new IllegalArgumentException("Module must not be null");
-        }
-
-        if (this.module != null) {
-            this.module.getLogbookEntries().remove(this);
-        }
-
-        this.module = module;
-        this.module.getLogbookEntries().add(this);
-    }
-
-    public void detachModule() {
-        if (this.module != null) {
-            this.module.getLogbookEntries().remove(this);
-        }
-        this.module = null;
-    }
-
-    public void attachPhase(Phase phase) {
-        if (phase == null) {
-            throw new IllegalArgumentException("Phase must not be null");
-        }
-
-        if (this.phase != null) {
-            this.phase.getLogbookEntries().remove(this);
-        }
-
-        this.phase = phase;
-        this.phase.getLogbookEntries().add(this);
-    }
-
-    public void detachPhase() {
-        if (this.phase != null) {
-            this.phase.getLogbookEntries().remove(this);
-        }
-        this.phase = null;
     }
 
     @Override

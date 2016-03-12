@@ -39,7 +39,7 @@ public abstract class Menu {
     }
 
     protected void printMenuTile() {
-        console.println(String.format("===== [%s] ===", getMenuTitle().toUpperCase()));
+        console.println(String.format("===== [%s] =====", getMenuTitle().toUpperCase()));
     }
 
     protected void printSeparator() {

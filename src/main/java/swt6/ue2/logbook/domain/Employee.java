@@ -17,19 +17,17 @@ public abstract class Employee implements Serializable {
     private String firstName;
     private String lastName;
     private Date dateOfBirth;
-
-    @Embedded
     private Address address;
 
     @OneToMany(mappedBy = "employee",
             cascade = CascadeType.ALL,
-            fetch = FetchType.EAGER,
+            fetch = FetchType.LAZY,
             orphanRemoval = true)
     private Set<LogbookEntry> logbookEntries = new HashSet<>();
 
     @OneToMany(mappedBy = "leader",
             cascade = CascadeType.ALL,
-            fetch = FetchType.EAGER,
+            fetch = FetchType.LAZY,
             orphanRemoval = true)
     private Set<Project> supervisedProjects = new HashSet<>();
 

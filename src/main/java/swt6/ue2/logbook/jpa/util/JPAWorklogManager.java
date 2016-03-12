@@ -138,7 +138,7 @@ public class JpaWorklogManager {
 
         System.out.println("----- Dao tests -----");
         Dao<Employee> dao = DaoFactory.getDao(Employee.class);
-        dao.merge(new PermanentEmployee("Marius", "Dinu", DateUtil.getDate(1988, 7, 3)));
+        dao.safe(new PermanentEmployee("Marius", "Dinu", DateUtil.getDate(1988, 7, 3)));
 
         EmployeeDao temporaryEmployeeDao = DaoFactory.getDao(Employee.class);
         List<TemporaryEmployee> tempEmployees = temporaryEmployeeDao.findAll(TemporaryEmployee.class);

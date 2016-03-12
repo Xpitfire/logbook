@@ -8,9 +8,10 @@ import java.util.List;
  */
 public interface Dao<T> {
 
+    T firstOrDefault();
     T findById(Object id);
     List<T> findAll();
-    T merge(T entity);
+    T safe(T entity);
     void remove(T entity);
 
 }

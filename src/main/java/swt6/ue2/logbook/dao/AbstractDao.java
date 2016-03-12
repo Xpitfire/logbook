@@ -4,6 +4,7 @@ import swt6.ue2.logbook.jpa.util.JpaUtil;
 
 import javax.persistence.EntityManager;
 import javax.persistence.FetchType;
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -24,6 +25,20 @@ public abstract class AbstractDao<T extends Serializable> implements Dao<T> {
     }
 
     @Override
+    public T firstOrDefault() {
+        EntityManager entityManager  = JpaUtil.getTransactedEntityManager();
+        Query query = entityManager.createQuery(String.format("SELECT t FROM %s t", clazz.getSimpleName()));
+        T entity = null;
+        try {
+            entity = (T) query.setMaxResults(1).getSingleResult();
+        } catch (NoResultException ex) {
+            // do nothing
+        }
+        JpaUtil.commit();
+        return entity;
+    }
+
+    @Override
     public T findById(Object id) {
         EntityManager entityManager  = JpaUtil.getTransactedEntityManager();
         T entity = entityManager.find(clazz, id);
@@ -41,7 +56,7 @@ public abstract class AbstractDao<T extends Serializable> implements Dao<T> {
     }
 
     @Override
-    public T merge(T entity) {
+    public T safe(T entity) {
         EntityManager entityManager = JpaUtil.getTransactedEntityManager();
         entity = entityManager.merge(entity);
         JpaUtil.commit();
@@ -51,6 +66,7 @@ public abstract class AbstractDao<T extends Serializable> implements Dao<T> {
     @Override
     public void remove(T entity) {
         EntityManager entityManager = JpaUtil.getTransactedEntityManager();
+        entity = entityManager.merge(entity);
         entityManager.remove(entity);
         JpaUtil.commit();
     }

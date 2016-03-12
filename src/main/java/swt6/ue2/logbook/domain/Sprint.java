@@ -28,6 +28,9 @@ public class Sprint implements Serializable {
             orphanRemoval = true)
     private Set<Requirement> requirements = new HashSet<>();
 
+    public Sprint() {
+    }
+
     public Long getId() {
         return id;
     }

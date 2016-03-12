@@ -38,15 +38,15 @@ public class Project implements Serializable {
             optional = false)
     private Employee leader;
 
-    public Long getId() {
-        return id;
-    }
-
     public Project() {
     }
 
     public Project(String name) {
         this.name = name;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     private void setId(Long id) {

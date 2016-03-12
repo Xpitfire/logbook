@@ -33,6 +33,14 @@ public class Requirement implements Serializable {
             optional = false)
     private Sprint sprint;
 
+    public Requirement() {
+    }
+
+    public Requirement(String id, String description) {
+        this.id = id;
+        this.description = description;
+    }
+
     public String getId() {
         return id;
     }

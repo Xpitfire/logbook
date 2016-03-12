@@ -29,6 +29,15 @@ public class Task implements Serializable {
             optional = false)
     private Requirement requirement;
 
+    public Task() {
+    }
+
+    public Task(String id, String description, Integer estimatedHours) {
+        this.id = id;
+        this.description = description;
+        this.estimatedHours = estimatedHours;
+    }
+
     public String getId() {
         return id;
     }

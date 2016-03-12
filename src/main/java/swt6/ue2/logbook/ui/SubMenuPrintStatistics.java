@@ -18,7 +18,7 @@ public class SubMenuPrintStatistics extends Menu {
     }
 
     @Override
-    public void enterMenu() {
+    public void run() {
         do {
             input = console.readLine("> ");
 

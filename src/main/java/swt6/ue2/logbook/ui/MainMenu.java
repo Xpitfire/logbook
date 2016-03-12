@@ -1,6 +1,7 @@
 package swt6.ue2.logbook.ui;
 
 import swt6.ue2.logbook.io.Console;
+import swt6.ue2.logbook.jpa.util.JpaUtil;
 
 /**
  * @author: Dinu Marius-Constantin
@@ -18,29 +19,29 @@ public class MainMenu extends Menu {
     }
 
     @Override
-    public void enterMenu() {
+    public void run() {
         do {
             input = console.readLine("> ");
 
             if (input.equalsIgnoreCase("m")) {
                 printMenuOptions();
             } else if (input.equalsIgnoreCase("p")) {
-                new SubMenuPrintStatistics(console).enterMenu();
+                new SubMenuPrintStatistics(console).run();
                 printEntranceInfo();
             } else if (input.equalsIgnoreCase("f")) {
-                new SubMenuFindEntities(console).enterMenu();
+                new SubMenuFindEntities(console).run();
                 printEntranceInfo();
             } else if (input.equalsIgnoreCase("c")) {
-                new SubMenuCreateEntities(console).enterMenu();
+                new SubMenuCreateEntities(console).run();
                 printEntranceInfo();
             } else if (input.equalsIgnoreCase("d")) {
-                new SubMenuDeleteEntities(console).enterMenu();
+                new SubMenuDeleteEntities(console).run();
                 printEntranceInfo();
             } else if (input.equalsIgnoreCase("l")) {
-                new SubMenuLinkEntities(console).enterMenu();
+                new SubMenuLinkEntities(console).run();
                 printEntranceInfo();
             } else if (input.equalsIgnoreCase("u")) {
-                new SubMenuUpdateEntities(console).enterMenu();
+                new SubMenuUpdateEntities(console).run();
                 printEntranceInfo();
             } else if (input.equalsIgnoreCase("q")) {
                 // skip
@@ -69,4 +70,8 @@ public class MainMenu extends Menu {
         printSeparator();
     }
 
+    @Override
+    public void close() {
+        JpaUtil.closeEntityManagerFactory();
+    }
 }

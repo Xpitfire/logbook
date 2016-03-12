@@ -10,8 +10,9 @@ import swt6.ue2.logbook.ui.Menu;
 public class Launch {
 
     public static void main(String[] args) {
-        Menu console = new MainMenu();
-        console.enterMenu();
+        try (Menu menu = new MainMenu()) {
+            menu.run();
+        }
     }
 
 }

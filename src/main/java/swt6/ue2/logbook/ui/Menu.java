@@ -6,7 +6,7 @@ import swt6.ue2.logbook.io.Console;
  * @author: Dinu Marius-Constantin
  * @date: 10.03.2016
  */
-public abstract class Menu {
+public abstract class Menu implements AutoCloseable {
 
     private static boolean initializing = true;
     protected final Console console;
@@ -53,8 +53,14 @@ public abstract class Menu {
         printMenuOptions();
     }
 
-    public abstract void enterMenu();
+    /**
+     * Enter menu blocks until the quit option is selected!
+     */
+    public abstract void run();
     protected abstract String getMenuTitle();
     protected abstract void printMenuOptions();
+
+    @Override
+    public void close() { }
 
 }

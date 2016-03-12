@@ -7,6 +7,7 @@ import javax.persistence.TypedQuery;
 
 import swt6.ue2.logbook.dao.Dao;
 import swt6.ue2.logbook.dao.DaoFactory;
+import swt6.ue2.logbook.dao.EmployeeDao;
 import swt6.ue2.logbook.domain.Address;
 import swt6.ue2.logbook.domain.Employee;
 import swt6.ue2.logbook.domain.LogbookEntry;
@@ -135,8 +136,13 @@ public class JpaWorklogManager {
 
         // -------------------------------------------------------------------
 
-        Dao<Employee> employeeDao = DaoFactory.getDao(Employee.class);
-        employeeDao.merge(new PermanentEmployee("Marius", "Dinu", DateUtil.getDate(1988, 7, 3)));
+        System.out.println("----- Dao tests -----");
+        Dao<Employee> dao = DaoFactory.getDao(Employee.class);
+        dao.merge(new PermanentEmployee("Marius", "Dinu", DateUtil.getDate(1988, 7, 3)));
+
+        EmployeeDao temporaryEmployeeDao = DaoFactory.getDao(Employee.class);
+        List<TemporaryEmployee> tempEmployees = temporaryEmployeeDao.findAll(TemporaryEmployee.class);
+        tempEmployees.forEach(System.out::println);
 
         JpaUtil.closeEntityManagerFactory();
     }

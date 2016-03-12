@@ -28,7 +28,7 @@ public class LogbookEntry implements Serializable {
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE},
             fetch = FetchType.EAGER,
-            optional = false)
+            optional = true)
     private Task task;
 
     public LogbookEntry() {

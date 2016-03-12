@@ -7,6 +7,7 @@ import java.util.Set;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "PROJECT")
 public class Project implements Serializable {
 
     @Id
@@ -15,7 +16,7 @@ public class Project implements Serializable {
     private String name;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinTable(name = "ProjectEmployee",
+    @JoinTable(name = "PROJECT_EMPLOYEE",
             joinColumns = {@JoinColumn(name = "projectId")},
             inverseJoinColumns = {@JoinColumn(name = "employeeId")})
     private Set<Employee> members = new HashSet<>();

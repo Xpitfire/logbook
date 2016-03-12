@@ -5,6 +5,8 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
+import swt6.ue2.logbook.dao.Dao;
+import swt6.ue2.logbook.dao.DaoFactory;
 import swt6.ue2.logbook.domain.Address;
 import swt6.ue2.logbook.domain.Employee;
 import swt6.ue2.logbook.domain.LogbookEntry;
@@ -80,8 +82,8 @@ public class JpaWorklogManager {
     }
 
     public static void main(String[] args) {
-        Employee empl1 = new Employee("Bill", "Gates", DateUtil.getDate(1970, 1, 21));
-        Employee empl2 = new Employee("Franz", "Mayr", DateUtil.getDate(1980, 1, 21), new Address("4232", "Hagenberg", "Hauptstraße 1"));
+        Employee empl1 = new PermanentEmployee("Bill", "Gates", DateUtil.getDate(1970, 1, 21));
+        Employee empl2 = new PermanentEmployee("Franz", "Mayr", DateUtil.getDate(1980, 1, 21), new Address("4232", "Hagenberg", "Hauptstraße 1"));
 
         PermanentEmployee empl3 = new PermanentEmployee("Karl", "Kopf", DateUtil.getDate(1950, 9, 25));
         empl3.setSalary(5000.0);
@@ -130,6 +132,11 @@ public class JpaWorklogManager {
 
         System.out.println("----- listLogbookEntriesOfEmployee -----");
         listLogbookEntriesOfEmployee(empl1);
+
+        // -------------------------------------------------------------------
+
+        Dao<Employee> employeeDao = DaoFactory.getDao(Employee.class);
+        employeeDao.insert(new PermanentEmployee("Marius", "Dinu", DateUtil.getDate(1988, 7, 3)));
 
         JpaUtil.closeEntityManagerFactory();
     }

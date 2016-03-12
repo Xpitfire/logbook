@@ -1,14 +1,13 @@
-package swt6.ue2.logbook.dao.impl;
+package swt6.ue2.logbook.dao;
 
-import swt6.ue2.logbook.dao.AbstractJpaDao;
-import swt6.ue2.logbook.domain.Requirement;
+import swt6.ue2.logbook.domain.Address;
 
 /**
  * @author: Dinu Marius-Constantin
  * @date: 10.03.2016
  */
-public class RequirementDao extends AbstractJpaDao<Requirement> {
-    protected RequirementDao(Class<Requirement> clazz) {
+class AddressDao extends AbstractDao<Address> {
+    AddressDao(Class<Address> clazz) {
         super(clazz);
     }
 

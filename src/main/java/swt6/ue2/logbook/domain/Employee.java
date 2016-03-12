@@ -8,12 +8,11 @@ import java.util.Set;
 import javax.persistence.*;
 
 @Entity
-@Inheritance
-@DiscriminatorColumn(name = "employeeType")
-public class Employee implements Serializable {
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+public abstract class Employee implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
     private String firstName;
     private String lastName;

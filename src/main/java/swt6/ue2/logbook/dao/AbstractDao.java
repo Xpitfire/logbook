@@ -12,11 +12,11 @@ import java.util.List;
  * @author: Dinu Marius-Constantin
  * @date: 10.03.2016
  */
-public abstract class AbstractJpaDao<T extends Serializable> implements CommonDao<T> {
+public abstract class AbstractDao<T extends Serializable> implements Dao<T> {
 
     private Class<T> clazz;
 
-    protected AbstractJpaDao(Class<T> clazz) {
+    protected AbstractDao(Class<T> clazz) {
         this.clazz = clazz;
     }
 

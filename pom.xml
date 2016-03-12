@@ -17,6 +17,7 @@
         <derby.version>10.12.1.1</derby.version>
         <junit.version>4.12</junit.version>
         <slf4j.version>1.7.16</slf4j.version>
+        <ninja-squad.version>1.6.0</ninja-squad.version>
     </properties>
 
     <build>
@@ -75,6 +76,14 @@
             <version>${derby.version}</version>
             <scope>runtime</scope>
         </dependency>
+
+        <dependency>
+            <groupId>com.ninja-squad</groupId>
+            <artifactId>DbSetup</artifactId>
+            <version>${ninja-squad.version}</version>
+            <scope>test</scope>
+        </dependency>
+
     </dependencies>
 
 </project>

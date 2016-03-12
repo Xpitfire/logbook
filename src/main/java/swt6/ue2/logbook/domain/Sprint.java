@@ -10,6 +10,7 @@ import java.util.Set;
  * @date: 10.03.2016
  */
 @Entity
+@Table(name = "SPRINT")
 public class Sprint implements Serializable {
 
     @Id

@@ -1,14 +1,13 @@
-package swt6.ue2.logbook.dao.impl;
+package swt6.ue2.logbook.dao;
 
-import swt6.ue2.logbook.dao.AbstractJpaDao;
-import swt6.ue2.logbook.domain.Task;
+import swt6.ue2.logbook.domain.Employee;
 
 /**
  * @author: Dinu Marius-Constantin
  * @date: 10.03.2016
  */
-public class TaskDao extends AbstractJpaDao<Task> {
-    protected TaskDao(Class<Task> clazz) {
+class EmployeeDao extends AbstractDao<Employee> {
+    EmployeeDao(Class<Employee> clazz) {
         super(clazz);
     }
 

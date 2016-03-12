@@ -10,6 +10,7 @@ import java.util.Set;
  * @date: 10.03.2016
  */
 @Entity
+@Table(name = "REQUIREMENT")
 public class Requirement implements Serializable {
 
     @Id

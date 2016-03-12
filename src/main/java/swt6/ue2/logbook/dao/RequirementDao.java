@@ -1,14 +1,13 @@
-package swt6.ue2.logbook.dao.impl;
+package swt6.ue2.logbook.dao;
 
-import swt6.ue2.logbook.dao.AbstractJpaDao;
-import swt6.ue2.logbook.domain.Sprint;
+import swt6.ue2.logbook.domain.Requirement;
 
 /**
  * @author: Dinu Marius-Constantin
  * @date: 10.03.2016
  */
-public class SprintDao extends AbstractJpaDao<Sprint> {
-    protected SprintDao(Class<Sprint> clazz) {
+class RequirementDao extends AbstractDao<Requirement> {
+    RequirementDao(Class<Requirement> clazz) {
         super(clazz);
     }
 

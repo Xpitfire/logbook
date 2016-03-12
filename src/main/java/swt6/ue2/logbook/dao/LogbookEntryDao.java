@@ -1,14 +1,13 @@
-package swt6.ue2.logbook.dao.impl;
+package swt6.ue2.logbook.dao;
 
-import swt6.ue2.logbook.dao.AbstractJpaDao;
 import swt6.ue2.logbook.domain.LogbookEntry;
 
 /**
  * @author: Dinu Marius-Constantin
  * @date: 10.03.2016
  */
-public class LogbookEntryDao extends AbstractJpaDao<LogbookEntry> {
-    protected LogbookEntryDao(Class<LogbookEntry> clazz) {
+class LogbookEntryDao extends AbstractDao<LogbookEntry> {
+    LogbookEntryDao(Class<LogbookEntry> clazz) {
         super(clazz);
     }
 

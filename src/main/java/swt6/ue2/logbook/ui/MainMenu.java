@@ -26,28 +26,22 @@ public class MainMenu extends Menu {
                 printMenuOptions();
             } else if (input.equalsIgnoreCase("p")) {
                 new SubMenuPrintStatistics(console).enterMenu();
-                printMenuTile();
-                printMenuOptions();
+                printEntranceInfo();
             } else if (input.equalsIgnoreCase("f")) {
                 new SubMenuFindEntities(console).enterMenu();
-                printMenuTile();
-                printMenuOptions();
+                printEntranceInfo();
             } else if (input.equalsIgnoreCase("c")) {
                 new SubMenuCreateEntities(console).enterMenu();
-                printMenuTile();
-                printMenuOptions();
+                printEntranceInfo();
             } else if (input.equalsIgnoreCase("d")) {
                 new SubMenuDeleteEntities(console).enterMenu();
-                printMenuTile();
-                printMenuOptions();
+                printEntranceInfo();
             } else if (input.equalsIgnoreCase("l")) {
                 new SubMenuLinkEntities(console).enterMenu();
-                printMenuTile();
-                printMenuOptions();
+                printEntranceInfo();
             } else if (input.equalsIgnoreCase("u")) {
                 new SubMenuUpdateEntities(console).enterMenu();
-                printMenuTile();
-                printMenuOptions();
+                printEntranceInfo();
             } else if (input.equalsIgnoreCase("q")) {
                 // skip
             } else {

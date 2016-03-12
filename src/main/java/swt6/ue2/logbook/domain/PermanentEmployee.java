@@ -4,9 +4,10 @@ import java.util.Date;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.Table;
 
 @Entity
-@DiscriminatorValue("P")
+@Table(name = "PERMANENT_EMPLOYEE")
 public class PermanentEmployee extends Employee {
 
     private Double salary;

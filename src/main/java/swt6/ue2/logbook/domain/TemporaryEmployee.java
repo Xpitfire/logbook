@@ -5,9 +5,10 @@ import java.util.Date;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.Table;
 
 @Entity
-@DiscriminatorValue("T")
+@Table(name = "TEMPORARY_EMPLOYEE")
 public class TemporaryEmployee extends Employee {
 
     private static final DateFormat fmt = DateFormat.getDateInstance();

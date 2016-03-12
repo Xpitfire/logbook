@@ -37,8 +37,6 @@ public class SubMenuCreateEntities extends Menu {
         console.println("[e] ... Create employee");
         console.println("[l] ... Create logbook entry");
         console.println("[p] ... Create project");
-        console.println("[m] ... Create module");
-        console.println("[h] ... Create phase");
         console.resetIndent();
         printSeparator();
     }

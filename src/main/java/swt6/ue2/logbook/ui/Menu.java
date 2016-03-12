@@ -19,13 +19,8 @@ public abstract class Menu {
             initializing = false;
         }
         console.skipLine();
-        printMenuTile();
-        printMenuOptions();
+        printEntranceInfo();
     }
-
-    public abstract String getMenuTitle();
-    public abstract void enterMenu();
-    public abstract void printMenuOptions();
 
     protected void printHeader() {
         console.println(
@@ -52,5 +47,14 @@ public abstract class Menu {
         console.skipLine();
         printMenuOptions();
     }
+
+    protected void printEntranceInfo() {
+        printMenuTile();
+        printMenuOptions();
+    }
+
+    public abstract void enterMenu();
+    protected abstract String getMenuTitle();
+    protected abstract void printMenuOptions();
 
 }

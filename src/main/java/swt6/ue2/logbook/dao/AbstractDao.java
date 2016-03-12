@@ -71,4 +71,12 @@ public abstract class AbstractDao<T extends Serializable> implements Dao<T> {
         JpaUtil.commit();
     }
 
+    @Override
+    public Long count() {
+        EntityManager entityManager = JpaUtil.getTransactedEntityManager();
+        Query query = entityManager.createQuery(String.format("SELECT COUNT(t) FROM %s t", clazz.getSimpleName()));
+        Long count = (Long)query.getSingleResult();
+        JpaUtil.commit();
+        return count;
+    }
 }

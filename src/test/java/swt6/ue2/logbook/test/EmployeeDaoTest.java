@@ -86,7 +86,7 @@ public class EmployeeDaoTest extends CommonTest {
 
     @Test(expected = Exception.class)
     public void testInvalidEmployeeInsert() {
-        // find out the nullable issue
+        // TODO: find out the nullable issue
         Employee e = new PermanentEmployee();
         e = employeeDao.safe(e);
         assertNull(e);

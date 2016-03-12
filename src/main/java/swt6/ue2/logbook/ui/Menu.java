@@ -53,6 +53,11 @@ public abstract class Menu implements AutoCloseable {
         printMenuOptions();
     }
 
+    protected void printUserCancelMessage() {
+        console.println("Operation canceled by user!");
+        console.println("Data may have been lost.");
+    }
+
     /**
      * Enter menu blocks until the quit option is selected!
      */

@@ -22,6 +22,23 @@ public class SubMenuDeleteEntities extends Menu {
         do {
             input = console.readLine("> ");
 
+            if (input.equalsIgnoreCase("e")) {
+
+            } else if (input.equalsIgnoreCase("e")) {
+
+            } else if (input.equalsIgnoreCase("e")) {
+
+            } else if (input.equalsIgnoreCase("e")) {
+
+            } else if (input.equalsIgnoreCase("e")) {
+
+            } else if (input.equalsIgnoreCase("e")) {
+
+            } else if (input.equalsIgnoreCase("e")) {
+                // skip
+            } else {
+                printInvalidInput();
+            }
 
         } while (!input.equalsIgnoreCase("b"));
     }

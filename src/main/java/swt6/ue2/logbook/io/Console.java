@@ -4,6 +4,10 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * @author: Dinu Marius-Constantin
@@ -86,4 +90,83 @@ public class Console implements AutoCloseable {
     public void skipLine() {
         out.println();
     }
+
+    public String blockingReadCommand(String message, String... commands) throws CommandCanceledException {
+        String result;
+        for (String c : commands) {
+            if (c.equalsIgnoreCase("x"))
+                throw new IllegalArgumentException("Command cannot override cancel keyword 'x'!");
+        }
+        List<String> commandList = new ArrayList<>(Arrays.asList(commands));
+        commandList.add("x");
+        message += ", [x] = CANCEL >";
+
+        while (true) {
+            final String input = readLine(message);
+            if (commandList.stream().anyMatch(s -> s.equalsIgnoreCase(input))) {
+                result = input;
+                break;
+            }
+        }
+        if (result.equalsIgnoreCase("x"))
+            throw new CommandCanceledException("User canceled input");
+
+        return result;
+    }
+
+    public <T> T blockingTypedReadLine(String message, Class<T> clazz, boolean optional) {
+        T result = null;
+        String input = null;
+        message += optional ? " (leave empty and press ENTER to skip) >" : " >";
+        do {
+            try {
+                input = readLine(message);
+                if (input.isEmpty() && optional) {
+                    break;
+                }
+
+                if (clazz.equals(String.class)) {
+                    result = (T)input;
+                } else if (clazz.equals(Integer.class)) {
+                    result = (T)Integer.valueOf(input);
+                } else if (clazz.equals(Double.class)) {
+                    result = (T)Double.valueOf(input);
+                } else if (clazz.equals(Boolean.class)) {
+                    if (input.equalsIgnoreCase("true") || input.equalsIgnoreCase("false")) {
+                        result = (T) Boolean.valueOf(input);
+                    } else if (input.equalsIgnoreCase("y") || input.equalsIgnoreCase("n")) {
+                        result = (T)(input.equalsIgnoreCase("y") ? new Boolean(true) : new Boolean(false));
+                    } else {
+                        throw new IllegalBooleanLogicException("Only true/false or y/n is supported!");
+                    }
+                } else if (clazz.equals(Long.class)) {
+                    result = (T)Long.valueOf(input);
+                } else if (clazz.equals(Character.class)) {
+                    result = (T)Character.valueOf(input.charAt(0));
+                } else if (clazz.equals(Date.class)) {
+                    DateFormat df;
+                    if (input.length() == 10) {
+                        df = new SimpleDateFormat("dd.MM.yyyy");
+                    } else if (input.length() == 16) {
+                        df = new SimpleDateFormat("dd.MM.yyyy hh:mm");
+                    } else {
+                        throw new IllegalDateFormatException("Unsupported date format! (dd.MM.yyyy hh:mm)");
+                    }
+                    result = (T)df.parse(input);
+                } else {
+                    throw new UnsupportedOperationException("Only base language data types are supported!");
+                }
+            } catch (ClassCastException | ParseException ex) {
+                // skip and retry
+            } catch (IllegalDateFormatException | IllegalBooleanLogicException | NumberFormatException iex) {
+                println(iex.getMessage());
+            }
+        } while (result == null);
+        return result;
+    }
+
+    public <T> T blockingTypedReadLine(String message, Class<T> clazz) {
+        return blockingTypedReadLine(message, clazz, false);
+    }
+
 }

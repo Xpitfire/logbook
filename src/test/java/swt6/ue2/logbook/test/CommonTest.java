@@ -37,7 +37,7 @@ public abstract class CommonTest {
 
 
     public static final Operation DELETE_ALL = deleteAllFrom(
-            "LOGBOOK_ENTRY", "TASK", "REQUIREMENT", "SPRINT", "PROJECT_EMPLOYEE", "PROJECT", "PERMANENT_EMPLOYEE", "TEMPORARY_EMPLOYEE");
+            "LOGBOOK_ENTRY", "TASK", "REQUIREMENT", "SPRINT", "PROJECT_EMPLOYEE", "PROJECT", "EMPLOYEE");
 
     protected static DriverManagerDestination dbDestination =
             new DriverManagerDestination("jdbc:derby://localhost:1527/WorkLogDb", "APP", "APP");

@@ -40,6 +40,7 @@ public class LogbookDaoTest extends CommonTest {
 
     @Test
     public void testEmployeeCascadeRemove() {
+        // TODO: find out why the cascade delete does not work
         Long employeeId = logbookEntry1.getEmployee().getId();
         Long logbookId = logbookEntry1.getId();
         employeeDao.remove(permanentEmployee1);

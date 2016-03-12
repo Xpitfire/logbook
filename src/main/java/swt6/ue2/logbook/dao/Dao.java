@@ -11,6 +11,7 @@ public interface Dao<T> {
     T firstOrDefault();
     T findById(Object id);
     List<T> findAll();
+    Long count();
     T safe(T entity);
     void remove(T entity);
 

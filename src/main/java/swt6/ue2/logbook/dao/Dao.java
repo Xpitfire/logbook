@@ -8,10 +8,9 @@ import java.util.List;
  */
 public interface Dao<T> {
 
-    T selectById(Object id);
-    List<T> selectAll();
-    void insert(T entity);
-    void update(T entity);
-    void delete(T entity);
+    T findById(Object id);
+    List<T> findAll();
+    T merge(T entity);
+    void remove(T entity);
 
 }

@@ -21,7 +21,7 @@ public abstract class AbstractDao<T extends Serializable> implements Dao<T> {
     }
 
     @Override
-    public T selectById(Object id) {
+    public T findById(Object id) {
         EntityManager entityManager  = JpaUtil.getTransactedEntityManager();
         T entity = entityManager.find(clazz, id);
         JpaUtil.commit();
@@ -32,7 +32,7 @@ public abstract class AbstractDao<T extends Serializable> implements Dao<T> {
         if (type == null) throw new IllegalArgumentException("FetchType can not be null");
 
         if (type == FetchType.LAZY) {
-            return selectById(id);
+            return findById(id);
         } else {
             EntityManager entityManager = JpaUtil.getTransactedEntityManager();
             Query query = entityManager.createQuery(eagerSelectById());
@@ -43,7 +43,7 @@ public abstract class AbstractDao<T extends Serializable> implements Dao<T> {
     }
 
     @Override
-    public List<T> selectAll() {
+    public List<T> findAll() {
         EntityManager entityManager = JpaUtil.getTransactedEntityManager();
         Query query = entityManager.createQuery(String.format("SELECT t FROM %s t", clazz.getSimpleName()));
         List<T> entities = query.getResultList();
@@ -55,7 +55,7 @@ public abstract class AbstractDao<T extends Serializable> implements Dao<T> {
         if (type == null) throw new IllegalArgumentException("FetchType can not be null");
 
         if (type == FetchType.LAZY) {
-            return selectAll();
+            return findAll();
         } else {
             EntityManager entityManager = JpaUtil.getTransactedEntityManager();
             Query query = entityManager.createQuery(eagerSelectById());
@@ -66,21 +66,15 @@ public abstract class AbstractDao<T extends Serializable> implements Dao<T> {
     }
 
     @Override
-    public void insert(T entity) {
+    public T merge(T entity) {
         EntityManager entityManager = JpaUtil.getTransactedEntityManager();
-        entityManager.persist(entity);
+        entity = entityManager.merge(entity);
         JpaUtil.commit();
+        return entity;
     }
 
     @Override
-    public void update(T entity) {
-        EntityManager entityManager = JpaUtil.getTransactedEntityManager();
-        entityManager.merge(entity);
-        JpaUtil.commit();
-    }
-
-    @Override
-    public void delete(T entity) {
+    public void remove(T entity) {
         EntityManager entityManager = JpaUtil.getTransactedEntityManager();
         entityManager.remove(entity);
         JpaUtil.commit();

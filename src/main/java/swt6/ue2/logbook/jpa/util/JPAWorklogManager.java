@@ -136,7 +136,7 @@ public class JpaWorklogManager {
         // -------------------------------------------------------------------
 
         Dao<Employee> employeeDao = DaoFactory.getDao(Employee.class);
-        employeeDao.insert(new PermanentEmployee("Marius", "Dinu", DateUtil.getDate(1988, 7, 3)));
+        employeeDao.merge(new PermanentEmployee("Marius", "Dinu", DateUtil.getDate(1988, 7, 3)));
 
         JpaUtil.closeEntityManagerFactory();
     }

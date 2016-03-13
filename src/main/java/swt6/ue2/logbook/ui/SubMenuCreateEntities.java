@@ -58,15 +58,33 @@ public class SubMenuCreateEntities extends Menu {
         } while (!input.equalsIgnoreCase("b"));
     }
 
+    private boolean askForSkipOnUpdate(Object entity, String field) {
+        return entity != null && console.blockingTypedReadLine(String.format("Update %s? (y/n)", field), Boolean.class);
+    }
+
+    private boolean modifyOnlyOnCreate(Object value) {
+        return value == null;
+    }
+
     public Project createProject(boolean immediateSafe) throws CommandCanceledException {
-        console.println("*** Create Project ***");
-        Project project = new Project();
+        return createOrUpdateProject(null, immediateSafe);
+    }
+
+    public Project createOrUpdateProject(Project value, boolean immediateSafe) throws CommandCanceledException {
+        console.println("*** Project ***");
+        Project project = value != null ? value : new Project();
         SubMenuLinkEntities submenu = new SubMenuLinkEntities(console, false);
-        project.setLeader(submenu.selectEmployee());
-        project.setName(console.blockingTypedReadLine("Project name", String.class));
-        submenu.linkRequirementTo(project, false);
-        submenu.linkSprintTo(project, false);
-        submenu.linkEmployeeTo(project, false);
+
+        if (modifyOnlyOnCreate(value))
+            project.setLeader(submenu.selectEmployee());
+        if (askForSkipOnUpdate(value, "project name"))
+            project.setName(console.blockingTypedReadLine("Project name", String.class));
+        if (askForSkipOnUpdate(value, "link requirements"))
+            submenu.linkRequirementTo(project, false);
+        if (askForSkipOnUpdate(value, "link sprint"))
+            submenu.linkSprintTo(project, false);
+        if (askForSkipOnUpdate(value, "link employee"))
+            submenu.linkEmployeeTo(project, false);
 
         if (immediateSafe) {
             projectDao.safe(project);
@@ -76,7 +94,7 @@ public class SubMenuCreateEntities extends Menu {
     }
 
     public Sprint createSprint(boolean immediateSafe) throws CommandCanceledException {
-        console.println("*** Create Sprint ***");
+        console.println("*** Sprint ***");
         Sprint sprint = new Sprint();
         SubMenuLinkEntities submenu = new SubMenuLinkEntities(console, false);
         console.println("You require to select a project to continue:");
@@ -91,29 +109,45 @@ public class SubMenuCreateEntities extends Menu {
     }
 
     public Employee createEmployee(boolean immediateSafe) throws CommandCanceledException {
-        console.println("*** Create Employee ***");
-        input = console.blockingReadCommand("What kind of employee do you want to create? %n [p] = PERMANENT, [t] = TEMPORARY", "p", "t");
-        Employee employee;
-        if (input.equalsIgnoreCase("p")) {
-            employee = new PermanentEmployee();
-        } else {
-            employee = new TemporaryEmployee();
+        return createOrUpdateEmployee(null, immediateSafe);
+    }
+
+    public Employee createOrUpdateEmployee(Employee value, boolean immediateSafe) throws CommandCanceledException {
+        console.println("*** Employee ***");
+        Employee employee = value;
+        if (modifyOnlyOnCreate(value)) {
+            input = console.blockingReadCommand("What kind of employee do you want to create? %n [p] = PERMANENT, [t] = TEMPORARY", "p", "t");
+            if (input.equalsIgnoreCase("p")) {
+                employee = new PermanentEmployee();
+            } else {
+                employee = new TemporaryEmployee();
+            }
         }
-        employee.setFirstName(console.blockingTypedReadLine("First name", String.class));
-        employee.setLastName(console.blockingTypedReadLine("Last name", String.class));
-        employee.setDateOfBirth(console.blockingTypedReadLine("Birthday (dd.MM.yyyy)", Date.class));
+        if (askForSkipOnUpdate(value, "first name"))
+            employee.setFirstName(console.blockingTypedReadLine("First name", String.class));
+        if (askForSkipOnUpdate(value, "last name"))
+            employee.setLastName(console.blockingTypedReadLine("Last name", String.class));
+        if (modifyOnlyOnCreate(value))
+            employee.setDateOfBirth(console.blockingTypedReadLine("Birthday (dd.MM.yyyy)", Date.class));
         if (employee instanceof PermanentEmployee) {
             PermanentEmployee permanentEmployee = (PermanentEmployee)employee;
-            permanentEmployee.setSalary(console.blockingTypedReadLine("Salary", Double.class));
-            permanentEmployee.setHoursPerWeek(console.blockingTypedReadLine("Hours per week", Integer.class));
+            if (askForSkipOnUpdate(value, "salary"))
+                permanentEmployee.setSalary(console.blockingTypedReadLine("Salary", Double.class));
+            if (askForSkipOnUpdate(value, "hours per week"))
+                permanentEmployee.setHoursPerWeek(console.blockingTypedReadLine("Hours per week", Integer.class));
         } else {
             TemporaryEmployee temporaryEmployee = (TemporaryEmployee)employee;
-            temporaryEmployee.setRenter(console.blockingTypedReadLine("Renter name", String.class));
-            temporaryEmployee.setStartDate(console.blockingTypedReadLine("Start date (dd.MM.yyyy)", Date.class));
-            temporaryEmployee.setEndDate(console.blockingTypedReadLine("End date (dd.MM.yyyy)", Date.class, true));
-            temporaryEmployee.setHourlyRate(console.blockingTypedReadLine("Hourly rate", Double.class));
+            if (modifyOnlyOnCreate(value))
+                temporaryEmployee.setRenter(console.blockingTypedReadLine("Renter name", String.class));
+            if (modifyOnlyOnCreate(value))
+                temporaryEmployee.setStartDate(console.blockingTypedReadLine("Start date (dd.MM.yyyy)", Date.class));
+            if (askForSkipOnUpdate(value, "end date"))
+                temporaryEmployee.setEndDate(console.blockingTypedReadLine("End date (dd.MM.yyyy)", Date.class, true));
+            if (askForSkipOnUpdate(value, "hourly rate"))
+                temporaryEmployee.setHourlyRate(console.blockingTypedReadLine("Hourly rate", Double.class));
         }
-        new SubMenuLinkEntities(console, false).linkAddressTo(employee, false);
+        if (askForSkipOnUpdate(value, "hourly rate"))
+            new SubMenuLinkEntities(console, false).linkAddressTo(employee, false);
         if (immediateSafe) {
             employeeDao.safe(employee);
             console.println("Successfully saved!");
@@ -122,22 +156,28 @@ public class SubMenuCreateEntities extends Menu {
     }
 
     public Address createAddress() {
-        console.println("*** Create Address ***");
-        Address address = new Address();
-        address.setCity(console.blockingTypedReadLine("City", String.class));
-        address.setStreet(console.blockingTypedReadLine("Street", String.class));
-        address.setZipCode(console.blockingTypedReadLine("Zip code", String.class));
+        return createOrUpdateAddress(null);
+    }
+
+    public Address createOrUpdateAddress(Address value) {
+        console.println("*** Address ***");
+        Address address = value != null ? value : new Address();
+        if (askForSkipOnUpdate(value, "city"))
+            address.setCity(console.blockingTypedReadLine("City", String.class));
+        if (askForSkipOnUpdate(value, "street"))
+            address.setStreet(console.blockingTypedReadLine("Street", String.class));
+        if (askForSkipOnUpdate(value, "zip code"))
+            address.setZipCode(console.blockingTypedReadLine("Zip code", String.class));
         return address;
     }
 
     public LogbookEntry createLogbookEntry(boolean immediateSafe) throws CommandCanceledException {
-        console.println("*** Create LogbookEntry ***");
+        console.println("*** LogbookEntry ***");
         LogbookEntry logbookEntry = new LogbookEntry();
         console.println("You require to select an employee to continue:");
         Employee employee = new SubMenuLinkEntities(console, false).selectEmployee();
         logbookEntry.attachEmployee(employee);
-
-        logbookEntry.setActivity(console.blockingTypedReadLine("Activity name", String.class));
+        logbookEntry.setActivity(console.blockingTypedReadLine("Logbook activity", String.class));
         logbookEntry.setStartTime(console.blockingTypedReadLine("Start time (dd.MM.yyyy HH:mm)", Date.class));
         logbookEntry.setEndTime(console.blockingTypedReadLine("End time (dd.MM.yyyy HH:mm)", Date.class));
         new SubMenuLinkEntities(console, false).linkTaskTo(logbookEntry, false);
@@ -150,15 +190,23 @@ public class SubMenuCreateEntities extends Menu {
     }
 
     public Task createTask(boolean immediateSafe) throws CommandCanceledException {
-        console.println("*** Create Task ***");
-        Task task = new Task();
-        task.setId(console.blockingTypedReadLine("Task ID", String.class));
-        task.setDescription(console.blockingTypedReadLine("Description", String.class, true));
-        task.setEstimatedHours(console.blockingTypedReadLine("Estimated hours", Integer.class));
-        SubMenuLinkEntities subMenuLinkEntities = new SubMenuLinkEntities(console, false);
-        subMenuLinkEntities.linkLogbookEntryTo(task, false);
-        console.println("You require to select a requirement to continue:");
-        task.attachRequirement(subMenuLinkEntities.selectRequirement());
+        return createOrUpdateTask(null, immediateSafe);
+    }
+
+    public Task createOrUpdateTask(Task value, boolean immediateSafe) throws CommandCanceledException {
+        console.println("*** Task ***");
+        Task task = value != null ? value : new Task();
+        if (modifyOnlyOnCreate(value))
+            task.setId(console.blockingTypedReadLine("Task ID", String.class));
+        if (askForSkipOnUpdate(value, "description"))
+            task.setDescription(console.blockingTypedReadLine("Description", String.class, true));
+        if (modifyOnlyOnCreate(value)) {
+            task.setEstimatedHours(console.blockingTypedReadLine("Estimated hours", Integer.class));
+            SubMenuLinkEntities subMenuLinkEntities = new SubMenuLinkEntities(console, false);
+            subMenuLinkEntities.linkLogbookEntryTo(task, false);
+            console.println("You require to select a requirement to continue:");
+            task.attachRequirement(subMenuLinkEntities.selectRequirement());
+        }
 
         if (immediateSafe) {
             taskDao.safe(task);
@@ -168,15 +216,23 @@ public class SubMenuCreateEntities extends Menu {
     }
 
     public Requirement createRequirement(boolean immediateSafe) throws CommandCanceledException {
-        console.println("*** Create Requirement ***");
-        Requirement requirement = new Requirement();
-        requirement.setId(console.blockingTypedReadLine("Requirement ID", String.class));
-        requirement.setDescription(console.blockingTypedReadLine("Description", String.class));
-        SubMenuLinkEntities subMenuLinkEntities = new SubMenuLinkEntities(console, false);
-        subMenuLinkEntities.linkTaskTo(requirement, false);
-        subMenuLinkEntities.linkSprintTo(requirement, false);
-        console.println("You require to select a project to continue:");
-        requirement.attachProject(subMenuLinkEntities.selectProject());
+        return createOrUpdateRequirement(null, immediateSafe);
+    }
+
+    public Requirement createOrUpdateRequirement(Requirement value, boolean immediateSafe) throws CommandCanceledException {
+        console.println("*** Requirement ***");
+        Requirement requirement = value != null ? value : new Requirement();
+        if (modifyOnlyOnCreate(value))
+            requirement.setId(console.blockingTypedReadLine("Requirement ID", String.class));
+        if (askForSkipOnUpdate(value, "description"))
+            requirement.setDescription(console.blockingTypedReadLine("Description", String.class));
+        if (modifyOnlyOnCreate(value)) {
+            SubMenuLinkEntities subMenuLinkEntities = new SubMenuLinkEntities(console, false);
+            subMenuLinkEntities.linkTaskTo(requirement, false);
+            subMenuLinkEntities.linkSprintTo(requirement, false);
+            console.println("You require to select a project to continue:");
+            requirement.attachProject(subMenuLinkEntities.selectProject());
+        }
 
         if (immediateSafe) {
             requirementDao.safe(requirement);

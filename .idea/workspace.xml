@@ -2,20 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b22af082-7d80-4594-b483-2a60ccf06234" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.ids" afterPath="$PROJECT_DIR$/.idea/dataSources.ids" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/domain/Employee.java" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/domain/Employee.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/domain/LogbookEntry.java" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/domain/LogbookEntry.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/domain/Project.java" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/domain/Project.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/domain/Requirement.java" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/domain/Requirement.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/domain/Sprint.java" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/domain/Sprint.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/domain/Task.java" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/domain/Task.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/io/Console.java" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/io/Console.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/ui/MainMenu.java" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/ui/MainMenu.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/ui/SubMenuCreateEntities.java" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/ui/SubMenuCreateEntities.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/ui/SubMenuDeleteEntities.java" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/ui/SubMenuDeleteEntities.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/ui/SubMenuFindEntities.java" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/ui/SubMenuFindEntities.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/ui/SubMenuLinkEntities.java" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/ui/SubMenuLinkEntities.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/swt6/ue2/logbook/test/LogbookDaoTest.java" afterPath="$PROJECT_DIR$/src/test/java/swt6/ue2/logbook/test/LogbookDaoTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/ui/SubMenuUpdateEntities.java" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/ui/SubMenuUpdateEntities.java" />
     </list>
     <ignored path="logbook.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -130,7 +121,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/ui/SubMenuLinkEntities.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="212" column="42" selection-start-line="212" selection-start-column="42" selection-end-line="212" selection-end-column="42" />
+              <caret line="55" column="13" selection-start-line="55" selection-start-column="13" selection-end-line="55" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -138,12 +129,75 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="SubMenuCreateEntities.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/ui/SubMenuCreateEntities.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="178" column="46" selection-start-line="178" selection-start-column="46" selection-end-line="178" selection-end-column="46" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#2023#2024#0" expanded="true" />
+                <element signature="e#2059#2060#0" expanded="true" />
+                <element signature="e#6554#6555#0" expanded="true" />
+                <element signature="e#6604#6605#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Console.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/io/Console.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="143" column="125" selection-start-line="143" selection-start-column="125" selection-end-line="143" selection-end-column="125" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="SubMenuUpdateEntities.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/ui/SubMenuUpdateEntities.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.32113144">
-              <caret line="22" column="43" selection-start-line="22" selection-start-column="43" selection-end-line="22" selection-end-column="43" />
+            <state vertical-scroll-proportion="0.9617304">
+              <caret line="38" column="52" selection-start-line="38" selection-start-column="52" selection-end-line="38" selection-end-column="52" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SubMenuDeleteEntities.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/ui/SubMenuDeleteEntities.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="38" column="35" selection-start-line="38" selection-start-column="35" selection-end-line="38" selection-end-column="35" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SubMenuFindEntities.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/ui/SubMenuFindEntities.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="92" column="60" selection-start-line="92" selection-start-column="60" selection-end-line="92" selection-end-column="60" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MainMenu.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/ui/MainMenu.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="53" column="40" selection-start-line="53" selection-start-column="40" selection-end-line="53" selection-end-column="40" />
+              <folding>
+                <element signature="e#2658#2659#0" expanded="true" />
+                <element signature="e#2709#2710#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -173,7 +227,6 @@
         <option value="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/ui/ConsoleView.java" />
         <option value="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/ui/SubMenu.java" />
         <option value="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/ui/SubMenuStatistics.java" />
-        <option value="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/ui/SubMenuUpdateEntities.java" />
         <option value="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/dao/CommonDao.java" />
         <option value="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/dao/impl/EmployeeDao.java" />
         <option value="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/dao/TemporaryEmployeeDao.java" />
@@ -197,7 +250,6 @@
         <option value="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/dao/AbstractDao.java" />
         <option value="$PROJECT_DIR$/src/test/java/swt6/ue2/logbook/test/TaskDaoTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/ui/PrintType.java" />
-        <option value="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/ui/MainMenu.java" />
         <option value="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" />
         <option value="$PROJECT_DIR$/src/main/resources/log4j.properties" />
         <option value="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/ui/SubMenuPrintStatistics.java" />
@@ -216,11 +268,13 @@
         <option value="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/domain/Task.java" />
         <option value="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/ui/SubMenuDeleteEntities.java" />
         <option value="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/domain/Requirement.java" />
-        <option value="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/ui/SubMenuCreateEntities.java" />
         <option value="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/ui/SubMenuFindEntities.java" />
-        <option value="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/io/Console.java" />
         <option value="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/domain/Project.java" />
         <option value="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/ui/SubMenuLinkEntities.java" />
+        <option value="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/ui/MainMenu.java" />
+        <option value="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/io/Console.java" />
+        <option value="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/ui/SubMenuUpdateEntities.java" />
+        <option value="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/ui/SubMenuCreateEntities.java" />
       </list>
     </option>
   </component>
@@ -1181,7 +1235,7 @@
       <workItem from="1457623329818" duration="28472000" />
       <workItem from="1457777386962" duration="42916000" />
       <workItem from="1457858129659" duration="6943000" />
-      <workItem from="1457886487451" duration="21315000" />
+      <workItem from="1457886487451" duration="25207000" />
     </task>
     <servers />
   </component>
@@ -1218,7 +1272,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="113108000" />
+    <option name="totallyTimeSpent" value="117000000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="32" width="1936" height="1056" extended-state="6" />
@@ -1508,14 +1562,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/ui/MainMenu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="61" column="43" selection-start-line="61" selection-start-column="43" selection-end-line="61" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="dbDummy://dbtable:/54dec338/51d8dc67-1fd9-4370-862a-0fd03aef3713/APP.LOGBOOK_ENTRY">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
@@ -1638,46 +1684,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/ui/SubMenuCreateEntities.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="64" column="41" selection-start-line="64" selection-start-column="41" selection-end-line="64" selection-end-column="41" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/ui/SubMenuFindEntities.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.85524124">
-          <caret line="92" column="60" selection-start-line="92" selection-start-column="60" selection-end-line="92" selection-end-column="60" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/ui/SubMenuDeleteEntities.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.1131448">
-          <caret line="58" column="49" selection-start-line="58" selection-start-column="49" selection-end-line="58" selection-end-column="49" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/dao/Dao.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33943427">
           <caret line="12" column="12" selection-start-line="12" selection-start-column="12" selection-end-line="12" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/io/Console.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3327787">
-          <caret line="33" column="35" selection-start-line="33" selection-start-column="35" selection-end-line="33" selection-end-column="35" />
           <folding />
         </state>
       </provider>
@@ -1738,21 +1748,74 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/ui/SubMenuFindEntities.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="92" column="60" selection-start-line="92" selection-start-column="60" selection-end-line="92" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/ui/SubMenuLinkEntities.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="212" column="42" selection-start-line="212" selection-start-column="42" selection-end-line="212" selection-end-column="42" />
+          <caret line="55" column="13" selection-start-line="55" selection-start-column="13" selection-end-line="55" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/ui/MainMenu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="53" column="40" selection-start-line="53" selection-start-column="40" selection-end-line="53" selection-end-column="40" />
+          <folding>
+            <element signature="e#2658#2659#0" expanded="true" />
+            <element signature="e#2709#2710#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/io/Console.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="143" column="125" selection-start-line="143" selection-start-column="125" selection-end-line="143" selection-end-column="125" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/ui/SubMenuDeleteEntities.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="38" column="35" selection-start-line="38" selection-start-column="35" selection-end-line="38" selection-end-column="35" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/ui/SubMenuCreateEntities.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="178" column="46" selection-start-line="178" selection-start-column="46" selection-end-line="178" selection-end-column="46" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2023#2024#0" expanded="true" />
+            <element signature="e#2059#2060#0" expanded="true" />
+            <element signature="e#6554#6555#0" expanded="true" />
+            <element signature="e#6604#6605#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/ui/SubMenuUpdateEntities.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.32113144">
-          <caret line="22" column="43" selection-start-line="22" selection-start-column="43" selection-end-line="22" selection-end-column="43" />
-          <folding />
+        <state vertical-scroll-proportion="0.9617304">
+          <caret line="38" column="52" selection-start-line="38" selection-start-column="52" selection-end-line="38" selection-end-column="52" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

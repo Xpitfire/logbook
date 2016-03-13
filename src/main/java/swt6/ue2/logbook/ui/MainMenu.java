@@ -23,30 +23,36 @@ public class MainMenu extends Menu {
         do {
             input = console.readLine("> ");
 
-            if (input.equalsIgnoreCase("m")) {
-                printMenuOptions();
-            } else if (input.equalsIgnoreCase("p")) {
-                new SubMenuPrintStatistics(console).run();
-                printEntranceInfo();
-            } else if (input.equalsIgnoreCase("f")) {
-                new SubMenuFindEntities(console).run();
-                printEntranceInfo();
-            } else if (input.equalsIgnoreCase("c")) {
-                new SubMenuCreateEntities(console).run();
-                printEntranceInfo();
-            } else if (input.equalsIgnoreCase("d")) {
-                new SubMenuDeleteEntities(console).run();
-                printEntranceInfo();
-            } else if (input.equalsIgnoreCase("l")) {
-                new SubMenuLinkEntities(console).run();
-                printEntranceInfo();
-            } else if (input.equalsIgnoreCase("u")) {
-                new SubMenuUpdateEntities(console).run();
-                printEntranceInfo();
-            } else if (input.equalsIgnoreCase("q")) {
-                // skip
-            } else {
-                printInvalidInput();
+            try {
+                if (input.equalsIgnoreCase("m")) {
+                    printMenuOptions();
+                } else if (input.equalsIgnoreCase("p")) {
+                    new SubMenuPrintStatistics(console).run();
+                    printEntranceInfo();
+                } else if (input.equalsIgnoreCase("f")) {
+                    new SubMenuFindEntities(console).run();
+                    printEntranceInfo();
+                } else if (input.equalsIgnoreCase("c")) {
+                    new SubMenuCreateEntities(console).run();
+                    printEntranceInfo();
+                } else if (input.equalsIgnoreCase("d")) {
+                    new SubMenuDeleteEntities(console).run();
+                    printEntranceInfo();
+                } else if (input.equalsIgnoreCase("l")) {
+                    new SubMenuLinkEntities(console).run();
+                    printEntranceInfo();
+                } else if (input.equalsIgnoreCase("u")) {
+                    new SubMenuUpdateEntities(console).run();
+                    printEntranceInfo();
+                } else if (input.equalsIgnoreCase("q")) {
+                    // skip
+                } else {
+                    printInvalidInput();
+                }
+            } catch (Exception ex) {
+                console.println("Could not perform operation!");
+                console.println("CAUSE: " + ex.getMessage());
+                console.println("Return to main menu!");
             }
 
         } while (!input.equalsIgnoreCase("q"));

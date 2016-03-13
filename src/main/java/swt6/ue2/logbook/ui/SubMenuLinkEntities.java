@@ -53,9 +53,6 @@ public class SubMenuLinkEntities extends Menu {
             } catch (CommandCanceledException ex) {
                 printUserCancelMessage();
                 printEntranceInfo();
-            } catch (Exception ex) {
-                console.println("Could not perform operation!");
-                console.println(ex.getMessage());
             }
 
         } while (!input.equalsIgnoreCase("b"));

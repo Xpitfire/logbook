@@ -102,6 +102,7 @@ public class Console implements AutoCloseable {
         message += ", [x] = CANCEL >";
 
         while (true) {
+            printIndent(out);
             final String input = readLine(message);
             if (commandList.stream().anyMatch(s -> s.equalsIgnoreCase(input))) {
                 result = input;
@@ -116,10 +117,11 @@ public class Console implements AutoCloseable {
 
     public <T> T blockingTypedReadLine(String message, Class<T> clazz, boolean optional) {
         T result = null;
-        String input = null;
+        String input;
         message += optional ? " (leave empty and press ENTER to skip) >" : " >";
         do {
             try {
+                printIndent(out);
                 input = readLine(message);
                 if (input.isEmpty() && optional) {
                     break;
@@ -139,7 +141,7 @@ public class Console implements AutoCloseable {
                     } else if (input.isEmpty()) {
                         result = (T) new Boolean(false);
                     } else {
-                        throw new IllegalBooleanLogicException("Only true/false or y/n is supported!");
+                        throw new IllegalBooleanLogicException("Only (true/false), (y/n) or (ENTER with empty result = false) is supported!");
                     }
                 } else if (clazz.equals(Long.class)) {
                     result = (T)Long.valueOf(input);

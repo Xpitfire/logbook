@@ -1,8 +1,6 @@
 package swt6.ue2.logbook.ui;
 
-import swt6.ue2.logbook.domain.Employee;
-import swt6.ue2.logbook.domain.Requirement;
-import swt6.ue2.logbook.domain.Task;
+import swt6.ue2.logbook.domain.*;
 import swt6.ue2.logbook.io.CommandCanceledException;
 import swt6.ue2.logbook.io.Console;
 
@@ -41,15 +39,20 @@ public class SubMenuFindEntities extends Menu {
                     Employee employee = findEmployee();
                     console.println(employee);
                 } else if (input.equalsIgnoreCase("l")) {
-
+                    LogbookEntry logbookEntry = findLogbookEntry();
+                    console.println(logbookEntry);
                 } else if (input.equalsIgnoreCase("p")) {
-
+                    Project project = findProject();
+                    console.println(project);
                 } else if (input.equalsIgnoreCase("r")) {
-
+                    Requirement requirement = findRequirement();
+                    console.println(requirement);
                 } else if (input.equalsIgnoreCase("s")) {
-
+                    Sprint sprint = findSprint();
+                    console.println(sprint);
                 } else if (input.equalsIgnoreCase("t")) {
-
+                    Task task = findTask();
+                    console.println(task);
                 } else if (input.equalsIgnoreCase("b")) {
                     // skip
                 } else {
@@ -81,28 +84,73 @@ public class SubMenuFindEntities extends Menu {
         printSeparator();
     }
 
+    public Sprint findSprint() throws CommandCanceledException {
+        List<Sprint> sprints = sprintDao.findAll();
+        String[] tempCmdList = new String[sprints.size()];
+        Map<String, Sprint> sprintCmdMapping = new HashMap<>();
+        console.setIndent(2);
+        initializeDataCollections(sprints, tempCmdList, sprintCmdMapping);
+        input = console.blockingReadCommand("Select a sprint to delete: ", tempCmdList);
+        return sprintCmdMapping.get(input);
+    }
+
+    public Project findProject() throws CommandCanceledException {
+        List<Project> projects = projectDao.findAll();
+        String[] tempCmdList = new String[projects.size()];
+        Map<String, Project> projectCmdMapping = new HashMap<>();
+        console.setIndent(2);
+        initializeDataCollections(projects, tempCmdList, projectCmdMapping);
+        input = console.blockingReadCommand("Select a project to delete: ", tempCmdList);
+        return projectCmdMapping.get(input);
+    }
 
     public Employee findEmployee() throws CommandCanceledException {
         List<Employee> employees = employeeDao.findAll();
         String[] tempCmdList = new String[employees.size()];
         Map<String, Employee> employeeCmdMapping = new HashMap<>();
         console.setIndent(2);
-        for (int i = 0; i < employees.size(); i++) {
-            tempCmdList[i] = String.valueOf(i);
-            employeeCmdMapping.put(tempCmdList[i], employees.get(i));
-            console.print(i);
-            console.print(employees.get(i));
-            console.newLine();
-        }
+        initializeDataCollections(employees, tempCmdList, employeeCmdMapping);
         input = console.blockingReadCommand("Select an employee to delete: ", tempCmdList);
         return employeeCmdMapping.get(input);
     }
 
-    public Task findTask() {
-        return null;
+    public Task findTask() throws CommandCanceledException {
+        List<Task> tasks = taskDao.findAll();
+        String[] tempCmdList = new String[tasks.size()];
+        Map<String, Task> taskCmdMapping = new HashMap<>();
+        console.setIndent(2);
+        initializeDataCollections(tasks, tempCmdList, taskCmdMapping);
+        input = console.blockingReadCommand("Select a task to delete: ", tempCmdList);
+        return taskCmdMapping.get(input);
     }
 
-    public Requirement findRequirement() {
-        return null;
+    public Requirement findRequirement() throws CommandCanceledException {
+        List<Requirement> requirements = requirementDao.findAll();
+        String[] tempCmdList = new String[requirements.size()];
+        Map<String, Requirement> requirementCmdMapping = new HashMap<>();
+        console.setIndent(2);
+        initializeDataCollections(requirements, tempCmdList, requirementCmdMapping);
+        input = console.blockingReadCommand("Select a requirement to delete: ", tempCmdList);
+        return requirementCmdMapping.get(input);
+    }
+
+    public LogbookEntry findLogbookEntry() throws CommandCanceledException {
+        List<LogbookEntry> logbookEntries = logbookEntryDao.findAll();
+        String[] tempCmdList = new String[logbookEntries.size()];
+        Map<String, LogbookEntry> logbookCmdMapping = new HashMap<>();
+        console.setIndent(2);
+        initializeDataCollections(logbookEntries, tempCmdList, logbookCmdMapping);
+        input = console.blockingReadCommand("Select a logbook entry to delete: ", tempCmdList);
+        return logbookCmdMapping.get(input);
+    }
+
+    private <T> void initializeDataCollections(List<T> entities, String[] tempCmdList, Map<String, T> entityCmdMapping) {
+        for (int i = 0; i < entities.size(); i++) {
+            tempCmdList[i] = String.valueOf(i);
+            entityCmdMapping.put(tempCmdList[i], entities.get(i));
+            console.print(i);
+            console.print(entities.get(i));
+            console.newLine();
+        }
     }
 }

@@ -1,6 +1,6 @@
 package swt6.ue2.logbook.ui;
 
-import swt6.ue2.logbook.domain.Employee;
+import swt6.ue2.logbook.domain.*;
 import swt6.ue2.logbook.io.CommandCanceledException;
 import swt6.ue2.logbook.io.Console;
 
@@ -52,21 +52,34 @@ public class SubMenuDeleteEntities extends Menu {
         } while (!input.equalsIgnoreCase("b"));
     }
 
-    public void deleteTask() {
-
+    public void deleteTask() throws CommandCanceledException {
+        Task task = new SubMenuFindEntities(console, false).findTask();
+        showConfirmationMessage();
+        taskDao.remove(task);
     }
 
-    public void deleteSprint() {
+    public void deleteSprint() throws CommandCanceledException {
+        Sprint sprint = new SubMenuFindEntities(console, false).findSprint();
+        showConfirmationMessage();
+        sprintDao.remove(sprint);
     }
 
-    public void deleteRequirement() {
+    public void deleteRequirement() throws CommandCanceledException {
+        Requirement requirement = new SubMenuFindEntities(console, false).findRequirement();
+        showConfirmationMessage();
+        requirementDao.remove(requirement);
     }
 
-    public void deleteProject() {
-
+    public void deleteProject() throws CommandCanceledException {
+        Project project = new SubMenuFindEntities(console, false).findProject();
+        showConfirmationMessage();
+        projectDao.remove(project);
     }
 
-    public void deleteLogbookEntry() {
+    public void deleteLogbookEntry() throws CommandCanceledException {
+        LogbookEntry logbookEntry = new SubMenuFindEntities(console, false).findLogbookEntry();
+        showConfirmationMessage();
+        logbookEntryDao.remove(logbookEntry);
     }
 
     public void deleteEmployee() throws CommandCanceledException {

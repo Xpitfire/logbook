@@ -30,17 +30,17 @@ public class SubMenuCreateEntities extends Menu {
                 if (input.equalsIgnoreCase("m")) {
                     printMenuOptions();
                 } else if (input.equalsIgnoreCase("e")) {
-                    createEmployee();
+                    createEmployee(true);
                 } else if (input.equalsIgnoreCase("l")) {
-                    createLogbookEntry();
+                    createLogbookEntry(true);
                 } else if (input.equalsIgnoreCase("p")) {
-
+                    createProject(true);
                 } else if (input.equalsIgnoreCase("r")) {
-
+                    createRequirement(true);
                 } else if (input.equalsIgnoreCase("s")) {
-
+                    createSprint(true);
                 } else if (input.equalsIgnoreCase("t")) {
-                    createTask();
+                    createTask(true);
                 } else if (input.equalsIgnoreCase("b")) {
                     // skip
                 } else {
@@ -54,11 +54,32 @@ public class SubMenuCreateEntities extends Menu {
         } while (!input.equalsIgnoreCase("b"));
     }
 
-    public Employee createEmployee() throws CommandCanceledException {
-        return createEmployee(true);
+    public Project createProject(boolean immediateSafe) throws CommandCanceledException {
+        console.println("*** Create Sprint ***");
+        Project project = new Project();
+        project.setLeader(selectEmployee());
+
+        if (immediateSafe) {
+            projectDao.safe(project);
+            console.println("Project successfully saved!");
+        }
+        return project;
     }
 
-    public Employee createEmployee(boolean safe) throws CommandCanceledException {
+    public Sprint createSprint(boolean immediateSafe) throws CommandCanceledException {
+        console.println("*** Create Sprint ***");
+        Sprint sprint = new Sprint();
+        sprint.setProject(createProject(false));
+        addRequirementOptional(sprint, false);
+
+        if (immediateSafe) {
+            sprintDao.safe(sprint);
+            console.println("Employee successfully saved!");
+        }
+        return sprint;
+    }
+
+    public Employee createEmployee(boolean immediateSafe) throws CommandCanceledException {
         console.println("*** Create Employee ***");
         input = console.blockingReadCommand("What kind of employee do you want to create? %n [p] = PERMANENT, [t] = TEMPORARY", "p", "t");
         Employee employee;
@@ -81,15 +102,15 @@ public class SubMenuCreateEntities extends Menu {
             temporaryEmployee.setEndDate(console.blockingTypedReadLine("End date (dd.MM.yyyy)", Date.class, true));
             temporaryEmployee.setHourlyRate(console.blockingTypedReadLine("Hourly rate", Double.class));
         }
-        if (console.blockingTypedReadLine("Add an address? (y/n)", Boolean.class)) {
-            employee.setAddress(createAddress());
-        }
-        if (safe)
+        addAddressOptional(employee, false);
+        if (immediateSafe) {
             employeeDao.safe(employee);
+            console.println("Employee successfully saved!");
+        }
         return employee;
     }
 
-    public Address createAddress() {
+    private Address createAddress() {
         console.println("*** Create Address ***");
         Address address = new Address();
         address.setCity(console.blockingTypedReadLine("City", String.class));
@@ -98,11 +119,55 @@ public class SubMenuCreateEntities extends Menu {
         return address;
     }
 
-    public LogbookEntry createLogbookEntry() throws CommandCanceledException {
+    public LogbookEntry createLogbookEntry(boolean immediateSafe) throws CommandCanceledException {
         console.println("*** Create LogbookEntry ***");
-        Employee employee;
-        LogbookEntry logbookEntry;
+        LogbookEntry logbookEntry = new LogbookEntry();
         console.println("You require to select an employee for a new logbook entry!");
+        Employee employee = selectEmployee();
+        logbookEntry.attachEmployee(employee);
+
+        logbookEntry.setActivity(console.blockingTypedReadLine("Activity name", String.class));
+        logbookEntry.setStartTime(console.blockingTypedReadLine("Start time (dd.MM.yyyy HH:mm)", Date.class));
+        logbookEntry.setEndTime(console.blockingTypedReadLine("End time (dd.MM.yyyy HH:mm)", Date.class));
+        addTaskOptional(logbookEntry, false);
+
+        if (immediateSafe) {
+            logbookEntryDao.safe(logbookEntry);
+            console.println("LogbookEntry successfully saved!");
+        }
+        return logbookEntry;
+    }
+
+    public Task createTask(boolean immediateSafe) throws CommandCanceledException {
+        console.println("*** Create Task ***");
+        Task task = new Task();
+        task.setId(console.blockingTypedReadLine("Task ID", String.class));
+        task.setDescription(console.blockingTypedReadLine("Description", String.class, true));
+        task.setEstimatedHours(console.blockingTypedReadLine("Estimated hours", Integer.class));
+        addRequirementOptional(task, false);
+        addLogbookEntryOptional(task, false);
+
+        if (immediateSafe) {
+            taskDao.safe(task);
+            console.println("Task successfully saved!");
+        }
+        return task;
+    }
+
+    public Task selectTask() throws CommandCanceledException {
+        Task task;
+        input = taskDao.count() <= 0 ? "n" : console.blockingReadCommand("Please select an option? [n] = CREATE NEW TASK, [s] = SELECT ONE FROM DATABASE", "n", "s");
+
+        if (input.equalsIgnoreCase("n")) {
+            task = createTask(false);
+        } else {
+            task = new SubMenuFindEntities(console, false).findTask();
+        }
+        return task;
+    }
+
+    public Employee selectEmployee() throws CommandCanceledException {
+        Employee employee;
         input = employeeDao.count() <= 0 ? "n" : console.blockingReadCommand("Please select an option? [n] = CREATE NEW EMPLOYEE, [s] = SELECT ONE FROM DATABASE", "n", "s");
 
         if (input.equalsIgnoreCase("n")) {
@@ -110,32 +175,77 @@ public class SubMenuCreateEntities extends Menu {
         } else {
             employee = new SubMenuFindEntities(console, false).findEmployee();
         }
+        return employee;
+    }
 
-        logbookEntry = new LogbookEntry();
-        logbookEntry.attachEmployee(employee);
-        logbookEntry.setActivity(console.blockingTypedReadLine("Activity name", String.class));
-        logbookEntry.setStartTime(console.blockingTypedReadLine("Start time (dd.MM.yyyy HH:mm)", Date.class));
-        logbookEntry.setEndTime(console.blockingTypedReadLine("End time (dd.MM.yyyy HH:mm)", Date.class));
-        if (console.blockingTypedReadLine("Add a task? (y/n)", Boolean.class)) {
-            logbookEntry.attachTask(new SubMenuFindEntities(console, false).findTask());
+    public Requirement selectRequirement() throws CommandCanceledException {
+        Requirement requirement;
+        input = requirementDao.count() <= 0 ? "n" : console.blockingReadCommand("Please select an option? [n] = CREATE NEW REQUIREMENT, [s] = SELECT ONE FROM DATABASE", "n", "s");
+
+        if (input.equalsIgnoreCase("n")) {
+            requirement = createRequirement(false);
+        } else {
+            requirement = new SubMenuFindEntities(console, false).findRequirement();
         }
+        return requirement;
+    }
 
-        logbookEntryDao.safe(logbookEntry);
+    public Requirement createRequirement(boolean immediateSafe) {
+        return null;
+    }
+
+    public LogbookEntry selectLogbookEntry() throws CommandCanceledException {
+        LogbookEntry logbookEntry;
+        input = logbookEntryDao.count() <= 0 ? "n" : console.blockingReadCommand("Please select an option? [n] = CREATE NEW LOGBOOK ENTRY, [s] = SELECT ONE FROM DATABASE", "n", "s");
+
+        if (input.equalsIgnoreCase("n")) {
+            logbookEntry = createLogbookEntry(false);
+        } else {
+            logbookEntry = new SubMenuFindEntities(console, false).findLogbookEntry();
+        }
         return logbookEntry;
     }
 
-    private Task createTask() {
-        console.println("*** Create Task ***");
-        Task task = new Task();
-        task.setId(console.blockingTypedReadLine("Task ID", String.class));
-        task.setDescription(console.blockingTypedReadLine("Description", String.class, true));
-        task.setEstimatedHours(console.blockingTypedReadLine("Estimated hours", Integer.class));
-        if (console.blockingTypedReadLine("Add a requirement?", Boolean.class)) {
-            task.attachRequirement(new SubMenuFindEntities(console, false).findRequirement());
+    public void addLogbookEntryOptional(Task task, boolean interruptWithException) throws CommandCanceledException {
+        if (console.blockingTypedReadLine("Optionally add a logbook entry? (y/n)", Boolean.class)) {
+            task.addLogbookEntries(selectLogbookEntry());
+        } else if (interruptWithException) {
+            throw new CommandCanceledException("Operation aborted by user!");
         }
+    }
 
-        taskDao.safe(task);
-        return task;
+    public void addAddressOptional(Employee employee, boolean interruptWithException) throws CommandCanceledException {
+        if (console.blockingTypedReadLine("Optionally add an address? (y/n)", Boolean.class)) {
+            employee.setAddress(createAddress());
+        } else if (interruptWithException) {
+            throw new CommandCanceledException("Operation aborted by user!");
+        }
+    }
+
+    public void addTaskOptional(LogbookEntry logbookEntry, boolean interruptWithException) throws CommandCanceledException {
+        if (console.blockingTypedReadLine("Optionally add a task? (y/n)", Boolean.class)) {
+            logbookEntry.attachTask(selectTask());
+        } else if (interruptWithException) {
+            throw new CommandCanceledException("Operation aborted by user!");
+        }
+    }
+
+    public void addRequirementOptional(Task task, boolean interruptWithException) throws CommandCanceledException {
+        if (console.blockingTypedReadLine("Optionally add a requirement? (y/n)", Boolean.class)) {
+            Requirement requirement = selectRequirement();
+            task.attachRequirement(requirement);
+        } else if (interruptWithException) {
+            throw new CommandCanceledException("Operation aborted by user!");
+        }
+    }
+
+    public void addRequirementOptional(Sprint sprint, boolean interruptWithException) throws CommandCanceledException {
+        if (console.blockingTypedReadLine("Optionally add a sprint? (y/n)", Boolean.class)) {
+            Requirement requirement = selectRequirement();
+            sprint.addRequirement(requirement);
+        } else if (interruptWithException) {
+            throw new CommandCanceledException("Operation aborted by user!");
+        }
     }
 
     @Override

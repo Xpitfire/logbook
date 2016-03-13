@@ -34,6 +34,27 @@
                     <password>test</password>
                 </configuration>
             </plugin>
+            <!-- Ignores unit test failures on mvn package -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <testFailureIgnore>true</testFailureIgnore>
+                </configuration>
+            </plugin>
+            <!-- Execute form shell: mvn exec:exec -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <configuration>
+                    <executable>java</executable>
+                    <arguments>
+                        <argument>-classpath</argument>
+                        <classpath/>
+                        <argument>swt6.ue2.logbook.Launch</argument>
+                    </arguments>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 

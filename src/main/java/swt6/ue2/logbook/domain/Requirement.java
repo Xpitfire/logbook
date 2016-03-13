@@ -25,12 +25,12 @@ public class Requirement implements Serializable {
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE},
             fetch = FetchType.EAGER,
-            optional = false)
+            optional = true)
     private Project project;
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE},
             fetch = FetchType.EAGER,
-            optional = false)
+            optional = true)
     private Sprint sprint;
 
     public Requirement() {
@@ -152,7 +152,9 @@ public class Requirement implements Serializable {
         StringBuilder sb = new StringBuilder();
         sb.append("REQUIREMENT: ").append(id).append(" Description: '").append(description);
         sb.append(" | PROJECT: ").append(project.getName());
-        sb.append(" | SPRINT: ").append(sprint.getId());
+        if (sprint != null) {
+            sb.append(" | SPRINT: ").append(sprint.getId());
+        }
         if (tasks != null && tasks.size() > 0) {
             sb.append(" | TASKS: (");
             for (Task t : tasks) {

@@ -26,7 +26,7 @@ public class Task implements Serializable {
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE},
             fetch = FetchType.EAGER,
-            optional = false)
+            optional = true)
     private Requirement requirement;
 
     public Task() {
@@ -128,8 +128,10 @@ public class Task implements Serializable {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("TASK: ").append(" Description:").append(description)
-                .append(" Estimated Hours: ").append(estimatedHours)
-                .append(" | REQUIREMENT: ").append(requirement.getId());
+                .append(" Estimated Hours: ").append(estimatedHours);
+        if (requirement != null) {
+            sb.append(" | REQUIREMENT: ").append(requirement.getId());
+        }
         if (logbookEntries != null && logbookEntries.size() > 0) {
             sb.append(" | LOG-ENTRIES: (");
             for (LogbookEntry l : logbookEntries) {

@@ -19,7 +19,7 @@ public class LogbookEntry implements Serializable {
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE},
             fetch = FetchType.EAGER,
-            optional = false)
+            optional = true)
     @JoinColumn(name = "EMPLOYEE_ID")
     private Employee employee;
 
@@ -132,8 +132,10 @@ public class LogbookEntry implements Serializable {
         StringBuilder sb = new StringBuilder();
         sb.append("LOG-ENTRY: ").append(activity).append(": ")
                 .append(fmt.format(startTime)).append(" - ")
-                .append(fmt.format(endTime))
-                .append(" (created by: ").append(employee.getLastName()).append(")");
+                .append(fmt.format(endTime));
+        if (employee != null) {
+            sb.append(" (created by: ").append(employee.getLastName()).append(")");
+        }
         if (task != null) {
             sb.append(" | ").append(task.getId());
         }

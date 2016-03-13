@@ -21,19 +21,19 @@ public abstract class Employee implements Serializable {
 
     @OneToMany(mappedBy = "employee",
             cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY,
+            fetch = FetchType.EAGER,
             orphanRemoval = true)
     private Set<LogbookEntry> logbookEntries = new HashSet<>();
 
     @OneToMany(mappedBy = "leader",
             cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY,
+            fetch = FetchType.EAGER,
             orphanRemoval = true)
     private Set<Project> supervisedProjects = new HashSet<>();
 
     @ManyToMany(mappedBy = "members",
             cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY)
+            fetch = FetchType.EAGER)
     private Set<Project> projects = new HashSet<>();
 
     public Employee() {

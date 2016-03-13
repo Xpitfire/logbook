@@ -135,7 +135,9 @@ public class Console implements AutoCloseable {
                     if (input.equalsIgnoreCase("true") || input.equalsIgnoreCase("false")) {
                         result = (T) Boolean.valueOf(input);
                     } else if (input.equalsIgnoreCase("y") || input.equalsIgnoreCase("n")) {
-                        result = (T)(input.equalsIgnoreCase("y") ? new Boolean(true) : new Boolean(false));
+                        result = (T) (input.equalsIgnoreCase("y") ? new Boolean(true) : new Boolean(false));
+                    } else if (input.isEmpty()) {
+                        result = (T) new Boolean(false);
                     } else {
                         throw new IllegalBooleanLogicException("Only true/false or y/n is supported!");
                     }

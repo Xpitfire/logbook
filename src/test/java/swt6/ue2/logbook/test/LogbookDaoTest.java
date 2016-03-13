@@ -30,7 +30,6 @@ public class LogbookDaoTest extends CommonTest {
     public void testLogbookEntryRemove() {
         Long employeeId = logbookEntry1.getEmployee().getId();
         Long logbookId = logbookEntry1.getId();
-        logbookEntry1.detachEmployee();
         logbookEntryDao.remove(logbookEntry1);
         LogbookEntry entry = logbookEntryDao.findById(logbookId);
         assertNull(entry);

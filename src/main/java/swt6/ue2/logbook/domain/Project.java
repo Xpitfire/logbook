@@ -15,7 +15,8 @@ public class Project implements Serializable {
     private Long id;
     private String name;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToMany(cascade = CascadeType.ALL,
+            fetch = FetchType.EAGER)
     @JoinTable(name = "PROJECT_EMPLOYEE",
             joinColumns = {@JoinColumn(name = "projectId")},
             inverseJoinColumns = {@JoinColumn(name = "employeeId")})
@@ -23,19 +24,19 @@ public class Project implements Serializable {
 
     @OneToMany(mappedBy = "project",
             cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY,
+            fetch = FetchType.EAGER,
             orphanRemoval = true)
     private Set<Sprint> sprints = new HashSet<>();
 
     @OneToMany(mappedBy = "project",
             cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY,
+            fetch = FetchType.EAGER,
             orphanRemoval = true)
     private Set<Requirement> requirements = new HashSet<>();
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE},
             fetch = FetchType.EAGER,
-            optional = false)
+            optional = true)
     private Employee leader;
 
     public Project() {
@@ -208,7 +209,7 @@ public class Project implements Serializable {
             }
             sb.append(")");
         }
-        return name;
+        return sb.toString();
     }
 
 }

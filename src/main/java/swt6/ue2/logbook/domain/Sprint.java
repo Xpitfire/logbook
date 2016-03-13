@@ -19,12 +19,12 @@ public class Sprint implements Serializable {
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE},
             fetch = FetchType.EAGER,
-            optional = false)
+            optional = true)
     private Project project;
 
     @OneToMany(mappedBy = "sprint",
             cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY,
+            fetch = FetchType.EAGER,
             orphanRemoval = true)
     private Set<Requirement> requirements = new HashSet<>();
 

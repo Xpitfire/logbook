@@ -56,36 +56,42 @@ public class SubMenuDeleteEntities extends Menu {
         Task task = new SubMenuFindEntities(console, false).findTask();
         showConfirmationMessage();
         taskDao.remove(task);
+        console.println("Successfully deleted!");
     }
 
     public void deleteSprint() throws CommandCanceledException {
         Sprint sprint = new SubMenuFindEntities(console, false).findSprint();
         showConfirmationMessage();
         sprintDao.remove(sprint);
+        console.println("Successfully deleted!");
     }
 
     public void deleteRequirement() throws CommandCanceledException {
         Requirement requirement = new SubMenuFindEntities(console, false).findRequirement();
         showConfirmationMessage();
         requirementDao.remove(requirement);
+        console.println("Successfully deleted!");
     }
 
     public void deleteProject() throws CommandCanceledException {
         Project project = new SubMenuFindEntities(console, false).findProject();
         showConfirmationMessage();
         projectDao.remove(project);
+        console.println("Successfully deleted!");
     }
 
     public void deleteLogbookEntry() throws CommandCanceledException {
         LogbookEntry logbookEntry = new SubMenuFindEntities(console, false).findLogbookEntry();
         showConfirmationMessage();
         logbookEntryDao.remove(logbookEntry);
+        console.println("Successfully deleted!");
     }
 
     public void deleteEmployee() throws CommandCanceledException {
         Employee employee = new SubMenuFindEntities(console, false).findEmployee();
         showConfirmationMessage();
         employeeDao.remove(employee);
+        console.println("Successfully deleted!");
     }
 
     @Override

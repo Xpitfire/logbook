@@ -90,7 +90,7 @@ public class SubMenuFindEntities extends Menu {
         Map<String, Sprint> sprintCmdMapping = new HashMap<>();
         console.setIndent(2);
         initializeDataCollections(sprints, tempCmdList, sprintCmdMapping);
-        input = console.blockingReadCommand("Select a sprint to delete: ", tempCmdList);
+        input = console.blockingReadCommand("Select a sprint: ", tempCmdList);
         return sprintCmdMapping.get(input);
     }
 
@@ -100,7 +100,7 @@ public class SubMenuFindEntities extends Menu {
         Map<String, Project> projectCmdMapping = new HashMap<>();
         console.setIndent(2);
         initializeDataCollections(projects, tempCmdList, projectCmdMapping);
-        input = console.blockingReadCommand("Select a project to delete: ", tempCmdList);
+        input = console.blockingReadCommand("Select a project: ", tempCmdList);
         return projectCmdMapping.get(input);
     }
 
@@ -110,7 +110,7 @@ public class SubMenuFindEntities extends Menu {
         Map<String, Employee> employeeCmdMapping = new HashMap<>();
         console.setIndent(2);
         initializeDataCollections(employees, tempCmdList, employeeCmdMapping);
-        input = console.blockingReadCommand("Select an employee to delete: ", tempCmdList);
+        input = console.blockingReadCommand("Select an employee: ", tempCmdList);
         return employeeCmdMapping.get(input);
     }
 
@@ -120,7 +120,7 @@ public class SubMenuFindEntities extends Menu {
         Map<String, Task> taskCmdMapping = new HashMap<>();
         console.setIndent(2);
         initializeDataCollections(tasks, tempCmdList, taskCmdMapping);
-        input = console.blockingReadCommand("Select a task to delete: ", tempCmdList);
+        input = console.blockingReadCommand("Select a task: ", tempCmdList);
         return taskCmdMapping.get(input);
     }
 
@@ -130,7 +130,7 @@ public class SubMenuFindEntities extends Menu {
         Map<String, Requirement> requirementCmdMapping = new HashMap<>();
         console.setIndent(2);
         initializeDataCollections(requirements, tempCmdList, requirementCmdMapping);
-        input = console.blockingReadCommand("Select a requirement to delete: ", tempCmdList);
+        input = console.blockingReadCommand("Select a requirement: ", tempCmdList);
         return requirementCmdMapping.get(input);
     }
 
@@ -140,7 +140,7 @@ public class SubMenuFindEntities extends Menu {
         Map<String, LogbookEntry> logbookCmdMapping = new HashMap<>();
         console.setIndent(2);
         initializeDataCollections(logbookEntries, tempCmdList, logbookCmdMapping);
-        input = console.blockingReadCommand("Select a logbook entry to delete: ", tempCmdList);
+        input = console.blockingReadCommand("Select a logbook entry: ", tempCmdList);
         return logbookCmdMapping.get(input);
     }
 

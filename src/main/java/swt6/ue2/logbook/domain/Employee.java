@@ -188,10 +188,9 @@ public abstract class Employee implements Serializable {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(String.format("%d: %s, %s (%4$td.%4$tm.%4$tY)",
-                id, lastName, firstName, dateOfBirth));
+        sb.append(String.format("%s %s (%3$td.%3$tm.%3$tY)", lastName.toUpperCase(), firstName, dateOfBirth));
         if (address != null) {
-            sb.append(address);
+            sb.append(" ").append(address);
         }
         return sb.toString();
     }

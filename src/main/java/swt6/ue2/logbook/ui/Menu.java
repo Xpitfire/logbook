@@ -1,6 +1,11 @@
 package swt6.ue2.logbook.ui;
 
+import swt6.ue2.logbook.dao.Dao;
+import swt6.ue2.logbook.dao.DaoFactory;
+import swt6.ue2.logbook.domain.*;
 import swt6.ue2.logbook.io.Console;
+
+import java.util.Date;
 
 /**
  * @author: Dinu Marius-Constantin
@@ -11,6 +16,13 @@ public abstract class Menu implements AutoCloseable {
     private static boolean initializing = true;
     protected final Console console;
     protected String input;
+
+    protected final Dao<Employee> employeeDao = DaoFactory.getDao(Employee.class);
+    protected final Dao<LogbookEntry> logbookEntryDao = DaoFactory.getDao(LogbookEntry.class);
+    protected final Dao<Task> taskDao = DaoFactory.getDao(Task.class);
+    protected final Dao<Project> projectDao = DaoFactory.getDao(Project.class);
+    protected final Dao<Requirement> requirementDao = DaoFactory.getDao(Requirement.class);
+    protected final Dao<Sprint> sprintDao = DaoFactory.getDao(Sprint.class);
 
     protected Menu(Console console) {
         this.console = console;

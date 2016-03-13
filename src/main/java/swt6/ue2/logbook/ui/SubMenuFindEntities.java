@@ -25,6 +25,25 @@ public class SubMenuFindEntities extends Menu {
         do {
             input = console.readLine("> ");
 
+            if (input.equalsIgnoreCase("m")) {
+                printMenuOptions();
+            } else if (input.equalsIgnoreCase("e")) {
+
+            } else if (input.equalsIgnoreCase("l")) {
+
+            } else if (input.equalsIgnoreCase("p")) {
+
+            } else if (input.equalsIgnoreCase("r")) {
+
+            } else if (input.equalsIgnoreCase("s")) {
+
+            } else if (input.equalsIgnoreCase("t")) {
+
+            } else if (input.equalsIgnoreCase("b")) {
+                // skip
+            } else {
+                printInvalidInput();
+            }
 
         } while (!input.equalsIgnoreCase("b"));
     }
@@ -35,6 +54,7 @@ public class SubMenuFindEntities extends Menu {
         printSeparator();
         console.setIndent(2);
         console.println("[b] ... Back to previous menu");
+        console.println("[m] ... Print menu");
         console.skipLine();
         console.println("[e] ... Find employee");
         console.println("[l] ... Find logbook entry");

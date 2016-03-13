@@ -129,7 +129,15 @@ public class LogbookEntry implements Serializable {
     @Override
     public String toString() {
         DateFormat fmt = DateFormat.getDateTimeInstance();
-        return activity + ": " + fmt.format(startTime) + " - " + fmt.format(endTime) + "(" + employee.getLastName() + ")";
+        StringBuilder sb = new StringBuilder();
+        sb.append("LOG-ENTRY: ").append(activity).append(": ")
+                .append(fmt.format(startTime)).append(" - ")
+                .append(fmt.format(endTime))
+                .append(" (created by: ").append(employee.getLastName()).append(")");
+        if (task != null) {
+            sb.append(" | ").append(task.getId());
+        }
+        return sb.toString();
     }
 
 }

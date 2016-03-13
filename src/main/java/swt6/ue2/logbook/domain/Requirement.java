@@ -146,4 +146,20 @@ public class Requirement implements Serializable {
         }
         this.sprint = null;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("REQUIREMENT: ").append(id).append(" Description: '").append(description);
+        sb.append(" | PROJECT: ").append(project.getName());
+        sb.append(" | SPRINT: ").append(sprint.getId());
+        if (tasks != null && tasks.size() > 0) {
+            sb.append(" | TASKS: (");
+            for (Task t : tasks) {
+                sb.append(t.getId()).append(" ");
+            }
+            sb.append(")");
+        }
+        return sb.toString();
+    }
 }

@@ -1,7 +1,5 @@
 package swt6.ue2.logbook.ui;
 
-import swt6.ue2.logbook.dao.Dao;
-import swt6.ue2.logbook.dao.DaoFactory;
 import swt6.ue2.logbook.domain.*;
 import swt6.ue2.logbook.io.CommandCanceledException;
 import swt6.ue2.logbook.io.Console;
@@ -18,10 +16,6 @@ public class SubMenuCreateEntities extends Menu {
         super(console);
     }
 
-    private Dao<Employee> employeeDao = DaoFactory.getDao(Employee.class);
-    private Dao<LogbookEntry> logbookEntryDao = DaoFactory.getDao(LogbookEntry.class);
-    private Dao<Task> taskDao = DaoFactory.getDao(Task.class);
-
     @Override
     public String getMenuTitle() {
         return "Create Entities";
@@ -33,7 +27,9 @@ public class SubMenuCreateEntities extends Menu {
             input = console.readLine("> ");
 
             try {
-                if (input.equalsIgnoreCase("e")) {
+                if (input.equalsIgnoreCase("m")) {
+                    printMenuOptions();
+                } else if (input.equalsIgnoreCase("e")) {
                     createEmployee();
                 } else if (input.equalsIgnoreCase("l")) {
                     createLogbookEntry();
@@ -148,6 +144,7 @@ public class SubMenuCreateEntities extends Menu {
         printSeparator();
         console.setIndent(2);
         console.println("[b] ... Back to previous menu");
+        console.println("[m] ... Print menu");
         console.skipLine();
         console.println("[e] ... Create employee");
         console.println("[l] ... Create logbook entry");

@@ -101,4 +101,18 @@ public class Sprint implements Serializable {
         requirement.setSprint(null);
     }
 
+    @Override
+    public String toString() {
+        StringBuilder sb =  new StringBuilder();
+        sb.append("SPRINT: ").append("id: ").append(id)
+                .append("  | PROJECT: ").append(project.getName());
+        if (requirements != null && requirements.size() > 0) {
+            sb.append(" | REQUIREMENTS: (");
+            for (Requirement r : requirements) {
+                sb.append(r.getId()).append(" ");
+            }
+            sb.append(")");
+        }
+        return sb.toString();
+    }
 }

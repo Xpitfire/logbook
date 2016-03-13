@@ -59,7 +59,7 @@ public class MainMenu extends Menu {
         console.setIndent(2);
         console.println("[q] ... Quit");
         console.println("[m] ... Print menu");
-        console.println("[p] ... Print statistics");
+        console.println("[p] ... Print data");
         console.skipLine();
         console.println("[f] ... Find entities");
         console.println("[c] ... Create entities");

@@ -42,7 +42,7 @@ public class PermanentEmployee extends Employee {
     }
 
     public String toString() {
-        return super.toString() + ", salary=" + salary;
+        return String.format("PERMANENT EMPLOYEE: %s, Salary: %s", super.toString(), salary);
     }
 
 }

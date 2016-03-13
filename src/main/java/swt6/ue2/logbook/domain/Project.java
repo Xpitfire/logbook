@@ -184,6 +184,30 @@ public class Project implements Serializable {
     }
 
     public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("PROJECT: ").append(name);
+        sb.append(" (Leader: ").append(leader).append(")");
+        if (members != null && members.size() > 0) {
+            sb.append(" | MEMBERS: (");
+            for (Employee e : members) {
+                sb.append(e.getLastName()).append(" ");
+            }
+            sb.append(")");
+        }
+        if (sprints != null && sprints.size() > 0) {
+            sb.append(" | SPRINTS: (");
+            for (Sprint s : sprints) {
+                sb.append(s.getId()).append(" ");
+            }
+            sb.append(")");
+        }
+        if (requirements != null && requirements.size() > 0) {
+            sb.append(" | REQUIREMENTS: (");
+            for (Requirement r : requirements) {
+                sb.append(r.getId()).append(" ");
+            }
+            sb.append(")");
+        }
         return name;
     }
 

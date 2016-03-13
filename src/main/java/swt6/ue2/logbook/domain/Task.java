@@ -124,4 +124,19 @@ public class Task implements Serializable {
         this.requirement = null;
     }
 
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("TASK: ").append(" Description:").append(description)
+                .append(" Estimated Hours: ").append(estimatedHours)
+                .append(" | REQUIREMENT: ").append(requirement.getId());
+        if (logbookEntries != null && logbookEntries.size() > 0) {
+            sb.append(" | LOG-ENTRIES: (");
+            for (LogbookEntry l : logbookEntries) {
+                sb.append(l.getActivity()).append(" ");
+            }
+            sb.append(")");
+        }
+        return sb.toString();
+    }
 }

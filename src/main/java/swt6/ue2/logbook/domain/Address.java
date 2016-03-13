@@ -45,6 +45,6 @@ public class Address implements Serializable {
     }
 
     public String toString() {
-        return zipCode + " " + city + ", " + street;
+        return String.format("ADDRESS: %s %s, %s", zipCode, city, street);
     }
 }

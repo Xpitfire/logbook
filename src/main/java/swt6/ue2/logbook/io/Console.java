@@ -87,7 +87,7 @@ public class Console implements AutoCloseable {
         this.indent = null;
     }
 
-    public void skipLine() {
+    public void newLine() {
         out.println();
     }
 

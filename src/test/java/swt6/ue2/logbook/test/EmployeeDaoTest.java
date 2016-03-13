@@ -39,10 +39,8 @@ public class EmployeeDaoTest extends CommonTest {
 
     @Test
     public void testFindAllEmployees() {
-        // insert two values
         employeeDao.safe(permanentEmployee1);
         employeeDao.safe(temporaryEmployee1);
-        // retrieve two values
         List<Employee> employees = employeeDao.findAll();
         assertNotNull(employees);
         assertTrue(employees.size() == 2);
@@ -86,7 +84,7 @@ public class EmployeeDaoTest extends CommonTest {
 
     @Test(expected = Exception.class)
     public void testInvalidEmployeeInsert() {
-        // TODO: find out the nullable issue
+        // TODO: solve the nullable annotation issue
         Employee e = new PermanentEmployee();
         e = employeeDao.safe(e);
         assertNull(e);

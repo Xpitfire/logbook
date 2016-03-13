@@ -104,7 +104,7 @@ public class SubMenuPrintStatistics extends Menu {
         console.setIndent(2);
         console.println("[b] ... Back to previous menu");
         console.println("[m] ... Print menu");
-        console.skipLine();
+        console.newLine();
         console.println("[a] ... Print all");
         console.println("[e] ... Print employees");
         console.println("[l] ... Print logbook entries");

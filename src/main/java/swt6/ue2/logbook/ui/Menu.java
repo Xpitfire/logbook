@@ -3,9 +3,8 @@ package swt6.ue2.logbook.ui;
 import swt6.ue2.logbook.dao.Dao;
 import swt6.ue2.logbook.dao.DaoFactory;
 import swt6.ue2.logbook.domain.*;
+import swt6.ue2.logbook.io.CommandCanceledException;
 import swt6.ue2.logbook.io.Console;
-
-import java.util.Date;
 
 /**
  * @author: Dinu Marius-Constantin
@@ -25,13 +24,19 @@ public abstract class Menu implements AutoCloseable {
     protected final Dao<Sprint> sprintDao = DaoFactory.getDao(Sprint.class);
 
     protected Menu(Console console) {
+        this(console, true);
+    }
+
+    protected Menu(Console console, boolean showEntranceInfo) {
         this.console = console;
         if (initializing) {
             printHeader();
             initializing = false;
         }
-        console.skipLine();
-        printEntranceInfo();
+        if (showEntranceInfo) {
+            console.newLine();
+            printEntranceInfo();
+        }
     }
 
     protected void printHeader() {
@@ -56,7 +61,7 @@ public abstract class Menu implements AutoCloseable {
 
     protected void printInvalidInput() {
         console.println("Invalid input!");
-        console.skipLine();
+        console.newLine();
         printMenuOptions();
     }
 
@@ -68,6 +73,12 @@ public abstract class Menu implements AutoCloseable {
     protected void printUserCancelMessage() {
         console.println("Operation canceled by user!");
         console.println("Data may have been lost.");
+    }
+
+    protected void showConfirmationMessage() throws CommandCanceledException {
+        if (!console.blockingTypedReadLine("Are you sure you want to continue? (y/n)", Boolean.class)) {
+            throw new CommandCanceledException("Operation aborted by user!");
+        }
     }
 
     /**

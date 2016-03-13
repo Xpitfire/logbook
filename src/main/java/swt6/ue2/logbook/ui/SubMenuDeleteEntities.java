@@ -1,5 +1,7 @@
 package swt6.ue2.logbook.ui;
 
+import swt6.ue2.logbook.domain.Employee;
+import swt6.ue2.logbook.io.CommandCanceledException;
 import swt6.ue2.logbook.io.Console;
 
 /**
@@ -22,30 +24,36 @@ public class SubMenuDeleteEntities extends Menu {
         do {
             input = console.readLine("> ");
 
-            if (input.equalsIgnoreCase("m")) {
-                printMenuOptions();
-            } else if (input.equalsIgnoreCase("e")) {
-                deleteEmployee();
-            } else if (input.equalsIgnoreCase("l")) {
-                deleteLogbookEntry();
-            } else if (input.equalsIgnoreCase("p")) {
-                deleteProject();
-            } else if (input.equalsIgnoreCase("r")) {
-                deleteRequirement();
-            } else if (input.equalsIgnoreCase("s")) {
-                deleteSprint();
-            } else if (input.equalsIgnoreCase("t")) {
-                deleteTask();
-            } else if (input.equalsIgnoreCase("b")) {
-                // skip
-            } else {
-                printInvalidInput();
+            try {
+                if (input.equalsIgnoreCase("m")) {
+                    printMenuOptions();
+                } else if (input.equalsIgnoreCase("e")) {
+                    deleteEmployee();
+                } else if (input.equalsIgnoreCase("l")) {
+                    deleteLogbookEntry();
+                } else if (input.equalsIgnoreCase("p")) {
+                    deleteProject();
+                } else if (input.equalsIgnoreCase("r")) {
+                    deleteRequirement();
+                } else if (input.equalsIgnoreCase("s")) {
+                    deleteSprint();
+                } else if (input.equalsIgnoreCase("t")) {
+                    deleteTask();
+                } else if (input.equalsIgnoreCase("b")) {
+                    // skip
+                } else {
+                    printInvalidInput();
+                }
+            } catch (CommandCanceledException ex) {
+                printUserCancelMessage();
+                printEntranceInfo();
             }
 
         } while (!input.equalsIgnoreCase("b"));
     }
 
     public void deleteTask() {
+
     }
 
     public void deleteSprint() {
@@ -61,7 +69,10 @@ public class SubMenuDeleteEntities extends Menu {
     public void deleteLogbookEntry() {
     }
 
-    public void deleteEmployee() {
+    public void deleteEmployee() throws CommandCanceledException {
+        Employee employee = new SubMenuFindEntities(console, false).findEmployee();
+        showConfirmationMessage();
+        employeeDao.remove(employee);
     }
 
     @Override
@@ -71,7 +82,7 @@ public class SubMenuDeleteEntities extends Menu {
         console.setIndent(2);
         console.println("[b] ... Back to previous menu");
         console.println("[m] ... Print menu");
-        console.skipLine();
+        console.newLine();
         console.println("[e] ... Delete employee");
         console.println("[l] ... Delete logbook entry");
         console.println("[p] ... Delete project");

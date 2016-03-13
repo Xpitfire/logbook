@@ -6,7 +6,10 @@ import com.ninja_squad.dbsetup.operation.Operation;
 import swt6.ue2.logbook.dao.Dao;
 import swt6.ue2.logbook.dao.DaoFactory;
 import swt6.ue2.logbook.domain.*;
+import swt6.ue2.logbook.jpa.util.JpaUtil;
 import swt6.ue2.util.DateUtil;
+
+import java.sql.SQLSyntaxErrorException;
 
 import static com.ninja_squad.dbsetup.Operations.deleteAllFrom;
 import static com.ninja_squad.dbsetup.Operations.sequenceOf;
@@ -19,6 +22,10 @@ public abstract class CommonTest {
 
     protected Dao<Employee> employeeDao;
     protected Dao<LogbookEntry> logbookEntryDao;
+    protected Dao<Task> taskDao;
+    protected Dao<Project> projectDao;
+    protected Dao<Requirement> requirementDao;
+    protected Dao<Sprint> sprintDao;
 
     protected Employee permanentEmployee1;
     protected Employee permanentEmployee2;
@@ -37,7 +44,7 @@ public abstract class CommonTest {
 
 
     public static final Operation DELETE_ALL = deleteAllFrom(
-            "LOGBOOK_ENTRY", "TASK", "REQUIREMENT", "SPRINT", "PROJECT_EMPLOYEE", "PROJECT", "EMPLOYEE");
+            "LOGBOOK_ENTRY", "TASK", "REQUIREMENT", "SPRINT", "PROJECT_EMPLOYEE", "PROJECT", "PERMANENT_EMPLOYEE", "TEMPORARY_EMPLOYEE");
 
     protected static DriverManagerDestination dbDestination =
             new DriverManagerDestination("jdbc:derby://localhost:1527/WorkLogDb", "APP", "APP");
@@ -49,6 +56,10 @@ public abstract class CommonTest {
 
         employeeDao = DaoFactory.getDao(Employee.class);
         logbookEntryDao = DaoFactory.getDao(LogbookEntry.class);
+        taskDao = DaoFactory.getDao(Task.class);
+        projectDao = DaoFactory.getDao(Project.class);
+        requirementDao = DaoFactory.getDao(Requirement.class);
+        sprintDao = DaoFactory.getDao(Sprint.class);
 
         permanentEmployee1 = new PermanentEmployee(
                 "Jack", "Black",

@@ -60,7 +60,7 @@ public class MainMenu extends Menu {
         console.println("[q] ... Quit");
         console.println("[m] ... Print menu");
         console.println("[p] ... Print data");
-        console.skipLine();
+        console.newLine();
         console.println("[f] ... Find entities");
         console.println("[c] ... Create entities");
         console.println("[d] ... Delete entities");

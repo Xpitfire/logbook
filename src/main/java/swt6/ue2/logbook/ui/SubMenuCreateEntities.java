@@ -108,7 +108,7 @@ public class SubMenuCreateEntities extends Menu {
         if (input.equalsIgnoreCase("n")) {
             employee = createEmployee(false);
         } else {
-            employee = new SubMenuFindEntities(console).findEmployee();
+            employee = new SubMenuFindEntities(console, false).findEmployee();
         }
 
         logbookEntry = new LogbookEntry();
@@ -117,7 +117,7 @@ public class SubMenuCreateEntities extends Menu {
         logbookEntry.setStartTime(console.blockingTypedReadLine("Start time (dd.MM.yyyy HH:mm)", Date.class));
         logbookEntry.setEndTime(console.blockingTypedReadLine("End time (dd.MM.yyyy HH:mm)", Date.class));
         if (console.blockingTypedReadLine("Add a task? (y/n)", Boolean.class)) {
-            logbookEntry.attachTask(new SubMenuFindEntities(console).findTask());
+            logbookEntry.attachTask(new SubMenuFindEntities(console, false).findTask());
         }
 
         logbookEntryDao.safe(logbookEntry);
@@ -131,7 +131,7 @@ public class SubMenuCreateEntities extends Menu {
         task.setDescription(console.blockingTypedReadLine("Description", String.class, true));
         task.setEstimatedHours(console.blockingTypedReadLine("Estimated hours", Integer.class));
         if (console.blockingTypedReadLine("Add a requirement?", Boolean.class)) {
-            task.attachRequirement(new SubMenuFindEntities(console).findRequirement());
+            task.attachRequirement(new SubMenuFindEntities(console, false).findRequirement());
         }
 
         taskDao.safe(task);
@@ -145,7 +145,7 @@ public class SubMenuCreateEntities extends Menu {
         console.setIndent(2);
         console.println("[b] ... Back to previous menu");
         console.println("[m] ... Print menu");
-        console.skipLine();
+        console.newLine();
         console.println("[e] ... Create employee");
         console.println("[l] ... Create logbook entry");
         console.println("[p] ... Create project");

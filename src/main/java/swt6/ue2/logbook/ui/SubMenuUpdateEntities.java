@@ -32,7 +32,7 @@ public class SubMenuUpdateEntities extends Menu {
         printSeparator();
         console.setIndent(2);
         console.println("[b] ... Back to previous menu");
-        console.skipLine();
+        console.newLine();
         console.resetIndent();
         printSeparator();
     }

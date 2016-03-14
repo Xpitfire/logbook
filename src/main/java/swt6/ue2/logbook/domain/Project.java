@@ -36,7 +36,7 @@ public class Project implements Serializable {
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE},
             fetch = FetchType.EAGER,
-            optional = false)
+            optional = true)
     private Employee leader;
 
     public Project() {

@@ -2,6 +2,7 @@ package swt6.ue2.logbook.domain;
 
 import java.io.Serializable;
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.persistence.*;
@@ -9,6 +10,8 @@ import javax.persistence.*;
 @Entity
 @Table(name = "LOGBOOK_ENTRY")
 public class LogbookEntry implements Serializable {
+
+    private static final DateFormat fmt = new SimpleDateFormat("dd.MM.yyyy HH:mm");
 
     @Id
     @GeneratedValue
@@ -19,7 +22,7 @@ public class LogbookEntry implements Serializable {
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE},
             fetch = FetchType.EAGER,
-            optional = false)
+            optional = true)
     @JoinColumn(name = "EMPLOYEE_ID")
     private Employee employee;
 
@@ -128,11 +131,14 @@ public class LogbookEntry implements Serializable {
 
     @Override
     public String toString() {
-        DateFormat fmt = DateFormat.getDateTimeInstance();
         StringBuilder sb = new StringBuilder();
-        sb.append("LOG-ENTRY: ").append(activity).append(": ")
-                .append(fmt.format(startTime)).append(" - ")
-                .append(fmt.format(endTime));
+        sb.append("LOG-ENTRY: ").append(activity).append(": ");
+        if (startTime != null) {
+            sb.append(fmt.format(startTime)).append(" - ");
+        }
+        if (endTime != null) {
+            sb.append(fmt.format(endTime));
+        }
         if (employee != null) {
             sb.append(" (created by: ").append(employee.getLastName()).append(")");
         }

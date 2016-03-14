@@ -25,7 +25,7 @@ public class Requirement implements Serializable {
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE},
             fetch = FetchType.EAGER,
-            optional = false)
+            optional = true)
     private Project project;
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE},

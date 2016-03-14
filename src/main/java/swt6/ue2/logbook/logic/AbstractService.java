@@ -21,35 +21,44 @@ public abstract class AbstractService<T extends Serializable> implements Service
     @Override
     public T firstOrDefault() {
         T entity = dao.firstOrDefault();
-        DaoFactory.commit();
         return entity;
     }
 
     @Override
     public T findById(Object id) {
         T entity =dao.findById(id);
-        DaoFactory.commit();
         return entity;
     }
 
     @Override
     public List<T> findAll() {
         List<T> entities = dao.findAll();
-        DaoFactory.commit();
         return entities;
     }
 
     @Override
     public T safe(T entity) {
-        entity = dao.safe(entity);
-        DaoFactory.commit();
+        try {
+            entity = dao.safe(entity);
+            DaoFactory.commit();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            DaoFactory.rollback();
+            throw new RuntimeException(ex);
+        }
         return entity;
     }
 
     @Override
     public void remove(T entity) {
-        dao.remove(entity);
-        DaoFactory.commit();
+        try {
+            dao.remove(entity);
+            DaoFactory.commit();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            DaoFactory.rollback();
+            throw new RuntimeException(ex);
+        }
     }
 
     @Override

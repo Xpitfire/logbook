@@ -19,7 +19,7 @@ public class Sprint implements Serializable {
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE},
             fetch = FetchType.EAGER,
-            optional = false)
+            optional = true)
     private Project project;
 
     @OneToMany(mappedBy = "sprint",

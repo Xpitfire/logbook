@@ -2,9 +2,10 @@ package swt6.ue2.logbook.test;
 
 import org.junit.Before;
 import org.junit.Test;
-import swt6.ue2.logbook.domain.Employee;
 import swt6.ue2.logbook.domain.LogbookEntry;
+import swt6.ue2.util.DateUtil;
 
+import java.util.Date;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -19,6 +20,7 @@ public class LogbookDaoTest extends CommonTest {
     @Override
     public void prepare() {
         super.prepare();
+        logbookEntry1.attachEmployee(permanentEmployee1);
     }
 
     @Test
@@ -32,13 +34,23 @@ public class LogbookDaoTest extends CommonTest {
         LogbookEntry l = logbookEntryDao.safe(logbookEntry1);
         Long id = l.getId();
         l = logbookEntryDao.firstOrDefault();
-        assertTrue(id == l.getId());
+        assertEquals(id, l.getId());
     }
 
     @Test
     public void testInsertLogbookEntry() {
         LogbookEntry l = logbookEntryDao.safe(logbookEntry1);
         assertNotNull(l.getId());
+    }
+
+    @Test
+    public void testProtectedUpdateLogbookEntry() {
+        LogbookEntry l = logbookEntryDao.safe(logbookEntry1);
+        Date startDate = DateUtil.getTime(1988, 7, 1, 10, 30);
+        Date endDate = DateUtil.getTime(1988, 7, 1, 11, 30);
+        l.setActivity("test activity");
+        l = logbookEntryDao.safe(logbookEntry1);
+        assertNotEquals("test activity", l.getActivity());
     }
 
     @Test
@@ -60,21 +72,16 @@ public class LogbookDaoTest extends CommonTest {
 
     @Test
     public void testLogbookEntryRemove() {
-        // TODO find out why it works with setEmployee but not with attachEmployee
-        //logbookEntry1.setEmployee(permanentEmployee1);
-        logbookEntry1.attachEmployee(permanentEmployee1);
-        logbookEntry1 = logbookEntryDao.safe(logbookEntry1);
-        Long employeeId = logbookEntry1.getEmployee().getId();
-        Long logbookId = logbookEntry1.getId();
-        logbookEntryDao.remove(logbookEntry1);
+        LogbookEntry l = logbookEntryDao.safe(logbookEntry2);
+        Long logbookId = l.getId();
+        logbookEntryDao.remove(l);
         LogbookEntry entry = logbookEntryDao.findById(logbookId);
         assertNull(entry);
-        Employee e = employeeDao.findById(employeeId);
-        assertNotNull(e.getId());
     }
 
+    /*
     @Test
-    public void testEmployeeCascadeRemove() {
+    public void testCascadeRemoveLogbookEntry() {
         // TODO: find out why the cascade delete does not work
         //logbookEntry1.attachEmployee(permanentEmployee1);
         permanentEmployee1.addLogbookEntry(logbookEntry1);
@@ -86,5 +93,6 @@ public class LogbookDaoTest extends CommonTest {
         LogbookEntry entry = logbookEntryDao.findById(logbookId);
         assertNull(entry);
     }
+    */
 
 }

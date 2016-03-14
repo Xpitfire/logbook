@@ -10,4 +10,8 @@ public class RequirementDao extends AbstractDao<Requirement> {
     RequirementDao(Class<Requirement> clazz) {
         super(clazz);
     }
+
+    RequirementDao(Class<Requirement> clazz, boolean explicitTransactionControl) {
+        super(clazz, explicitTransactionControl);
+    }
 }

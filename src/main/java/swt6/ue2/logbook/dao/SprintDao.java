@@ -10,4 +10,8 @@ public class SprintDao extends AbstractDao<Sprint> {
     SprintDao(Class<Sprint> clazz) {
         super(clazz);
     }
+
+    SprintDao(Class<Sprint> clazz, boolean explicitTransactionControl) {
+        super(clazz, explicitTransactionControl);
+    }
 }

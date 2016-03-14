@@ -10,4 +10,8 @@ public class ProjectDao extends AbstractDao<Project> {
     ProjectDao(Class<Project> clazz) {
         super(clazz);
     }
+
+    ProjectDao(Class<Project> clazz, boolean explicitTransactionControl) {
+        super(clazz, explicitTransactionControl);
+    }
 }

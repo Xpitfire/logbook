@@ -2,11 +2,8 @@ package swt6.ue2.logbook.test;
 
 import org.junit.Before;
 import org.junit.Test;
-import swt6.ue2.logbook.domain.Employee;
-import swt6.ue2.logbook.domain.LogbookEntry;
 import swt6.ue2.logbook.domain.Project;
 
-import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -20,15 +17,23 @@ public class ProjectDaoTest extends CommonTest {
     @Override
     public void prepare() {
         super.prepare();
+        project1.setLeader(permanentEmployee1);
     }
 
     @Test
     public void testInsertProject() {
         project1.addSprint(sprint1);
         project1.addRequirement(requirement1);
-        project1.addMember(permanentEmployee1);
         Project p = projectDao.safe(project1);
         assertNotNull(p.getId());
+    }
+
+    @Test
+    public void testUpdateProject() {
+        Project p = projectDao.safe(project1);
+        p.setName("AI");
+        p = projectDao.safe(p);
+        assertEquals("AI", p.getName());
     }
 
     @Test
@@ -36,7 +41,7 @@ public class ProjectDaoTest extends CommonTest {
         Project p = projectDao.safe(project1);
         Long id = p.getId();
         p = projectDao.firstOrDefault();
-        assertTrue(id == p.getId());
+        assertEquals(id, p.getId());
     }
 
     @Test
@@ -49,13 +54,28 @@ public class ProjectDaoTest extends CommonTest {
     }
 
     @Test
-    public void testCascadeRemove() {
+    public void testCascadeRemoveProject() {
         Project p = projectDao.safe(project1);
         p.addSprint(sprint1);
         Long id = p.getId();
         projectDao.remove(p);
         p = projectDao.findById(id);
         assertNull(p);
+    }
+
+    @Test
+    public void testFindAllProjects() {
+        projectDao.safe(project1);
+        projectDao.safe(project2);
+        assertTrue(projectDao.count() == 2);
+        assertTrue(projectDao.findAll().size() == 2);
+    }
+
+    @Test
+    public void testFindProjectById() {
+        Project p = projectDao.safe(project1);
+        p = projectDao.findById(p.getId());
+        assertNotNull(p.getId());
     }
 
 }

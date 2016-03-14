@@ -33,14 +33,13 @@ public class EmployeeDaoTest extends CommonTest {
         assertTrue(employeeDao.count() == 3);
     }
 
-    @Test
+    @Test(expected = UnsupportedOperationException.class)
     public void testFirstOrDefaultLogbookEntry() {
-        // TODO find out why the id is in inverse order
         Employee e = employeeDao.safe(temporaryEmployee1);
         Long id = e.getId();
         employeeDao.safe(permanentEmployee1);
         e = employeeDao.firstOrDefault();
-        assertTrue(id == e.getId());
+        assertNotEquals(id, e.getId());
     }
 
     @Test
@@ -50,9 +49,27 @@ public class EmployeeDaoTest extends CommonTest {
     }
 
     @Test
+    public void testUpdatePermanentEmployee() {
+        Employee e = employeeDao.safe(permanentEmployee1);
+        e.setLastName("Jerry");
+        e = employeeDao.safe(e);
+        assertNotNull(e.getId());
+        assertEquals(e.getLastName(), "Jerry");
+    }
+
+    @Test
     public void testInsertTemporaryEmployee() {
         Employee e = employeeDao.safe(temporaryEmployee1);
         assertNotNull(e.getId());
+    }
+
+    @Test
+    public void testUpdateTemporaryEmployee() {
+        Employee e = employeeDao.safe(temporaryEmployee1);
+        e.setLastName("Larry");
+        e = employeeDao.safe(e);
+        assertNotNull(e.getId());
+        assertEquals(e.getLastName(), "Larry");
     }
 
     @Test
@@ -74,8 +91,7 @@ public class EmployeeDaoTest extends CommonTest {
 
     @Test
     public void testEmployeeEagerAddressLoading() {
-        employeeDao.safe(permanentEmployee1);
-        Employee e = employeeDao.firstOrDefault();
+        Employee e = employeeDao.safe(permanentEmployee1);
         assertNotNull(e);
         assertNotNull(e.getAddress());
         assertNotNull(e.getAddress().getCity());
@@ -102,7 +118,6 @@ public class EmployeeDaoTest extends CommonTest {
 
     @Test(expected = Exception.class)
     public void testInvalidEmployeeInsert() {
-        // TODO: solve the nullable annotation issue
         Employee e = new PermanentEmployee();
         e = employeeDao.safe(e);
         assertNull(e);

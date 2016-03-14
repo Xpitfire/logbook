@@ -10,4 +10,8 @@ public class LogbookEntryDao extends AbstractDao<LogbookEntry> {
     LogbookEntryDao(Class<LogbookEntry> clazz) {
         super(clazz);
     }
+
+    LogbookEntryDao(Class<LogbookEntry> clazz, boolean explicitTransactionControl) {
+        super(clazz, explicitTransactionControl);
+    }
 }

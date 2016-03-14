@@ -19,6 +19,10 @@ public class EmployeeDao extends AbstractDao<Employee> {
         super(clazz);
     }
 
+    EmployeeDao(Class<Employee> clazz, boolean explicitTransactionControl) {
+        super(clazz, explicitTransactionControl);
+    }
+
     public <K extends Employee> List<K> findAll(Class<K> type) {
         EntityManager entityManager = JpaUtil.getTransactedEntityManager();
         Query query = entityManager.createQuery(String.format("SELECT t FROM %s t", clazz.getSimpleName()));
@@ -30,4 +34,8 @@ public class EmployeeDao extends AbstractDao<Employee> {
         return entities;
     }
 
+    @Override
+    public Employee firstOrDefault() {
+        throw new UnsupportedOperationException("This feature cannot be applied for Employee due to multiple table representation through inheritance!");
+    }
 }

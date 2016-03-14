@@ -18,7 +18,7 @@ import static com.ninja_squad.dbsetup.Operations.sequenceOf;
  * @author: Dinu Marius-Constantin
  * @date: 12.03.2016
  */
-public abstract class CommonTest {
+public abstract class BaseTest {
 
     protected Dao<Employee> employeeDao;
     protected Dao<LogbookEntry> logbookEntryDao;

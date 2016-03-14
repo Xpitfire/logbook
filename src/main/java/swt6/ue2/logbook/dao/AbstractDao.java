@@ -99,7 +99,7 @@ public abstract class AbstractDao<T extends Serializable> implements Dao<T> {
     }
 
     @Override
-    public void close() throws Exception {
+    public void close() {
         commit();
     }
 }

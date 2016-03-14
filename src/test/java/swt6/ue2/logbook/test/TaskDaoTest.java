@@ -10,7 +10,7 @@ import static org.junit.Assert.*;
  * @author: Dinu Marius-Constantin
  * @date: 12.03.2016
  */
-public class TaskDaoTest extends CommonTest {
+public class TaskDaoTest extends BaseTest {
 
     @Before
     @Override

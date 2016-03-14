@@ -11,7 +11,7 @@ import static org.junit.Assert.*;
  * @author: Dinu Marius-Constantin
  * @date: 14.03.2016
  */
-public class ProjectDaoTest extends CommonTest {
+public class ProjectDaoTest extends BaseTest {
 
     @Before
     @Override

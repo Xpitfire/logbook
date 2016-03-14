@@ -1,5 +1,6 @@
 package swt6.ue2.logbook.test;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import swt6.ue2.logbook.domain.Project;
@@ -18,6 +19,13 @@ public class ProjectDaoTest extends BaseTest {
     public void prepare() {
         super.prepare();
         project1.setLeader(permanentEmployee1);
+        project2.setLeader(permanentEmployee1);
+    }
+
+    @After
+    @Override
+    public void complete() {
+        super.complete();
     }
 
     @Test

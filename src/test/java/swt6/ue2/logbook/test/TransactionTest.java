@@ -1,11 +1,9 @@
 package swt6.ue2.logbook.test;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import swt6.ue2.logbook.dao.Dao;
-import swt6.ue2.logbook.dao.DaoFactory;
-import swt6.ue2.logbook.domain.Employee;
-import swt6.ue2.logbook.domain.LogbookEntry;
+import swt6.ue2.logbook.dal.DaoFactory;
 
 import static org.junit.Assert.*;
 
@@ -19,31 +17,24 @@ public class TransactionTest extends BaseTest {
     @Override
     public void prepare() {
         super.prepare();
+        logbookEntry1.attachEmployee(permanentEmployee1);
+        logbookEntry2.attachEmployee(permanentEmployee2);
+        logbookEntry3.attachEmployee(permanentEmployee1);
+    }
+
+    @After
+    @Override
+    public void complete() {
+        super.complete();
     }
 
     @Test
     public void testExplicitDaoTransactionRollback() throws Exception {
-        try (Dao<Employee> employeeDao = DaoFactory.getDao(Employee.class, true);
-             Dao<LogbookEntry> logbookEntryDao = DaoFactory.getDao(LogbookEntry.class, true)) {
-            employeeDao.safe(permanentEmployee1);
-            logbookEntry1.attachEmployee(permanentEmployee1);
-            logbookEntryDao.safe(logbookEntry1);
-            logbookEntryDao.rollback();
-        }
+        employeeDao.safe(permanentEmployee1);
+        logbookEntryDao.safe(logbookEntry1);
+        DaoFactory.rollback();
         assertTrue(employeeDao.count() == 0);
         assertTrue(logbookEntryDao.count() == 0);
-    }
-
-    @Test
-    public void testExplicitDaoTransactionCommit() throws Exception {
-        try (Dao<Employee> employeeDao = DaoFactory.getDao(Employee.class, true);
-             Dao<LogbookEntry> logbookEntryDao = DaoFactory.getDao(LogbookEntry.class, true)) {
-            employeeDao.safe(permanentEmployee1);
-            permanentEmployee1.addLogbookEntry(logbookEntry1);
-            logbookEntryDao.safe(logbookEntry1);
-        }
-        assertTrue(employeeDao.count() == 2);
-        assertTrue(logbookEntryDao.count() == 1);
     }
 
 }

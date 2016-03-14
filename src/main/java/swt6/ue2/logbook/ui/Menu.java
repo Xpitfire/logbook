@@ -1,10 +1,12 @@
 package swt6.ue2.logbook.ui;
 
-import swt6.ue2.logbook.dao.Dao;
-import swt6.ue2.logbook.dao.DaoFactory;
+import swt6.ue2.logbook.dal.Dao;
+import swt6.ue2.logbook.dal.DaoFactory;
 import swt6.ue2.logbook.domain.*;
 import swt6.ue2.logbook.io.CommandCanceledException;
 import swt6.ue2.logbook.io.Console;
+import swt6.ue2.logbook.logic.Service;
+import swt6.ue2.logbook.logic.ServiceFactory;
 
 /**
  * @author: Dinu Marius-Constantin
@@ -16,12 +18,12 @@ public abstract class Menu implements AutoCloseable {
     protected final Console console;
     protected String input;
 
-    protected final Dao<Employee> employeeDao = DaoFactory.getDao(Employee.class);
-    protected final Dao<LogbookEntry> logbookEntryDao = DaoFactory.getDao(LogbookEntry.class);
-    protected final Dao<Task> taskDao = DaoFactory.getDao(Task.class);
-    protected final Dao<Project> projectDao = DaoFactory.getDao(Project.class);
-    protected final Dao<Requirement> requirementDao = DaoFactory.getDao(Requirement.class);
-    protected final Dao<Sprint> sprintDao = DaoFactory.getDao(Sprint.class);
+    protected final Service<Employee> employeeDao = ServiceFactory.getService(Employee.class);
+    protected final Service<LogbookEntry> logbookEntryDao = ServiceFactory.getService(LogbookEntry.class);
+    protected final Service<Task> taskDao = ServiceFactory.getService(Task.class);
+    protected final Service<Project> projectDao = ServiceFactory.getService(Project.class);
+    protected final Service<Requirement> requirementDao = ServiceFactory.getService(Requirement.class);
+    protected final Service<Sprint> sprintDao = ServiceFactory.getService(Sprint.class);
 
     protected Menu(Console console) {
         this(console, true);

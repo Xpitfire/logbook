@@ -3,13 +3,10 @@ package swt6.ue2.logbook.test;
 import com.ninja_squad.dbsetup.DbSetup;
 import com.ninja_squad.dbsetup.destination.DriverManagerDestination;
 import com.ninja_squad.dbsetup.operation.Operation;
-import swt6.ue2.logbook.dao.Dao;
-import swt6.ue2.logbook.dao.DaoFactory;
+import swt6.ue2.logbook.dal.Dao;
+import swt6.ue2.logbook.dal.DaoFactory;
 import swt6.ue2.logbook.domain.*;
-import swt6.ue2.logbook.jpa.util.JpaUtil;
 import swt6.ue2.util.DateUtil;
-
-import java.sql.SQLSyntaxErrorException;
 
 import static com.ninja_squad.dbsetup.Operations.deleteAllFrom;
 import static com.ninja_squad.dbsetup.Operations.sequenceOf;
@@ -98,6 +95,10 @@ public abstract class BaseTest {
 
         sprint1 = new Sprint();
         sprint2 = new Sprint();
+    }
+
+    public void complete() {
+        DaoFactory.rollback();
     }
 
 }

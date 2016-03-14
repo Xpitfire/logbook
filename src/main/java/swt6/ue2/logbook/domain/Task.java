@@ -20,13 +20,13 @@ public class Task implements Serializable {
 
     @OneToMany(mappedBy = "task",
             cascade = CascadeType.ALL,
-            fetch = FetchType.EAGER,
+            fetch = FetchType.LAZY,
             orphanRemoval = true)
     private Set<LogbookEntry> logbookEntries = new HashSet<>();
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE},
             fetch = FetchType.EAGER,
-            optional = true)
+            optional = false)
     private Requirement requirement;
 
     public Task() {

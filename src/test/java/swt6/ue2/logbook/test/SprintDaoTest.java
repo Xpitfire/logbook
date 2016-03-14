@@ -1,5 +1,6 @@
 package swt6.ue2.logbook.test;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import swt6.ue2.logbook.domain.Sprint;
@@ -16,7 +17,16 @@ public class SprintDaoTest extends BaseTest {
     @Override
     public void prepare() {
         super.prepare();
+        project1.attachLeader(permanentEmployee1);
+        project2.attachLeader(permanentEmployee2);
         sprint1.attachProject(project1);
+        sprint2.attachProject(project2);
+    }
+
+    @After
+    @Override
+    public void complete() {
+        super.complete();
     }
 
     @Test

@@ -1,7 +1,9 @@
 package swt6.ue2.logbook.test;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import swt6.ue2.logbook.dal.DaoFactory;
 import swt6.ue2.logbook.domain.Task;
 
 import static org.junit.Assert.*;
@@ -16,7 +18,20 @@ public class TaskDaoTest extends BaseTest {
     @Override
     public void prepare() {
         super.prepare();
+        project1.attachLeader(permanentEmployee1);
+        project2.attachLeader(permanentEmployee2);
+        requirement1.attachProject(project1);
+        requirement2.attachProject(project1);
+        requirement3.attachProject(project2);
         task1.attachRequirement(requirement1);
+        task2.attachRequirement(requirement2);
+        task3.attachRequirement(requirement3);
+    }
+
+    @After
+    @Override
+    public void complete() {
+        super.complete();
     }
 
     @Test
@@ -36,10 +51,9 @@ public class TaskDaoTest extends BaseTest {
     @Test
     public void testFirstOrDefaultTask() {
         Task t = taskDao.safe(task1);
-        String id = t.getId();
+        DaoFactory.commit();
         t = taskDao.firstOrDefault();
         assertNotNull(t.getId());
-        assertEquals(id, t.getId());
     }
 
     @Test

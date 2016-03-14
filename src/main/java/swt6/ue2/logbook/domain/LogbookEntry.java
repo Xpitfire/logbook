@@ -19,7 +19,7 @@ public class LogbookEntry implements Serializable {
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE},
             fetch = FetchType.EAGER,
-            optional = true)
+            optional = false)
     @JoinColumn(name = "EMPLOYEE_ID")
     private Employee employee;
 

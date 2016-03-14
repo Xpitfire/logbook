@@ -1,4 +1,4 @@
-package swt6.ue2.logbook.dao;
+package swt6.ue2.logbook.dal;
 
 import swt6.ue2.logbook.domain.Employee;
 import swt6.ue2.logbook.jpa.util.JpaUtil;
@@ -15,12 +15,7 @@ import java.util.stream.Stream;
  */
 public class EmployeeDao extends AbstractDao<Employee> {
 
-    EmployeeDao(Class<Employee> clazz) {
-        super(clazz);
-    }
-
-    EmployeeDao(Class<Employee> clazz, boolean explicitTransactionControl) {
-        super(clazz, explicitTransactionControl);
+    EmployeeDao() {
     }
 
     public <K extends Employee> List<K> findAll(Class<K> type) {

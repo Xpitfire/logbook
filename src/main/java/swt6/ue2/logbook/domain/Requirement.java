@@ -19,13 +19,13 @@ public class Requirement implements Serializable {
 
     @OneToMany(mappedBy = "requirement",
             cascade = CascadeType.ALL,
-            fetch = FetchType.EAGER,
+            fetch = FetchType.LAZY,
             orphanRemoval = true)
     private Set<Task> tasks = new HashSet<>();
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE},
             fetch = FetchType.EAGER,
-            optional = true)
+            optional = false)
     private Project project;
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE},

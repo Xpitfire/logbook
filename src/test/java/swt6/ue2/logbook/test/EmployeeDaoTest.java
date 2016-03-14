@@ -1,9 +1,10 @@
 package swt6.ue2.logbook.test;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import swt6.ue2.logbook.dao.DaoFactory;
-import swt6.ue2.logbook.dao.EmployeeDao;
+import swt6.ue2.logbook.dal.DaoFactory;
+import swt6.ue2.logbook.dal.EmployeeDao;
 import swt6.ue2.logbook.domain.Employee;
 import swt6.ue2.logbook.domain.PermanentEmployee;
 import swt6.ue2.logbook.domain.TemporaryEmployee;
@@ -23,6 +24,12 @@ public class EmployeeDaoTest extends BaseTest {
     @Override
     public void prepare() {
         super.prepare();
+    }
+
+    @After
+    @Override
+    public void complete() {
+        super.complete();
     }
 
     @Test

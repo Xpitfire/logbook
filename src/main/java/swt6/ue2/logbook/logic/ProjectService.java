@@ -10,7 +10,7 @@ import java.util.List;
  * @author: Dinu Marius-Constantin
  * @date: 14.03.2016
  */
-public class ProjectPlaner {
+public class ProjectService extends AbstractService<Project> {
 
     private static final int WORK_DAYS_PER_YEAR = 220;
     private static final int HOURS_PER_DAY = 24;

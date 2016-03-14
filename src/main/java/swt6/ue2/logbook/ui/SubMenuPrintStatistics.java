@@ -4,7 +4,7 @@ import swt6.ue2.logbook.domain.LogbookEntry;
 import swt6.ue2.logbook.domain.Project;
 import swt6.ue2.logbook.io.CommandCanceledException;
 import swt6.ue2.logbook.io.Console;
-import swt6.ue2.logbook.logic.ProjectPlaner;
+import swt6.ue2.logbook.logic.ProjectService;
 
 /**
  * @author: Dinu Marius-Constantin
@@ -63,10 +63,9 @@ public class SubMenuPrintStatistics extends Menu {
     public void printProjectTotalCosts() {
         console.println("*** PRINT PROJECT COSTS ***");
         console.setIndent(2);
-        ProjectPlaner projectPlaner = new ProjectPlaner();
         console.printTableHeader("Projects", "Total costs (€)");
         for (Project p : projectDao.findAll()) {
-            console.printTableRow(p.getName(), String.format("%.2f", projectPlaner.calculateTotalCosts(p)));
+            console.printTableRow(p.getName(), String.format("%.2f", ((ProjectService)projectDao).calculateTotalCosts(p)));
         }
         console.resetIndent();
     }
@@ -74,15 +73,14 @@ public class SubMenuPrintStatistics extends Menu {
     public void printBurndownCharts() throws CommandCanceledException {
         console.println("*** PRINT BURNDOWN CHARTS ***");
         console.setIndent(2);
-        ProjectPlaner projectPlaner = new ProjectPlaner();
         Project project = new SubMenuFindEntities(console, false).findProject();
 
-        double remainingHours = projectPlaner.calculateEstimatedTotalHours(project);
+        double remainingHours = ((ProjectService)projectDao).calculateEstimatedTotalHours(project);
         console.printf("Estimated Work: %s%n", remainingHours);
         console.printTableHeader("Dates", "Actual Work (hrs)", "Remaining Work (hrs)");
         for (LogbookEntry logbookEntry : logbookEntryDao.findAll()) {
             if (logbookEntry.getTask().getRequirement().getProject().getId() == project.getId()) {
-                double actualWork = projectPlaner.calculateHoursDifference(logbookEntry.getStartTime(), logbookEntry.getEndTime());
+                double actualWork = ((ProjectService)projectDao).calculateHoursDifference(logbookEntry.getStartTime(), logbookEntry.getEndTime());
                 remainingHours -= actualWork;
                 console.printTableRow(logbookEntry.getEndTime(), String.format("%.0f", actualWork), String.format("%.0f", remainingHours));
             }

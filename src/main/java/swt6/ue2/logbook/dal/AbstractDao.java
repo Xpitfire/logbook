@@ -1,4 +1,4 @@
-package swt6.ue2.logbook.dao;
+package swt6.ue2.logbook.dal;
 
 import swt6.ue2.logbook.jpa.util.JpaUtil;
 
@@ -14,16 +14,10 @@ import java.util.List;
  */
 public abstract class AbstractDao<T extends Serializable> implements Dao<T> {
 
-    protected final Class<T> clazz;
-    private boolean implicitTransactionClose;
+    protected Class<T> clazz;
 
-    protected AbstractDao(Class<T> clazz) {
+    public void setClass(Class<T> clazz) {
         this.clazz = clazz;
-    }
-
-    protected AbstractDao(Class<T> clazz, boolean explicitTransactionControl) {
-        this.clazz = clazz;
-        this.implicitTransactionClose = !explicitTransactionControl;
     }
 
     @Override
@@ -36,8 +30,6 @@ public abstract class AbstractDao<T extends Serializable> implements Dao<T> {
         } catch (NoResultException ex) {
             // do nothing
         }
-        if (implicitTransactionClose)
-            JpaUtil.commit();
         return entity;
     }
 
@@ -45,8 +37,6 @@ public abstract class AbstractDao<T extends Serializable> implements Dao<T> {
     public T findById(Object id) {
         EntityManager entityManager  = JpaUtil.getTransactedEntityManager();
         T entity = entityManager.find(clazz, id);
-        if (implicitTransactionClose)
-            JpaUtil.commit();
         return entity;
     }
 
@@ -55,8 +45,6 @@ public abstract class AbstractDao<T extends Serializable> implements Dao<T> {
         EntityManager entityManager = JpaUtil.getTransactedEntityManager();
         Query query = entityManager.createQuery(String.format("SELECT t FROM %s t", clazz.getSimpleName()));
         List<T> entities = query.getResultList();
-        if (implicitTransactionClose)
-            JpaUtil.commit();
         return entities;
     }
 
@@ -64,8 +52,6 @@ public abstract class AbstractDao<T extends Serializable> implements Dao<T> {
     public T safe(T entity) {
         EntityManager entityManager = JpaUtil.getTransactedEntityManager();
         entity = entityManager.merge(entity);
-        if (implicitTransactionClose)
-            JpaUtil.commit();
         return entity;
     }
 
@@ -74,8 +60,6 @@ public abstract class AbstractDao<T extends Serializable> implements Dao<T> {
         EntityManager entityManager = JpaUtil.getTransactedEntityManager();
         entity = entityManager.merge(entity);
         entityManager.remove(entity);
-        if (implicitTransactionClose)
-            JpaUtil.commit();
     }
 
     @Override
@@ -83,23 +67,7 @@ public abstract class AbstractDao<T extends Serializable> implements Dao<T> {
         EntityManager entityManager = JpaUtil.getTransactedEntityManager();
         Query query = entityManager.createQuery(String.format("SELECT COUNT(t) FROM %s t", clazz.getSimpleName()));
         Long count = (Long)query.getSingleResult();
-        if (implicitTransactionClose)
-            JpaUtil.commit();
         return count;
     }
 
-    @Override
-    public void commit() {
-        JpaUtil.commit();
-    }
-
-    @Override
-    public void rollback() {
-        JpaUtil.rollback();
-    }
-
-    @Override
-    public void close() {
-        commit();
-    }
 }

@@ -1,7 +1,9 @@
 package swt6.ue2.logbook.test;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import swt6.ue2.logbook.dal.DaoFactory;
 import swt6.ue2.logbook.domain.LogbookEntry;
 import swt6.ue2.util.DateUtil;
 
@@ -21,17 +23,25 @@ public class LogbookDaoTest extends BaseTest {
     public void prepare() {
         super.prepare();
         logbookEntry1.attachEmployee(permanentEmployee1);
+        logbookEntry2.attachEmployee(permanentEmployee2);
+        logbookEntry3.attachEmployee(permanentEmployee1);
+    }
+
+    @After
+    @Override
+    public void complete() {
+        super.complete();
     }
 
     @Test
     public void testCountLogbookEntry() {
-        logbookEntryDao.safe(logbookEntry1);
+        logbookEntryDao.safe(logbookEntry2);
         assertTrue(logbookEntryDao.count() == 1);
     }
 
     @Test
     public void testFirstOrDefaultLogbookEntry() {
-        LogbookEntry l = logbookEntryDao.safe(logbookEntry1);
+        LogbookEntry l = logbookEntryDao.safe(logbookEntry2);
         Long id = l.getId();
         l = logbookEntryDao.firstOrDefault();
         assertEquals(id, l.getId());
@@ -55,11 +65,11 @@ public class LogbookDaoTest extends BaseTest {
 
     @Test
     public void testFindAllLogbookEntries() {
-        logbookEntryDao.safe(logbookEntry1);
         logbookEntryDao.safe(logbookEntry2);
+        DaoFactory.commit();
         List<LogbookEntry> logbookEntries = logbookEntryDao.findAll();
         assertNotNull(logbookEntries);
-        assertTrue(logbookEntries.size() == 2);
+        assertTrue(logbookEntries.size() == 1);
     }
 
     @Test

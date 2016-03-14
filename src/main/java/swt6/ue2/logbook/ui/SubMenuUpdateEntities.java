@@ -37,7 +37,7 @@ public class SubMenuUpdateEntities extends Menu {
                 } else if (input.equalsIgnoreCase("t")) {
                     updateTask();
                 } else if (input.equalsIgnoreCase("r")) {
-                    updateRequirment();
+                    updateRequirement();
                 } else if (input.equalsIgnoreCase("b")) {
                     // skip
                 } else {
@@ -55,7 +55,7 @@ public class SubMenuUpdateEntities extends Menu {
         console.println("*** Employee ***");
         Employee employee = new SubMenuFindEntities(console, false).findEmployee();
         employee = new SubMenuCreateEntities(console, false).createOrUpdateEmployee(employee, false);
-        employeeDao.safe(employee);
+        employeeService.safe(employee);
         console.println("Successfully updated employee!");
     }
 
@@ -63,7 +63,7 @@ public class SubMenuUpdateEntities extends Menu {
         console.println("*** Project ***");
         Project project = new SubMenuFindEntities(console, false).findProject();
         project = new SubMenuCreateEntities(console, false).createOrUpdateProject(project, false);
-        projectDao.safe(project);
+        projectService.safe(project);
         console.println("Successfully updated project!");
     }
 
@@ -71,15 +71,15 @@ public class SubMenuUpdateEntities extends Menu {
         console.println("*** Task ***");
         Task task = new SubMenuFindEntities(console, false).findTask();
         task = new SubMenuCreateEntities(console, false).createOrUpdateTask(task, false);
-        taskDao.safe(task);
+        taskService.safe(task);
         console.println("Successfully updated task!");
     }
 
-    public void updateRequirment() throws CommandCanceledException {
+    public void updateRequirement() throws CommandCanceledException {
         console.println("*** Requirement ***");
         Requirement requirement = new SubMenuFindEntities(console, false).findRequirement();
         requirement = new SubMenuCreateEntities(console, false).createOrUpdateRequirement(requirement, false);
-        requirementDao.safe(requirement);
+        requirementService.safe(requirement);
         console.println("Successfully updated requirement!");
     }
 

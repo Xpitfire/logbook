@@ -64,8 +64,8 @@ public class SubMenuPrintStatistics extends Menu {
         console.println("*** PRINT PROJECT COSTS ***");
         console.setIndent(2);
         console.printTableHeader("Projects", "Total costs (€)");
-        for (Project p : projectDao.findAll()) {
-            console.printTableRow(p.getName(), String.format("%.2f", ((ProjectService)projectDao).calculateTotalCosts(p)));
+        for (Project p : projectService.findAll()) {
+            console.printTableRow(p.getName(), String.format("%.2f", ((ProjectService) projectService).calculateTotalCosts(p)));
         }
         console.resetIndent();
     }
@@ -75,12 +75,12 @@ public class SubMenuPrintStatistics extends Menu {
         console.setIndent(2);
         Project project = new SubMenuFindEntities(console, false).findProject();
 
-        double remainingHours = ((ProjectService)projectDao).calculateEstimatedTotalHours(project);
+        double remainingHours = ((ProjectService) projectService).calculateEstimatedTotalHours(project);
         console.printf("Estimated Work: %s%n", remainingHours);
         console.printTableHeader("Dates", "Actual Work (hrs)", "Remaining Work (hrs)");
-        for (LogbookEntry logbookEntry : logbookEntryDao.findAll()) {
+        for (LogbookEntry logbookEntry : logbookEntryService.findAll()) {
             if (logbookEntry.getTask().getRequirement().getProject().getId() == project.getId()) {
-                double actualWork = ((ProjectService)projectDao).calculateHoursDifference(logbookEntry.getStartTime(), logbookEntry.getEndTime());
+                double actualWork = ((ProjectService) projectService).calculateHoursDifference(logbookEntry.getStartTime(), logbookEntry.getEndTime());
                 remainingHours -= actualWork;
                 console.printTableRow(logbookEntry.getEndTime(), String.format("%.0f", actualWork), String.format("%.0f", remainingHours));
             }
@@ -100,42 +100,42 @@ public class SubMenuPrintStatistics extends Menu {
     public void printSprints() {
         console.println("*** PRINT SPRINTS ***");
         console.setIndent(2);
-        sprintDao.findAll().forEach(console::println);
+        sprintService.findAll().forEach(console::println);
         console.resetIndent();
     }
 
     public void printRequirements() {
         console.println("*** PRINT REQUIREMENTS ***");
         console.setIndent(2);
-        requirementDao.findAll().forEach(console::println);
+        requirementService.findAll().forEach(console::println);
         console.resetIndent();
     }
 
     public void printTasks() {
         console.println("*** PRINT TASKS ***");
         console.setIndent(2);
-        taskDao.findAll().forEach(console::println);
+        taskService.findAll().forEach(console::println);
         console.resetIndent();
     }
 
     public void printProjects() {
         console.println("*** PRINT PROJECTS ***");
         console.setIndent(2);
-        projectDao.findAll().forEach(console::println);
+        projectService.findAll().forEach(console::println);
         console.resetIndent();
     }
 
     public void printLogbookEntries() {
         console.println("*** PRINT LOGBOOK ENTRIES ***");
         console.setIndent(2);
-        logbookEntryDao.findAll().forEach(console::println);
+        logbookEntryService.findAll().forEach(console::println);
         console.resetIndent();
     }
 
     public void printEmployees() {
         console.println("*** PRINT EMPLOYEES ***");
         console.setIndent(2);
-        employeeDao.findAll().forEach(console::println);
+        employeeService.findAll().forEach(console::println);
         console.resetIndent();
     }
 

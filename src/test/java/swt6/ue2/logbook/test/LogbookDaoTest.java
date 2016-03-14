@@ -95,12 +95,12 @@ public class LogbookDaoTest extends BaseTest {
         // TODO: find out why the cascade delete does not work
         //logbookEntry1.attachEmployee(permanentEmployee1);
         permanentEmployee1.addLogbookEntry(logbookEntry1);
-        logbookEntry1 = logbookEntryDao.safe(logbookEntry1);
+        logbookEntry1 = logbookEntryService.safe(logbookEntry1);
         Long employeeId = logbookEntry1.getEmployee().getId();
         Long logbookId = logbookEntry1.getId();
-        employeeDao.remove(permanentEmployee1);
-        assertNull(employeeDao.findById(employeeId));
-        LogbookEntry entry = logbookEntryDao.findById(logbookId);
+        employeeService.remove(permanentEmployee1);
+        assertNull(employeeService.findById(employeeId));
+        LogbookEntry entry = logbookEntryService.findById(logbookId);
         assertNull(entry);
     }
     */

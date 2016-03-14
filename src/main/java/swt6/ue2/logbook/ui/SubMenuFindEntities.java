@@ -85,7 +85,7 @@ public class SubMenuFindEntities extends Menu {
     }
 
     public Sprint findSprint() throws CommandCanceledException {
-        List<Sprint> sprints = sprintDao.findAll();
+        List<Sprint> sprints = sprintService.findAll();
         String[] tempCmdList = new String[sprints.size()];
         Map<String, Sprint> sprintCmdMapping = new HashMap<>();
         console.setIndent(2);
@@ -95,7 +95,7 @@ public class SubMenuFindEntities extends Menu {
     }
 
     public Project findProject() throws CommandCanceledException {
-        List<Project> projects = projectDao.findAll();
+        List<Project> projects = projectService.findAll();
         String[] tempCmdList = new String[projects.size()];
         Map<String, Project> projectCmdMapping = new HashMap<>();
         console.setIndent(2);
@@ -105,7 +105,7 @@ public class SubMenuFindEntities extends Menu {
     }
 
     public Employee findEmployee() throws CommandCanceledException {
-        List<Employee> employees = employeeDao.findAll();
+        List<Employee> employees = employeeService.findAll();
         String[] tempCmdList = new String[employees.size()];
         Map<String, Employee> employeeCmdMapping = new HashMap<>();
         console.setIndent(2);
@@ -115,7 +115,7 @@ public class SubMenuFindEntities extends Menu {
     }
 
     public Task findTask() throws CommandCanceledException {
-        List<Task> tasks = taskDao.findAll();
+        List<Task> tasks = taskService.findAll();
         String[] tempCmdList = new String[tasks.size()];
         Map<String, Task> taskCmdMapping = new HashMap<>();
         console.setIndent(2);
@@ -125,7 +125,7 @@ public class SubMenuFindEntities extends Menu {
     }
 
     public Requirement findRequirement() throws CommandCanceledException {
-        List<Requirement> requirements = requirementDao.findAll();
+        List<Requirement> requirements = requirementService.findAll();
         String[] tempCmdList = new String[requirements.size()];
         Map<String, Requirement> requirementCmdMapping = new HashMap<>();
         console.setIndent(2);
@@ -135,7 +135,7 @@ public class SubMenuFindEntities extends Menu {
     }
 
     public LogbookEntry findLogbookEntry() throws CommandCanceledException {
-        List<LogbookEntry> logbookEntries = logbookEntryDao.findAll();
+        List<LogbookEntry> logbookEntries = logbookEntryService.findAll();
         String[] tempCmdList = new String[logbookEntries.size()];
         Map<String, LogbookEntry> logbookCmdMapping = new HashMap<>();
         console.setIndent(2);

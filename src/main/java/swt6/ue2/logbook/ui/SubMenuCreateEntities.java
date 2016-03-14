@@ -87,7 +87,7 @@ public class SubMenuCreateEntities extends Menu {
             submenu.linkEmployeeTo(project, false);
 
         if (immediateSafe) {
-            projectDao.safe(project);
+            projectService.safe(project);
             console.println("Successfully saved!");
         }
         return project;
@@ -102,7 +102,7 @@ public class SubMenuCreateEntities extends Menu {
         submenu.linkRequirementTo(sprint, false);
 
         if (immediateSafe) {
-            sprintDao.safe(sprint);
+            sprintService.safe(sprint);
             console.println("Successfully saved!");
         }
         return sprint;
@@ -149,7 +149,7 @@ public class SubMenuCreateEntities extends Menu {
         if (askForSkipOnUpdate(value, "hourly rate"))
             new SubMenuLinkEntities(console, false).linkAddressTo(employee, false);
         if (immediateSafe) {
-            employeeDao.safe(employee);
+            employeeService.safe(employee);
             console.println("Successfully saved!");
         }
         return employee;
@@ -183,7 +183,7 @@ public class SubMenuCreateEntities extends Menu {
         new SubMenuLinkEntities(console, false).linkTaskTo(logbookEntry, false);
 
         if (immediateSafe) {
-            logbookEntryDao.safe(logbookEntry);
+            logbookEntryService.safe(logbookEntry);
             console.println("Successfully saved!");
         }
         return logbookEntry;
@@ -209,7 +209,7 @@ public class SubMenuCreateEntities extends Menu {
         }
 
         if (immediateSafe) {
-            taskDao.safe(task);
+            taskService.safe(task);
             console.println("Successfully saved!");
         }
         return task;
@@ -235,7 +235,7 @@ public class SubMenuCreateEntities extends Menu {
         }
 
         if (immediateSafe) {
-            requirementDao.safe(requirement);
+            requirementService.safe(requirement);
             console.println("Successfully saved!");
         }
         return requirement;

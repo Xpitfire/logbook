@@ -32,19 +32,19 @@ public class SubMenuLinkEntities extends Menu {
                 if (input.equalsIgnoreCase("m")) {
                     printMenuOptions();
                 } else if (input.equalsIgnoreCase("lt")) {
-                    logbookEntryDao.safe(linkLogbookEntryTo(selectTask(), true));
+                    logbookEntryService.safe(linkLogbookEntryTo(selectTask(), true));
                 } else if (input.equalsIgnoreCase("le")) {
-                    logbookEntryDao.safe(linkLogbookEntryTo(selectEmployee(), true));
+                    logbookEntryService.safe(linkLogbookEntryTo(selectEmployee(), true));
                 } else if (input.equalsIgnoreCase("sp")) {
-                    sprintDao.safe(linkSprintTo(selectProject(), true));
+                    sprintService.safe(linkSprintTo(selectProject(), true));
                 } else if (input.equalsIgnoreCase("sr")) {
-                    sprintDao.safe(linkSprintTo(selectRequirement(), true));
+                    sprintService.safe(linkSprintTo(selectRequirement(), true));
                 } else if (input.equalsIgnoreCase("pr")) {
-                    projectDao.safe(linkProjectTo(selectRequirement(), true));
+                    projectService.safe(linkProjectTo(selectRequirement(), true));
                 } else if (input.equalsIgnoreCase("pe")) {
-                    projectDao.safe(linkProjectTo(selectEmployee(), true));
+                    projectService.safe(linkProjectTo(selectEmployee(), true));
                 } else if (input.equalsIgnoreCase("rt")) {
-                    requirementDao.safe(linkRequirementTo(selectTask(), true));
+                    requirementService.safe(linkRequirementTo(selectTask(), true));
                 } else if (input.equalsIgnoreCase("b")) {
                     // skip
                 } else {
@@ -60,7 +60,7 @@ public class SubMenuLinkEntities extends Menu {
 
     public LogbookEntry selectLogbookEntry() throws CommandCanceledException {
         LogbookEntry logbookEntry;
-        input = logbookEntryDao.count() <= 0 ? "n" : console.blockingReadCommand("Please select an option? [n] = CREATE NEW LOGBOOK ENTRY, [s] = SELECT ONE FROM DATABASE", "n", "s");
+        input = logbookEntryService.count() <= 0 ? "n" : console.blockingReadCommand("Please select an option? [n] = CREATE NEW LOGBOOK ENTRY, [s] = SELECT ONE FROM DATABASE", "n", "s");
 
         if (input.equalsIgnoreCase("n")) {
             logbookEntry = new SubMenuCreateEntities(console, false).createLogbookEntry(false);
@@ -72,7 +72,7 @@ public class SubMenuLinkEntities extends Menu {
 
     public Task selectTask() throws CommandCanceledException {
         Task task;
-        input = taskDao.count() <= 0 ? "n" : console.blockingReadCommand("Please select an option? [n] = CREATE NEW TASK, [s] = SELECT ONE FROM DATABASE", "n", "s");
+        input = taskService.count() <= 0 ? "n" : console.blockingReadCommand("Please select an option? [n] = CREATE NEW TASK, [s] = SELECT ONE FROM DATABASE", "n", "s");
 
         if (input.equalsIgnoreCase("n")) {
             task = new SubMenuCreateEntities(console, false).createTask(false);
@@ -84,7 +84,7 @@ public class SubMenuLinkEntities extends Menu {
 
     public Sprint selectSprint() throws CommandCanceledException {
         Sprint sprint;
-        input = sprintDao.count() <= 0 ? "n" : console.blockingReadCommand("Please select an option? [n] = CREATE NEW SPRINT, [s] = SELECT ONE FROM DATABASE", "n", "s");
+        input = sprintService.count() <= 0 ? "n" : console.blockingReadCommand("Please select an option? [n] = CREATE NEW SPRINT, [s] = SELECT ONE FROM DATABASE", "n", "s");
 
         if (input.equalsIgnoreCase("n")) {
             sprint = new SubMenuCreateEntities(console, false).createSprint(false);
@@ -96,7 +96,7 @@ public class SubMenuLinkEntities extends Menu {
 
     public Employee selectEmployee() throws CommandCanceledException {
         Employee employee;
-        input = employeeDao.count() <= 0 ? "n" : console.blockingReadCommand("Please select an option? [n] = CREATE NEW EMPLOYEE, [s] = SELECT ONE FROM DATABASE", "n", "s");
+        input = employeeService.count() <= 0 ? "n" : console.blockingReadCommand("Please select an option? [n] = CREATE NEW EMPLOYEE, [s] = SELECT ONE FROM DATABASE", "n", "s");
 
         if (input.equalsIgnoreCase("n")) {
             employee = new SubMenuCreateEntities(console, false).createEmployee(false);
@@ -108,7 +108,7 @@ public class SubMenuLinkEntities extends Menu {
 
     public Requirement selectRequirement() throws CommandCanceledException {
         Requirement requirement;
-        input = requirementDao.count() <= 0 ? "n" : console.blockingReadCommand("Please select an option? [n] = CREATE NEW REQUIREMENT, [s] = SELECT ONE FROM DATABASE", "n", "s");
+        input = requirementService.count() <= 0 ? "n" : console.blockingReadCommand("Please select an option? [n] = CREATE NEW REQUIREMENT, [s] = SELECT ONE FROM DATABASE", "n", "s");
 
         if (input.equalsIgnoreCase("n")) {
             requirement = new SubMenuCreateEntities(console, false).createRequirement(false);
@@ -120,7 +120,7 @@ public class SubMenuLinkEntities extends Menu {
 
     public Project selectProject() throws CommandCanceledException {
         Project project;
-        input = projectDao.count() <= 0 ? "n" : console.blockingReadCommand("Please select an option? [n] = CREATE NEW PROJECT, [s] = SELECT ONE FROM DATABASE", "n", "s");
+        input = projectService.count() <= 0 ? "n" : console.blockingReadCommand("Please select an option? [n] = CREATE NEW PROJECT, [s] = SELECT ONE FROM DATABASE", "n", "s");
 
         if (input.equalsIgnoreCase("n")) {
             project = new SubMenuCreateEntities(console, false).createProject(false);

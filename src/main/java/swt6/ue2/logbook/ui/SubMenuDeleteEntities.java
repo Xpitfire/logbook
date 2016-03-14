@@ -55,42 +55,42 @@ public class SubMenuDeleteEntities extends Menu {
     public void deleteTask() throws CommandCanceledException {
         Task task = new SubMenuFindEntities(console, false).findTask();
         showConfirmationMessage();
-        taskDao.remove(task);
+        taskService.remove(task);
         console.println("Successfully deleted!");
     }
 
     public void deleteSprint() throws CommandCanceledException {
         Sprint sprint = new SubMenuFindEntities(console, false).findSprint();
         showConfirmationMessage();
-        sprintDao.remove(sprint);
+        sprintService.remove(sprint);
         console.println("Successfully deleted!");
     }
 
     public void deleteRequirement() throws CommandCanceledException {
         Requirement requirement = new SubMenuFindEntities(console, false).findRequirement();
         showConfirmationMessage();
-        requirementDao.remove(requirement);
+        requirementService.remove(requirement);
         console.println("Successfully deleted!");
     }
 
     public void deleteProject() throws CommandCanceledException {
         Project project = new SubMenuFindEntities(console, false).findProject();
         showConfirmationMessage();
-        projectDao.remove(project);
+        projectService.remove(project);
         console.println("Successfully deleted!");
     }
 
     public void deleteLogbookEntry() throws CommandCanceledException {
         LogbookEntry logbookEntry = new SubMenuFindEntities(console, false).findLogbookEntry();
         showConfirmationMessage();
-        logbookEntryDao.remove(logbookEntry);
+        logbookEntryService.remove(logbookEntry);
         console.println("Successfully deleted!");
     }
 
     public void deleteEmployee() throws CommandCanceledException {
         Employee employee = new SubMenuFindEntities(console, false).findEmployee();
         showConfirmationMessage();
-        employeeDao.remove(employee);
+        employeeService.remove(employee);
         console.println("Successfully deleted!");
     }
 

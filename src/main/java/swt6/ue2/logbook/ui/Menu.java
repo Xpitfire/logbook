@@ -18,12 +18,12 @@ public abstract class Menu implements AutoCloseable {
     protected final Console console;
     protected String input;
 
-    protected final Service<Employee> employeeDao = ServiceFactory.getService(Employee.class);
-    protected final Service<LogbookEntry> logbookEntryDao = ServiceFactory.getService(LogbookEntry.class);
-    protected final Service<Task> taskDao = ServiceFactory.getService(Task.class);
-    protected final Service<Project> projectDao = ServiceFactory.getService(Project.class);
-    protected final Service<Requirement> requirementDao = ServiceFactory.getService(Requirement.class);
-    protected final Service<Sprint> sprintDao = ServiceFactory.getService(Sprint.class);
+    protected final Service<Employee> employeeService = ServiceFactory.getService(Employee.class);
+    protected final Service<LogbookEntry> logbookEntryService = ServiceFactory.getService(LogbookEntry.class);
+    protected final Service<Task> taskService = ServiceFactory.getService(Task.class);
+    protected final Service<Project> projectService = ServiceFactory.getService(Project.class);
+    protected final Service<Requirement> requirementService = ServiceFactory.getService(Requirement.class);
+    protected final Service<Sprint> sprintService = ServiceFactory.getService(Sprint.class);
 
     protected Menu(Console console) {
         this(console, true);

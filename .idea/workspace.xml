@@ -2,43 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b22af082-7d80-4594-b483-2a60ccf06234" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/logic/AbstractService.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/logic/EmployeeService.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/logic/LogbookEntryService.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/logic/RequirementService.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/logic/Service.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/logic/ServiceFactory.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/logic/SprintService.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/logic/TaskService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.ids" afterPath="$PROJECT_DIR$/.idea/dataSources.ids" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/domain/Employee.java" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/domain/Employee.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/domain/LogbookEntry.java" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/domain/LogbookEntry.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/domain/Project.java" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/domain/Project.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/domain/Requirement.java" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/domain/Requirement.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/domain/Sprint.java" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/domain/Sprint.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/domain/Task.java" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/domain/Task.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/ui/Menu.java" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/ui/Menu.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/ui/SubMenuPrintStatistics.java" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/ui/SubMenuPrintStatistics.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/swt6/ue2/logbook/test/BaseTest.java" afterPath="$PROJECT_DIR$/src/test/java/swt6/ue2/logbook/test/BaseTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/swt6/ue2/logbook/test/EmployeeDaoTest.java" afterPath="$PROJECT_DIR$/src/test/java/swt6/ue2/logbook/test/EmployeeDaoTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/swt6/ue2/logbook/test/LogbookDaoTest.java" afterPath="$PROJECT_DIR$/src/test/java/swt6/ue2/logbook/test/LogbookDaoTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/swt6/ue2/logbook/test/ProjectDaoTest.java" afterPath="$PROJECT_DIR$/src/test/java/swt6/ue2/logbook/test/ProjectDaoTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/swt6/ue2/logbook/test/RequirementDaoTest.java" afterPath="$PROJECT_DIR$/src/test/java/swt6/ue2/logbook/test/RequirementDaoTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/swt6/ue2/logbook/test/SprintDaoTest.java" afterPath="$PROJECT_DIR$/src/test/java/swt6/ue2/logbook/test/SprintDaoTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/swt6/ue2/logbook/test/TaskDaoTest.java" afterPath="$PROJECT_DIR$/src/test/java/swt6/ue2/logbook/test/TaskDaoTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/swt6/ue2/logbook/test/TransactionTest.java" afterPath="$PROJECT_DIR$/src/test/java/swt6/ue2/logbook/test/TransactionTest.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/dao/AbstractDao.java" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/dal/AbstractDao.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/dao/Dao.java" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/dal/Dao.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/dao/DaoFactory.java" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/dal/DaoFactory.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/dao/EmployeeDao.java" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/dal/EmployeeDao.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/dao/LogbookEntryDao.java" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/dal/LogbookEntryDao.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/dao/ProjectDao.java" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/dal/ProjectDao.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/dao/RequirementDao.java" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/dal/RequirementDao.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/dao/SprintDao.java" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/dal/SprintDao.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/dao/TaskDao.java" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/dal/TaskDao.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/logic/ProjectPlaner.java" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/logic/ProjectService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/logic/AbstractService.java" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/logic/AbstractService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/ui/SubMenuCreateEntities.java" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/ui/SubMenuCreateEntities.java" />
     </list>
     <ignored path="logbook.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -102,9 +68,41 @@
       <file leaf-file-name="SubMenuCreateEntities.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/ui/SubMenuCreateEntities.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.59401">
-              <caret line="69" column="58" selection-start-line="69" selection-start-column="58" selection-end-line="69" selection-end-column="58" />
+            <state vertical-scroll-proportion="0.327787">
+              <caret line="61" column="23" selection-start-line="61" selection-start-column="23" selection-end-line="61" selection-end-column="23" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MainMenu.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/ui/MainMenu.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EmployeeService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/logic/EmployeeService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="8" column="61" selection-start-line="8" selection-start-column="61" selection-end-line="8" selection-end-column="61" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AbstractService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/logic/AbstractService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="58" column="21" selection-start-line="58" selection-start-column="21" selection-end-line="58" selection-end-column="21" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -132,7 +130,6 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/ui/SubMenuUpdateEntities.java" />
-        <option value="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/ui/SubMenuCreateEntities.java" />
         <option value="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/logic/ProjectHandler.java" />
         <option value="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/logic/ProjectCalculator.java" />
         <option value="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/logic/SprintPlaner.java" />
@@ -182,6 +179,7 @@
         <option value="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/ui/SubMenuPrintStatistics.java" />
         <option value="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/logic/Service.java" />
         <option value="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/logic/AbstractService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/ui/SubMenuCreateEntities.java" />
       </list>
     </option>
   </component>
@@ -1083,7 +1081,7 @@
       <workItem from="1457886487451" duration="33706000" />
       <workItem from="1457944652132" duration="6953000" />
       <workItem from="1457972442939" duration="2816000" />
-      <workItem from="1457975728121" duration="2947000" />
+      <workItem from="1457975728121" duration="3822000" />
     </task>
     <servers />
   </component>
@@ -1120,11 +1118,11 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="138215000" />
+    <option name="totallyTimeSpent" value="139090000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="32" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1134,7 +1132,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33509514" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33509514" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1170,12 +1168,12 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/ui/SubMenuCreateEntities.java</url>
-          <line>69</line>
+          <line>36</line>
           <properties />
-          <option name="timeStamp" value="25" />
+          <option name="timeStamp" value="27" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="26" />
+      <option name="time" value="28" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1289,9 +1287,9 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="75" column="34" selection-start-line="75" selection-start-column="34" selection-end-line="75" selection-end-column="34" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#527#528#0" expanded="true" />
-            <element signature="e#559#560#0" expanded="true" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#527#528#0" expanded="false" />
+            <element signature="e#559#560#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1334,9 +1332,9 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="22" column="38" selection-start-line="22" selection-start-column="38" selection-end-line="22" selection-end-column="38" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#612#613#0" expanded="true" />
-            <element signature="e#644#645#0" expanded="true" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#612#613#0" expanded="false" />
+            <element signature="e#644#645#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1346,7 +1344,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="20" column="8" selection-start-line="20" selection-start-column="8" selection-end-line="24" selection-end-column="45" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1381,7 +1379,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="39" column="14" selection-start-line="39" selection-start-column="14" selection-end-line="39" selection-end-column="14" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1391,7 +1389,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="32" column="20" selection-start-line="32" selection-start-column="20" selection-end-line="32" selection-end-column="20" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1490,22 +1488,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="8" column="17" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/ui/MainMenu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/logic/EmployeeService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="8" column="61" selection-start-line="8" selection-start-column="61" selection-end-line="8" selection-end-column="61" />
           <folding />
         </state>
       </provider>
@@ -1610,18 +1592,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/logic/AbstractService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.0183028">
-          <caret line="48" column="4" selection-start-line="48" selection-start-column="4" selection-end-line="48" selection-end-column="4" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#831#832#0" expanded="true" />
-            <element signature="e#865#866#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="dbDummy://dbtable:/54dec338/51d8dc67-1fd9-4370-862a-0fd03aef3713/APP.PROJECT">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
@@ -1648,10 +1618,36 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/logic/AbstractService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="58" column="21" selection-start-line="58" selection-start-column="21" selection-end-line="58" selection-end-column="21" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/ui/MainMenu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/logic/EmployeeService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="8" column="61" selection-start-line="8" selection-start-column="61" selection-end-line="8" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/swt6/ue2/logbook/ui/SubMenuCreateEntities.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.59401">
-          <caret line="69" column="58" selection-start-line="69" selection-start-column="58" selection-end-line="69" selection-end-column="58" />
+        <state vertical-scroll-proportion="0.327787">
+          <caret line="61" column="23" selection-start-line="61" selection-start-column="23" selection-end-line="61" selection-end-column="23" />
           <folding />
         </state>
       </provider>

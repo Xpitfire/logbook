@@ -59,7 +59,7 @@ public class SubMenuCreateEntities extends Menu {
     }
 
     private boolean askForSkipOnUpdate(Object entity, String field) {
-        return entity != null && console.blockingTypedReadLine(String.format("Update %s? (y/n)", field), Boolean.class);
+        return entity == null || console.blockingTypedReadLine(String.format("Update %s? (y/n)", field), Boolean.class);
     }
 
     private boolean modifyOnlyOnCreate(Object value) {

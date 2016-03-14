@@ -26,6 +26,24 @@ public class EmployeeDaoTest extends CommonTest {
     }
 
     @Test
+    public void testCountEmployee() {
+        employeeDao.safe(permanentEmployee1);
+        employeeDao.safe(permanentEmployee2);
+        employeeDao.safe(temporaryEmployee1);
+        assertTrue(employeeDao.count() == 3);
+    }
+
+    @Test
+    public void testFirstOrDefaultLogbookEntry() {
+        // TODO find out why the id is in inverse order
+        Employee e = employeeDao.safe(temporaryEmployee1);
+        Long id = e.getId();
+        employeeDao.safe(permanentEmployee1);
+        e = employeeDao.firstOrDefault();
+        assertTrue(id == e.getId());
+    }
+
+    @Test
     public void testInsertPermanentEmployee() {
         Employee e = employeeDao.safe(permanentEmployee1);
         assertNotNull(e.getId());

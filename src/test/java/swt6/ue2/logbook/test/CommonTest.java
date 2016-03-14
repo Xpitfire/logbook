@@ -41,6 +41,8 @@ public abstract class CommonTest {
     protected Requirement requirement1;
     protected Requirement requirement2;
     protected Requirement requirement3;
+    protected Sprint sprint1;
+    protected Sprint sprint2;
 
 
     public static final Operation DELETE_ALL = deleteAllFrom(
@@ -93,6 +95,9 @@ public abstract class CommonTest {
         requirement1 = new Requirement("REQ1", "Develop an application");
         requirement2 = new Requirement("REQ2", "Test the database");
         requirement3 = new Requirement("REQ3", "Offer a UI");
+
+        sprint1 = new Sprint();
+        sprint2 = new Sprint();
     }
 
 }

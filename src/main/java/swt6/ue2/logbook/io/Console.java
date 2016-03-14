@@ -36,6 +36,28 @@ public class Console implements AutoCloseable {
         out.println(object);
     }
 
+    public void printTableHeader(String... titles) {
+        printIndent(out);
+        out.print("_____________________________________________________________________________________");
+        newLine();
+        printIndent(out);
+        for (String title : titles) {
+            out.printf("%25s", title);
+        }
+        newLine();
+        printIndent(out);
+        out.print("=====================================================================================");
+        newLine();
+    }
+
+    public void printTableRow(Object... columns) {
+        printIndent(out);
+        for (Object column : columns) {
+            out.printf("%25s", column);
+        }
+        newLine();
+    }
+
     public void printException(Exception ex) {
         err.print(ex);
     }
@@ -46,6 +68,7 @@ public class Console implements AutoCloseable {
 
     public String readLine(String message) {
         if (message != null) {
+            printIndent(out);
             out.print(message);
         }
         try {
@@ -173,4 +196,8 @@ public class Console implements AutoCloseable {
         return blockingTypedReadLine(message, clazz, false);
     }
 
+    public void printf(String s, Object... args) {
+        printIndent(out);
+        out.printf(s, args);
+    }
 }

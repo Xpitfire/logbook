@@ -1,6 +1,10 @@
 package swt6.ue2.logbook.ui;
 
+import swt6.ue2.logbook.domain.LogbookEntry;
+import swt6.ue2.logbook.domain.Project;
+import swt6.ue2.logbook.io.CommandCanceledException;
 import swt6.ue2.logbook.io.Console;
+import swt6.ue2.logbook.logic.ProjectPlaner;
 
 /**
  * @author: Dinu Marius-Constantin
@@ -21,29 +25,69 @@ public class SubMenuPrintStatistics extends Menu {
     public void run() {
         do {
             input = console.readLine("> ");
-            if (input.equalsIgnoreCase("m")) {
-                printMenuOptions();
-            } else if (input.equalsIgnoreCase("a")) {
-                printAll();
-            } else if (input.equalsIgnoreCase("e")) {
-                printEmployees();
-            } else if (input.equalsIgnoreCase("l")) {
-                printLogbookEntries();
-            } else if (input.equalsIgnoreCase("p")) {
-                printProjects();
-            } else if (input.equalsIgnoreCase("r")) {
-                printRequirements();
-            } else if (input.equalsIgnoreCase("s")) {
-                printSprints();
-            } else if (input.equalsIgnoreCase("t")) {
-                printTasks();
-            } else if (input.equalsIgnoreCase("b")) {
-                // skip
-            } else {
-                printInvalidInput();
+
+            try {
+                if (input.equalsIgnoreCase("m")) {
+                    printMenuOptions();
+                } else if (input.equalsIgnoreCase("a")) {
+                    printAll();
+                } else if (input.equalsIgnoreCase("e")) {
+                    printEmployees();
+                } else if (input.equalsIgnoreCase("l")) {
+                    printLogbookEntries();
+                } else if (input.equalsIgnoreCase("p")) {
+                    printProjects();
+                } else if (input.equalsIgnoreCase("r")) {
+                    printRequirements();
+                } else if (input.equalsIgnoreCase("s")) {
+                    printSprints();
+                } else if (input.equalsIgnoreCase("u")) {
+                    printBurndownCharts();
+                } else if (input.equalsIgnoreCase("c")) {
+                    printProjectTotalCosts();
+                } else if (input.equalsIgnoreCase("t")) {
+                    printTasks();
+                } else if (input.equalsIgnoreCase("b")) {
+                    // skip
+                } else {
+                    printInvalidInput();
+                }
+            } catch (CommandCanceledException ex) {
+                printUserCancelMessage();
+                printEntranceInfo();
             }
 
         } while (!input.equalsIgnoreCase("b"));
+    }
+
+    public void printProjectTotalCosts() {
+        console.println("*** PRINT PROJECT COSTS ***");
+        console.setIndent(2);
+        ProjectPlaner projectPlaner = new ProjectPlaner();
+        console.printTableHeader("Projects", "Total costs (€)");
+        for (Project p : projectDao.findAll()) {
+            console.printTableRow(p.getName(), String.format("%.2f", projectPlaner.calculateTotalCosts(p)));
+        }
+        console.resetIndent();
+    }
+
+    public void printBurndownCharts() throws CommandCanceledException {
+        console.println("*** PRINT BURNDOWN CHARTS ***");
+        console.setIndent(2);
+        ProjectPlaner projectPlaner = new ProjectPlaner();
+        Project project = new SubMenuFindEntities(console, false).findProject();
+
+        double remainingHours = projectPlaner.calculateEstimatedTotalHours(project);
+        console.printf("Estimated Work: %s%n", remainingHours);
+        console.printTableHeader("Dates", "Actual Work (hrs)", "Remaining Work (hrs)");
+        for (LogbookEntry logbookEntry : logbookEntryDao.findAll()) {
+            if (logbookEntry.getTask().getRequirement().getProject().getId() == project.getId()) {
+                double actualWork = projectPlaner.calculateHoursDifference(logbookEntry.getStartTime(), logbookEntry.getEndTime());
+                remainingHours -= actualWork;
+                console.printTableRow(logbookEntry.getEndTime(), String.format("%.0f", actualWork), String.format("%.0f", remainingHours));
+            }
+        }
+        console.resetIndent();
     }
 
     public void printAll() {
@@ -106,6 +150,9 @@ public class SubMenuPrintStatistics extends Menu {
         console.println("[m] ... Print menu");
         console.newLine();
         console.println("[a] ... Print all");
+        console.println("[u] ... Print burn down chart");
+        console.println("[c] ... Print costs per project");
+        console.newLine();
         console.println("[e] ... Print employees");
         console.println("[l] ... Print logbook entries");
         console.println("[p] ... Print projects");

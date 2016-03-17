@@ -22,12 +22,6 @@ public class ProjectDaoTest extends BaseTest {
         project2.setLeader(permanentEmployee1);
     }
 
-    @After
-    @Override
-    public void complete() {
-        super.complete();
-    }
-
     @Test
     public void testInsertProject() {
         project1.addSprint(sprint1);

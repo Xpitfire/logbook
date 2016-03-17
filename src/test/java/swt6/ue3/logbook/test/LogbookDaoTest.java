@@ -26,12 +26,6 @@ public class LogbookDaoTest extends BaseTest {
         logbookEntry3.attachEmployee(permanentEmployee1);
     }
 
-    @After
-    @Override
-    public void complete() {
-        super.complete();
-    }
-
     @Test
     public void testCountLogbookEntry() {
         logbookEntryRepo.save(logbookEntry2);

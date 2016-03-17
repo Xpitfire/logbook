@@ -27,12 +27,6 @@ public class TaskDaoTest extends BaseTest {
         task3.attachRequirement(requirement3);
     }
 
-    @After
-    @Override
-    public void complete() {
-        super.complete();
-    }
-
     @Test
     public void testInsertTask() {
         Task t = taskRepo.save(task1);

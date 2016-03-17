@@ -24,12 +24,6 @@ public class RequirementDaoTest extends BaseTest {
         requirement3.attachProject(project2);
     }
 
-    @After
-    @Override
-    public void complete() {
-        super.complete();
-    }
-
     @Test
     public void testInsertRequirement() {
         Requirement r = requirementRepo.save(requirement1);

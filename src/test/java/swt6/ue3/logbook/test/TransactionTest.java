@@ -21,12 +21,6 @@ public class TransactionTest extends BaseTest {
         logbookEntry3.attachEmployee(permanentEmployee1);
     }
 
-    @After
-    @Override
-    public void complete() {
-        super.complete();
-    }
-
     @Test
     public void testExplicitDaoTransactionRollback() throws Exception {
         employeeRepo.save(permanentEmployee1);

@@ -1,8 +1,12 @@
 package swt6.ue3.logbook.test;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.test.annotation.Rollback;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.transaction.annotation.Transactional;
 import swt6.ue3.logbook.domain.Employee;
 import swt6.ue3.logbook.domain.PermanentEmployee;
 
@@ -15,18 +19,16 @@ import static org.junit.Assert.*;
  * @author: Dinu Marius-Constantin
  * @date: 12.03.2016
  */
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = {"classpath:/swt6/ue3/logbook/test/applicationContext-test.xml"})
+@Transactional(transactionManager = "transactionManagerJpa")
+@Rollback
 public class EmployeeDaoTest extends BaseTest {
 
     @Before
     @Override
     public void prepare() {
         super.prepare();
-    }
-
-    @After
-    @Override
-    public void complete() {
-        super.complete();
     }
 
     @Test

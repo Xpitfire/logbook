@@ -1,6 +1,7 @@
 package swt6.ue3.logbook;
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.ImportResource;
 
 /**
@@ -8,10 +9,6 @@ import org.springframework.context.annotation.ImportResource;
  */
 @Configuration
 @ImportResource({"swt6/ue3/logbook/applicationContext.xml"})
+@EnableAspectJAutoProxy
 public class AppConfig {
-/*
-    public ViewWriter viewWriter() {
-        return new ConsoleViewWriterImpl();
-    }
-*/
 }

@@ -13,7 +13,7 @@
 
     <!-- ========================= RESOURCE DEFINITIONS ========================= -->
 
-    <context:property-placeholder location="swt6/ue3/logbook/jpa.properties"/>
+    <context:property-placeholder location="swt6/ue3/logbook/test/jpa.properties"/>
 
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
           destroy-method="close">
@@ -62,8 +62,6 @@
 
     <!-- requires @Transactional annototations on business methods -->
     <tx:annotation-driven transaction-manager="transactionManagerJpa"/>
-
-    <aop:aspectj-autoproxy proxy-target-class="true"/>
 
 </beans>
 

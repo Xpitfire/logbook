@@ -23,12 +23,6 @@ public class SprintDaoTest extends BaseTest {
         sprint2.attachProject(project2);
     }
 
-    @After
-    @Override
-    public void complete() {
-        super.complete();
-    }
-
     @Test
     public void testInsertSprint() {
         Sprint s = sprintRepo.save(sprint1);

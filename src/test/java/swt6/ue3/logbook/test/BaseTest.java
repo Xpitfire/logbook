@@ -96,7 +96,4 @@ public abstract class BaseTest {
         sprint2 = new Sprint();
     }
 
-    public void complete() {
-    }
-
 }

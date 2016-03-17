@@ -12,7 +12,7 @@ import swt6.ue3.logbook.domain.Task;
  * @author: Dinu Marius-Constantin
  * @date: 14.03.2016
  */
-@Service("taskService")
+@Service
 @Transactional
 public class TaskServiceImpl implements TaskService {
     @Autowired

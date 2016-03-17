@@ -2,7 +2,6 @@ package swt6.ue3.logbook.ui;
 
 import swt6.ue3.logbook.domain.*;
 import swt6.ue3.logbook.io.CommandCanceledException;
-import swt6.ue3.logbook.io.Console;
 
 /**
  * @author: Dinu Marius-Constantin
@@ -18,7 +17,7 @@ public class SubMenuLinkEntities extends Menu {
     @Override
     public void run() {
         do {
-            input = console.readLine("> ");
+            input = viewWriter.readLine("> ");
 
             try {
                 if (input.equalsIgnoreCase("m")) {
@@ -52,7 +51,7 @@ public class SubMenuLinkEntities extends Menu {
 
     public LogbookEntry selectLogbookEntry() throws CommandCanceledException {
         LogbookEntry logbookEntry;
-        input = logbookEntryService.count() <= 0 ? "n" : console.blockingReadCommand("Please select an option? [n] = CREATE NEW LOGBOOK ENTRY, [s] = SELECT ONE FROM DATABASE", "n", "s");
+        input = logbookEntryService.count() <= 0 ? "n" : viewWriter.blockingReadCommand("Please select an option? [n] = CREATE NEW LOGBOOK ENTRY, [s] = SELECT ONE FROM DATABASE", "n", "s");
 
         if (input.equalsIgnoreCase("n")) {
             logbookEntry = new SubMenuCreateEntities().createLogbookEntry(false);
@@ -64,7 +63,7 @@ public class SubMenuLinkEntities extends Menu {
 
     public Task selectTask() throws CommandCanceledException {
         Task task;
-        input = taskService.count() <= 0 ? "n" : console.blockingReadCommand("Please select an option? [n] = CREATE NEW TASK, [s] = SELECT ONE FROM DATABASE", "n", "s");
+        input = taskService.count() <= 0 ? "n" : viewWriter.blockingReadCommand("Please select an option? [n] = CREATE NEW TASK, [s] = SELECT ONE FROM DATABASE", "n", "s");
 
         if (input.equalsIgnoreCase("n")) {
             task = new SubMenuCreateEntities().createTask(false);
@@ -76,7 +75,7 @@ public class SubMenuLinkEntities extends Menu {
 
     public Sprint selectSprint() throws CommandCanceledException {
         Sprint sprint;
-        input = sprintService.count() <= 0 ? "n" : console.blockingReadCommand("Please select an option? [n] = CREATE NEW SPRINT, [s] = SELECT ONE FROM DATABASE", "n", "s");
+        input = sprintService.count() <= 0 ? "n" : viewWriter.blockingReadCommand("Please select an option? [n] = CREATE NEW SPRINT, [s] = SELECT ONE FROM DATABASE", "n", "s");
 
         if (input.equalsIgnoreCase("n")) {
             sprint = new SubMenuCreateEntities().createSprint(false);
@@ -88,7 +87,7 @@ public class SubMenuLinkEntities extends Menu {
 
     public Employee selectEmployee() throws CommandCanceledException {
         Employee employee;
-        input = employeeService.count() <= 0 ? "n" : console.blockingReadCommand("Please select an option? [n] = CREATE NEW EMPLOYEE, [s] = SELECT ONE FROM DATABASE", "n", "s");
+        input = employeeService.count() <= 0 ? "n" : viewWriter.blockingReadCommand("Please select an option? [n] = CREATE NEW EMPLOYEE, [s] = SELECT ONE FROM DATABASE", "n", "s");
 
         if (input.equalsIgnoreCase("n")) {
             employee = new SubMenuCreateEntities().createEmployee(false);
@@ -100,7 +99,7 @@ public class SubMenuLinkEntities extends Menu {
 
     public Requirement selectRequirement() throws CommandCanceledException {
         Requirement requirement;
-        input = requirementService.count() <= 0 ? "n" : console.blockingReadCommand("Please select an option? [n] = CREATE NEW REQUIREMENT, [s] = SELECT ONE FROM DATABASE", "n", "s");
+        input = requirementService.count() <= 0 ? "n" : viewWriter.blockingReadCommand("Please select an option? [n] = CREATE NEW REQUIREMENT, [s] = SELECT ONE FROM DATABASE", "n", "s");
 
         if (input.equalsIgnoreCase("n")) {
             requirement = new SubMenuCreateEntities().createRequirement(false);
@@ -112,7 +111,7 @@ public class SubMenuLinkEntities extends Menu {
 
     public Project selectProject() throws CommandCanceledException {
         Project project;
-        input = projectService.count() <= 0 ? "n" : console.blockingReadCommand("Please select an option? [n] = CREATE NEW PROJECT, [s] = SELECT ONE FROM DATABASE", "n", "s");
+        input = projectService.count() <= 0 ? "n" : viewWriter.blockingReadCommand("Please select an option? [n] = CREATE NEW PROJECT, [s] = SELECT ONE FROM DATABASE", "n", "s");
 
         if (input.equalsIgnoreCase("n")) {
             project = new SubMenuCreateEntities().createProject(false);
@@ -123,7 +122,7 @@ public class SubMenuLinkEntities extends Menu {
     }
 
     public LogbookEntry linkLogbookEntryTo(Object object, boolean mandatory) throws CommandCanceledException {
-        if (mandatory || console.blockingTypedReadLine("Optionally add a logbook entry? (y/n)", Boolean.class)) {
+        if (mandatory || viewWriter.blockingTypedReadLine("Optionally add a logbook entry? (y/n)", Boolean.class)) {
             LogbookEntry logbookEntry = selectLogbookEntry();
             if (object instanceof Task) {
                 ((Task)object).addLogbookEntries(logbookEntry);
@@ -138,7 +137,7 @@ public class SubMenuLinkEntities extends Menu {
     }
 
     public Address linkAddressTo(Employee employee, boolean mandatory) throws CommandCanceledException {
-        if (mandatory || console.blockingTypedReadLine("Optionally add an address? (y/n)", Boolean.class)) {
+        if (mandatory || viewWriter.blockingTypedReadLine("Optionally add an address? (y/n)", Boolean.class)) {
             Address address = new SubMenuCreateEntities().createAddress();
             employee.setAddress(address);
             return address;
@@ -147,7 +146,7 @@ public class SubMenuLinkEntities extends Menu {
     }
 
     public Task linkTaskTo(Object object, boolean mandatory) throws CommandCanceledException {
-        if (mandatory || console.blockingTypedReadLine("Optionally add a task? (y/n)", Boolean.class)) {
+        if (mandatory || viewWriter.blockingTypedReadLine("Optionally add a task? (y/n)", Boolean.class)) {
             Task task = selectTask();
             if (object instanceof LogbookEntry) {
                 ((LogbookEntry)object).attachTask(task);
@@ -162,7 +161,7 @@ public class SubMenuLinkEntities extends Menu {
     }
 
     public Requirement linkRequirementTo(Object object, boolean mandatory) throws CommandCanceledException {
-        if (mandatory || console.blockingTypedReadLine("Optionally add a requirement? (y/n)", Boolean.class)) {
+        if (mandatory || viewWriter.blockingTypedReadLine("Optionally add a requirement? (y/n)", Boolean.class)) {
             Requirement requirement = selectRequirement();
             if (object instanceof Sprint) {
                 ((Sprint)object).addRequirement(requirement);
@@ -179,7 +178,7 @@ public class SubMenuLinkEntities extends Menu {
     }
 
     public Employee linkEmployeeTo(Object object, boolean mandatory) throws CommandCanceledException {
-        if (mandatory || console.blockingTypedReadLine("Optionally add a employee? (y/n)", Boolean.class)) {
+        if (mandatory || viewWriter.blockingTypedReadLine("Optionally add a employee? (y/n)", Boolean.class)) {
             Employee employee = selectEmployee();
             if (object instanceof Project) {
                 ((Project)object).addMember(employee);
@@ -194,7 +193,7 @@ public class SubMenuLinkEntities extends Menu {
     }
 
     public Project linkProjectTo(Object object, boolean mandatory) throws CommandCanceledException {
-        if (mandatory || console.blockingTypedReadLine("Optionally add a project? (y/n)", Boolean.class)) {
+        if (mandatory || viewWriter.blockingTypedReadLine("Optionally add a project? (y/n)", Boolean.class)) {
             Project project = selectProject();
             if (object instanceof Requirement) {
                 ((Requirement)object).attachProject(project);
@@ -211,7 +210,7 @@ public class SubMenuLinkEntities extends Menu {
     }
 
     public Sprint linkSprintTo(Object object, boolean mandatory) throws CommandCanceledException {
-        if (mandatory || console.blockingTypedReadLine("Optionally add a sprint? (y/n)", Boolean.class)) {
+        if (mandatory || viewWriter.blockingTypedReadLine("Optionally add a sprint? (y/n)", Boolean.class)) {
             Sprint sprint = selectSprint();
             if (object instanceof Project) {
                 ((Project)object).addSprint(sprint);
@@ -227,20 +226,20 @@ public class SubMenuLinkEntities extends Menu {
 
     @Override
     public Menu printMenuOptions() {
-        console.println("Select an option:");
+        viewWriter.println("Select an option:");
         printSeparator();
-        console.setIndent(2);
-        console.println("[b] ... Back to previous menu");
-        console.println("[m] ... Print menu");
-        console.newLine();
-        console.println("[lt] ... Link logbook entry with task");
-        console.println("[le] ... Link logbook entry with employee");
-        console.println("[pr] ... Link project with requirement");
-        console.println("[pe] ... Link project with employee");
-        console.println("[rt] ... Link requirement with task");
-        console.println("[sp] ... Link sprint with project");
-        console.println("[sr] ... Link sprint with requirement");
-        console.resetIndent();
+        viewWriter.setIndent(2);
+        viewWriter.println("[b] ... Back to previous menu");
+        viewWriter.println("[m] ... Print menu");
+        viewWriter.newLine();
+        viewWriter.println("[lt] ... Link logbook entry with task");
+        viewWriter.println("[le] ... Link logbook entry with employee");
+        viewWriter.println("[pr] ... Link project with requirement");
+        viewWriter.println("[pe] ... Link project with employee");
+        viewWriter.println("[rt] ... Link requirement with task");
+        viewWriter.println("[sp] ... Link sprint with project");
+        viewWriter.println("[sr] ... Link sprint with requirement");
+        viewWriter.resetIndent();
         printSeparator();
         return this;
     }

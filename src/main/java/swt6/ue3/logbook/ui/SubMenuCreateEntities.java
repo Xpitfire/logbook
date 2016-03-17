@@ -2,7 +2,6 @@ package swt6.ue3.logbook.ui;
 
 import swt6.ue3.logbook.domain.*;
 import swt6.ue3.logbook.io.CommandCanceledException;
-import swt6.ue3.logbook.io.Console;
 
 import java.util.Date;
 
@@ -20,7 +19,7 @@ public class SubMenuCreateEntities extends Menu {
     @Override
     public void run() {
         do {
-            input = console.readLine("> ");
+            input = viewWriter.readLine("> ");
 
             try {
                 if (input.equalsIgnoreCase("m")) {
@@ -51,7 +50,7 @@ public class SubMenuCreateEntities extends Menu {
     }
 
     private boolean askForSkipOnUpdate(Object entity, String field) {
-        return entity == null || console.blockingTypedReadLine(String.format("Update %s? (y/n)", field), Boolean.class);
+        return entity == null || viewWriter.blockingTypedReadLine(String.format("Update %s? (y/n)", field), Boolean.class);
     }
 
     private boolean modifyOnlyOnCreate(Object value) {
@@ -63,14 +62,14 @@ public class SubMenuCreateEntities extends Menu {
     }
 
     public Project createOrUpdateProject(Project value, boolean immediateSafe) throws CommandCanceledException {
-        console.println("*** Project ***");
+        viewWriter.println("*** Project ***");
         Project project = value != null ? value : new Project();
         SubMenuLinkEntities submenu = new SubMenuLinkEntities();
 
         if (modifyOnlyOnCreate(value))
             project.setLeader(submenu.selectEmployee());
         if (askForSkipOnUpdate(value, "project name"))
-            project.setName(console.blockingTypedReadLine("Project name", String.class));
+            project.setName(viewWriter.blockingTypedReadLine("Project name", String.class));
         if (askForSkipOnUpdate(value, "link requirements"))
             submenu.linkRequirementTo(project, false);
         if (askForSkipOnUpdate(value, "link sprint"))
@@ -80,22 +79,22 @@ public class SubMenuCreateEntities extends Menu {
 
         if (immediateSafe) {
             projectService.save(project);
-            console.println("Successfully saved!");
+            viewWriter.println("Successfully saved!");
         }
         return project;
     }
 
     public Sprint createSprint(boolean immediateSafe) throws CommandCanceledException {
-        console.println("*** Sprint ***");
+        viewWriter.println("*** Sprint ***");
         Sprint sprint = new Sprint();
         SubMenuLinkEntities submenu = new SubMenuLinkEntities();
-        console.println("You require to select a project to continue:");
+        viewWriter.println("You require to select a project to continue:");
         sprint.setProject(submenu.selectProject());
         submenu.linkRequirementTo(sprint, false);
 
         if (immediateSafe) {
             sprintService.save(sprint);
-            console.println("Successfully saved!");
+            viewWriter.println("Successfully saved!");
         }
         return sprint;
     }
@@ -105,10 +104,10 @@ public class SubMenuCreateEntities extends Menu {
     }
 
     public Employee createOrUpdateEmployee(Employee value, boolean immediateSafe) throws CommandCanceledException {
-        console.println("*** Employee ***");
+        viewWriter.println("*** Employee ***");
         Employee employee = value;
         if (modifyOnlyOnCreate(value)) {
-            input = console.blockingReadCommand("What kind of employee do you want to create? %n [p] = PERMANENT, [t] = TEMPORARY", "p", "t");
+            input = viewWriter.blockingReadCommand("What kind of employee do you want to create? %n [p] = PERMANENT, [t] = TEMPORARY", "p", "t");
             if (input.equalsIgnoreCase("p")) {
                 employee = new PermanentEmployee();
             } else {
@@ -116,33 +115,33 @@ public class SubMenuCreateEntities extends Menu {
             }
         }
         if (askForSkipOnUpdate(value, "first name"))
-            employee.setFirstName(console.blockingTypedReadLine("First name", String.class));
+            employee.setFirstName(viewWriter.blockingTypedReadLine("First name", String.class));
         if (askForSkipOnUpdate(value, "last name"))
-            employee.setLastName(console.blockingTypedReadLine("Last name", String.class));
+            employee.setLastName(viewWriter.blockingTypedReadLine("Last name", String.class));
         if (modifyOnlyOnCreate(value))
-            employee.setDateOfBirth(console.blockingTypedReadLine("Birthday (dd.MM.yyyy)", Date.class));
+            employee.setDateOfBirth(viewWriter.blockingTypedReadLine("Birthday (dd.MM.yyyy)", Date.class));
         if (employee instanceof PermanentEmployee) {
             PermanentEmployee permanentEmployee = (PermanentEmployee)employee;
             if (askForSkipOnUpdate(value, "salary"))
-                permanentEmployee.setSalary(console.blockingTypedReadLine("Salary", Double.class));
+                permanentEmployee.setSalary(viewWriter.blockingTypedReadLine("Salary", Double.class));
             if (askForSkipOnUpdate(value, "hours per week"))
-                permanentEmployee.setHoursPerWeek(console.blockingTypedReadLine("Hours per week", Integer.class));
+                permanentEmployee.setHoursPerWeek(viewWriter.blockingTypedReadLine("Hours per week", Integer.class));
         } else {
             TemporaryEmployee temporaryEmployee = (TemporaryEmployee)employee;
             if (modifyOnlyOnCreate(value))
-                temporaryEmployee.setRenter(console.blockingTypedReadLine("Renter name", String.class));
+                temporaryEmployee.setRenter(viewWriter.blockingTypedReadLine("Renter name", String.class));
             if (modifyOnlyOnCreate(value))
-                temporaryEmployee.setStartDate(console.blockingTypedReadLine("Start date (dd.MM.yyyy)", Date.class));
+                temporaryEmployee.setStartDate(viewWriter.blockingTypedReadLine("Start date (dd.MM.yyyy)", Date.class));
             if (askForSkipOnUpdate(value, "end date"))
-                temporaryEmployee.setEndDate(console.blockingTypedReadLine("End date (dd.MM.yyyy)", Date.class, true));
+                temporaryEmployee.setEndDate(viewWriter.blockingTypedReadLine("End date (dd.MM.yyyy)", Date.class, true));
             if (askForSkipOnUpdate(value, "hourly rate"))
-                temporaryEmployee.setHourlyRate(console.blockingTypedReadLine("Hourly rate", Double.class));
+                temporaryEmployee.setHourlyRate(viewWriter.blockingTypedReadLine("Hourly rate", Double.class));
         }
         if (askForSkipOnUpdate(value, "hourly rate"))
             new SubMenuLinkEntities().linkAddressTo(employee, false);
         if (immediateSafe) {
             employeeService.save(employee);
-            console.println("Successfully saved!");
+            viewWriter.println("Successfully saved!");
         }
         return employee;
     }
@@ -152,31 +151,31 @@ public class SubMenuCreateEntities extends Menu {
     }
 
     public Address createOrUpdateAddress(Address value) {
-        console.println("*** Address ***");
+        viewWriter.println("*** Address ***");
         Address address = value != null ? value : new Address();
         if (askForSkipOnUpdate(value, "city"))
-            address.setCity(console.blockingTypedReadLine("City", String.class));
+            address.setCity(viewWriter.blockingTypedReadLine("City", String.class));
         if (askForSkipOnUpdate(value, "street"))
-            address.setStreet(console.blockingTypedReadLine("Street", String.class));
+            address.setStreet(viewWriter.blockingTypedReadLine("Street", String.class));
         if (askForSkipOnUpdate(value, "zip code"))
-            address.setZipCode(console.blockingTypedReadLine("Zip code", String.class));
+            address.setZipCode(viewWriter.blockingTypedReadLine("Zip code", String.class));
         return address;
     }
 
     public LogbookEntry createLogbookEntry(boolean immediateSafe) throws CommandCanceledException {
-        console.println("*** LogbookEntry ***");
+        viewWriter.println("*** LogbookEntry ***");
         LogbookEntry logbookEntry = new LogbookEntry();
-        console.println("You require to select an employee to continue:");
+        viewWriter.println("You require to select an employee to continue:");
         Employee employee = new SubMenuLinkEntities().selectEmployee();
         logbookEntry.attachEmployee(employee);
-        logbookEntry.setActivity(console.blockingTypedReadLine("Logbook activity", String.class));
-        logbookEntry.setStartTime(console.blockingTypedReadLine("Start time (dd.MM.yyyy HH:mm)", Date.class));
-        logbookEntry.setEndTime(console.blockingTypedReadLine("End time (dd.MM.yyyy HH:mm)", Date.class));
+        logbookEntry.setActivity(viewWriter.blockingTypedReadLine("Logbook activity", String.class));
+        logbookEntry.setStartTime(viewWriter.blockingTypedReadLine("Start time (dd.MM.yyyy HH:mm)", Date.class));
+        logbookEntry.setEndTime(viewWriter.blockingTypedReadLine("End time (dd.MM.yyyy HH:mm)", Date.class));
         new SubMenuLinkEntities().linkTaskTo(logbookEntry, false);
 
         if (immediateSafe) {
             logbookEntryService.save(logbookEntry);
-            console.println("Successfully saved!");
+            viewWriter.println("Successfully saved!");
         }
         return logbookEntry;
     }
@@ -186,23 +185,23 @@ public class SubMenuCreateEntities extends Menu {
     }
 
     public Task createOrUpdateTask(Task value, boolean immediateSafe) throws CommandCanceledException {
-        console.println("*** Task ***");
+        viewWriter.println("*** Task ***");
         Task task = value != null ? value : new Task();
         if (modifyOnlyOnCreate(value))
-            task.setId(console.blockingTypedReadLine("Task ID", String.class));
+            task.setId(viewWriter.blockingTypedReadLine("Task ID", String.class));
         if (askForSkipOnUpdate(value, "description"))
-            task.setDescription(console.blockingTypedReadLine("Description", String.class, true));
+            task.setDescription(viewWriter.blockingTypedReadLine("Description", String.class, true));
         if (modifyOnlyOnCreate(value)) {
-            task.setEstimatedHours(console.blockingTypedReadLine("Estimated hours", Integer.class));
+            task.setEstimatedHours(viewWriter.blockingTypedReadLine("Estimated hours", Integer.class));
             SubMenuLinkEntities subMenuLinkEntities = new SubMenuLinkEntities();
             subMenuLinkEntities.linkLogbookEntryTo(task, false);
-            console.println("You require to select a requirement to continue:");
+            viewWriter.println("You require to select a requirement to continue:");
             task.attachRequirement(subMenuLinkEntities.selectRequirement());
         }
 
         if (immediateSafe) {
             taskService.save(task);
-            console.println("Successfully saved!");
+            viewWriter.println("Successfully saved!");
         }
         return task;
     }
@@ -212,42 +211,42 @@ public class SubMenuCreateEntities extends Menu {
     }
 
     public Requirement createOrUpdateRequirement(Requirement value, boolean immediateSafe) throws CommandCanceledException {
-        console.println("*** Requirement ***");
+        viewWriter.println("*** Requirement ***");
         Requirement requirement = value != null ? value : new Requirement();
         if (modifyOnlyOnCreate(value))
-            requirement.setId(console.blockingTypedReadLine("Requirement ID", String.class));
+            requirement.setId(viewWriter.blockingTypedReadLine("Requirement ID", String.class));
         if (askForSkipOnUpdate(value, "description"))
-            requirement.setDescription(console.blockingTypedReadLine("Description", String.class));
+            requirement.setDescription(viewWriter.blockingTypedReadLine("Description", String.class));
         if (modifyOnlyOnCreate(value)) {
             SubMenuLinkEntities subMenuLinkEntities = new SubMenuLinkEntities();
             subMenuLinkEntities.linkTaskTo(requirement, false);
             subMenuLinkEntities.linkSprintTo(requirement, false);
-            console.println("You require to select a project to continue:");
+            viewWriter.println("You require to select a project to continue:");
             requirement.attachProject(subMenuLinkEntities.selectProject());
         }
 
         if (immediateSafe) {
             requirementService.save(requirement);
-            console.println("Successfully saved!");
+            viewWriter.println("Successfully saved!");
         }
         return requirement;
     }
 
     @Override
     public Menu printMenuOptions() {
-        console.println("Select an option:");
+        viewWriter.println("Select an option:");
         printSeparator();
-        console.setIndent(2);
-        console.println("[b] ... Back to previous menu");
-        console.println("[m] ... Print menu");
-        console.newLine();
-        console.println("[e] ... Create employee");
-        console.println("[l] ... Create logbook entry");
-        console.println("[p] ... Create project");
-        console.println("[r] ... Create requirement");
-        console.println("[s] ... Create sprint");
-        console.println("[t] ... Create task");
-        console.resetIndent();
+        viewWriter.setIndent(2);
+        viewWriter.println("[b] ... Back to previous menu");
+        viewWriter.println("[m] ... Print menu");
+        viewWriter.newLine();
+        viewWriter.println("[e] ... Create employee");
+        viewWriter.println("[l] ... Create logbook entry");
+        viewWriter.println("[p] ... Create project");
+        viewWriter.println("[r] ... Create requirement");
+        viewWriter.println("[s] ... Create sprint");
+        viewWriter.println("[t] ... Create task");
+        viewWriter.resetIndent();
         printSeparator();
         return this;
     }

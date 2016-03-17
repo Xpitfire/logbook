@@ -5,7 +5,6 @@ import swt6.ue3.logbook.domain.Project;
 import swt6.ue3.logbook.domain.Requirement;
 import swt6.ue3.logbook.domain.Task;
 import swt6.ue3.logbook.io.CommandCanceledException;
-import swt6.ue3.logbook.io.Console;
 
 /**
  * @author: Dinu Marius-Constantin
@@ -21,7 +20,7 @@ public class SubMenuUpdateEntities extends Menu {
     @Override
     public void run() {
         do {
-            input = console.readLine("> ");
+            input = viewWriter.readLine("> ");
 
             try {
                 if (input.equalsIgnoreCase("m")) {
@@ -48,50 +47,50 @@ public class SubMenuUpdateEntities extends Menu {
     }
 
     public void updateEmployee() throws CommandCanceledException {
-        console.println("*** Employee ***");
+        viewWriter.println("*** Employee ***");
         Employee employee = new SubMenuFindEntities().findEmployee();
         employee = new SubMenuCreateEntities().createOrUpdateEmployee(employee, false);
         employeeService.save(employee);
-        console.println("Successfully updated employee!");
+        viewWriter.println("Successfully updated employee!");
     }
 
     public void updateProject() throws CommandCanceledException {
-        console.println("*** Project ***");
+        viewWriter.println("*** Project ***");
         Project project = new SubMenuFindEntities().findProject();
         project = new SubMenuCreateEntities().createOrUpdateProject(project, false);
         projectService.save(project);
-        console.println("Successfully updated project!");
+        viewWriter.println("Successfully updated project!");
     }
 
     public void updateTask() throws CommandCanceledException {
-        console.println("*** Task ***");
+        viewWriter.println("*** Task ***");
         Task task = new SubMenuFindEntities().findTask();
         task = new SubMenuCreateEntities().createOrUpdateTask(task, false);
         taskService.save(task);
-        console.println("Successfully updated task!");
+        viewWriter.println("Successfully updated task!");
     }
 
     public void updateRequirement() throws CommandCanceledException {
-        console.println("*** Requirement ***");
+        viewWriter.println("*** Requirement ***");
         Requirement requirement = new SubMenuFindEntities().findRequirement();
         requirement = new SubMenuCreateEntities().createOrUpdateRequirement(requirement, false);
         requirementService.save(requirement);
-        console.println("Successfully updated requirement!");
+        viewWriter.println("Successfully updated requirement!");
     }
 
     @Override
     public Menu printMenuOptions() {
-        console.println("Select an option:");
+        viewWriter.println("Select an option:");
         printSeparator();
-        console.setIndent(2);
-        console.println("[b] ... Back to previous menu");
-        console.println("[m] ... Print menu");
-        console.newLine();
-        console.println("[e] ... Update employee");
-        console.println("[p] ... Update project");
-        console.println("[t] ... Update task");
-        console.println("[r] ... Update requirement");
-        console.resetIndent();
+        viewWriter.setIndent(2);
+        viewWriter.println("[b] ... Back to previous menu");
+        viewWriter.println("[m] ... Print menu");
+        viewWriter.newLine();
+        viewWriter.println("[e] ... Update employee");
+        viewWriter.println("[p] ... Update project");
+        viewWriter.println("[t] ... Update task");
+        viewWriter.println("[r] ... Update requirement");
+        viewWriter.resetIndent();
         printSeparator();
         return this;
     }

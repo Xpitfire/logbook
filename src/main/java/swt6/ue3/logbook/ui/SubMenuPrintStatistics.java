@@ -3,8 +3,6 @@ package swt6.ue3.logbook.ui;
 import swt6.ue3.logbook.domain.LogbookEntry;
 import swt6.ue3.logbook.domain.Project;
 import swt6.ue3.logbook.io.CommandCanceledException;
-import swt6.ue3.logbook.io.Console;
-import swt6.ue3.logbook.logic.ProjectServiceImpl;
 
 /**
  * @author: Dinu Marius-Constantin
@@ -20,7 +18,7 @@ public class SubMenuPrintStatistics extends Menu {
     @Override
     public void run() {
         do {
-            input = console.readLine("> ");
+            input = viewWriter.readLine("> ");
 
             try {
                 if (input.equalsIgnoreCase("m")) {
@@ -57,31 +55,31 @@ public class SubMenuPrintStatistics extends Menu {
     }
 
     public void printProjectTotalCosts() {
-        console.println("*** PRINT PROJECT COSTS ***");
-        console.setIndent(2);
-        console.printTableHeader("Projects", "Total costs (€)");
+        viewWriter.println("*** PRINT PROJECT COSTS ***");
+        viewWriter.setIndent(2);
+        viewWriter.printTableHeader("Projects", "Total costs (€)");
         for (Project p : projectService.findAll()) {
-            console.printTableRow(p.getName(), String.format("%.2f", projectService.calculateTotalCosts(p)));
+            viewWriter.printTableRow(p.getName(), String.format("%.2f", projectService.calculateTotalCosts(p)));
         }
-        console.resetIndent();
+        viewWriter.resetIndent();
     }
 
     public void printBurndownCharts() throws CommandCanceledException {
-        console.println("*** PRINT BURNDOWN CHARTS ***");
-        console.setIndent(2);
+        viewWriter.println("*** PRINT BURNDOWN CHARTS ***");
+        viewWriter.setIndent(2);
         Project project = new SubMenuFindEntities().findProject();
 
         double remainingHours = projectService.calculateEstimatedTotalHours(project);
-        console.printf("Estimated Work: %s%n", remainingHours);
-        console.printTableHeader("Dates", "Actual Work (hrs)", "Remaining Work (hrs)");
+        viewWriter.printf("Estimated Work: %s%n", remainingHours);
+        viewWriter.printTableHeader("Dates", "Actual Work (hrs)", "Remaining Work (hrs)");
         for (LogbookEntry logbookEntry : logbookEntryService.findAll()) {
             if (logbookEntry.getTask().getRequirement().getProject().getId() == project.getId()) {
                 double actualWork = projectService.calculateHoursDifference(logbookEntry.getStartTime(), logbookEntry.getEndTime());
                 remainingHours -= actualWork;
-                console.printTableRow(logbookEntry.getEndTime(), String.format("%.0f", actualWork), String.format("%.0f", remainingHours));
+                viewWriter.printTableRow(logbookEntry.getEndTime(), String.format("%.0f", actualWork), String.format("%.0f", remainingHours));
             }
         }
-        console.resetIndent();
+        viewWriter.resetIndent();
     }
 
     public Menu printAll() {
@@ -95,72 +93,72 @@ public class SubMenuPrintStatistics extends Menu {
     }
 
     public Menu printSprints() {
-        console.println("*** PRINT SPRINTS ***");
-        console.setIndent(2);
-        sprintService.findAll().forEach(console::println);
-        console.resetIndent();
+        viewWriter.println("*** PRINT SPRINTS ***");
+        viewWriter.setIndent(2);
+        sprintService.findAll().forEach(viewWriter::println);
+        viewWriter.resetIndent();
         return this;
     }
 
     public Menu printRequirements() {
-        console.println("*** PRINT REQUIREMENTS ***");
-        console.setIndent(2);
-        requirementService.findAll().forEach(console::println);
-        console.resetIndent();
+        viewWriter.println("*** PRINT REQUIREMENTS ***");
+        viewWriter.setIndent(2);
+        requirementService.findAll().forEach(viewWriter::println);
+        viewWriter.resetIndent();
         return this;
     }
 
     public Menu printTasks() {
-        console.println("*** PRINT TASKS ***");
-        console.setIndent(2);
-        taskService.findAll().forEach(console::println);
-        console.resetIndent();
+        viewWriter.println("*** PRINT TASKS ***");
+        viewWriter.setIndent(2);
+        taskService.findAll().forEach(viewWriter::println);
+        viewWriter.resetIndent();
         return this;
     }
 
     public Menu printProjects() {
-        console.println("*** PRINT PROJECTS ***");
-        console.setIndent(2);
-        projectService.findAll().forEach(console::println);
-        console.resetIndent();
+        viewWriter.println("*** PRINT PROJECTS ***");
+        viewWriter.setIndent(2);
+        projectService.findAll().forEach(viewWriter::println);
+        viewWriter.resetIndent();
         return this;
     }
 
     public Menu printLogbookEntries() {
-        console.println("*** PRINT LOGBOOK ENTRIES ***");
-        console.setIndent(2);
-        logbookEntryService.findAll().forEach(console::println);
-        console.resetIndent();
+        viewWriter.println("*** PRINT LOGBOOK ENTRIES ***");
+        viewWriter.setIndent(2);
+        logbookEntryService.findAll().forEach(viewWriter::println);
+        viewWriter.resetIndent();
         return this;
     }
 
     public Menu printEmployees() {
-        console.println("*** PRINT EMPLOYEES ***");
-        console.setIndent(2);
-        employeeService.findAll().forEach(console::println);
-        console.resetIndent();
+        viewWriter.println("*** PRINT EMPLOYEES ***");
+        viewWriter.setIndent(2);
+        employeeService.findAll().forEach(viewWriter::println);
+        viewWriter.resetIndent();
         return this;
     }
 
     @Override
     public Menu printMenuOptions() {
-        console.println("Select an option:");
+        viewWriter.println("Select an option:");
         printSeparator();
-        console.setIndent(2);
-        console.println("[b] ... Back to previous menu");
-        console.println("[m] ... Print menu");
-        console.newLine();
-        console.println("[a] ... Print all");
-        console.println("[u] ... Print burn down chart");
-        console.println("[c] ... Print costs per project");
-        console.newLine();
-        console.println("[e] ... Print employees");
-        console.println("[l] ... Print logbook entries");
-        console.println("[p] ... Print projects");
-        console.println("[r] ... Print requirements");
-        console.println("[s] ... Print sprints");
-        console.println("[t] ... Print tasks");
-        console.resetIndent();
+        viewWriter.setIndent(2);
+        viewWriter.println("[b] ... Back to previous menu");
+        viewWriter.println("[m] ... Print menu");
+        viewWriter.newLine();
+        viewWriter.println("[a] ... Print all");
+        viewWriter.println("[u] ... Print burn down chart");
+        viewWriter.println("[c] ... Print costs per project");
+        viewWriter.newLine();
+        viewWriter.println("[e] ... Print employees");
+        viewWriter.println("[l] ... Print logbook entries");
+        viewWriter.println("[p] ... Print projects");
+        viewWriter.println("[r] ... Print requirements");
+        viewWriter.println("[s] ... Print sprints");
+        viewWriter.println("[t] ... Print tasks");
+        viewWriter.resetIndent();
         printSeparator();
         return this;
     }

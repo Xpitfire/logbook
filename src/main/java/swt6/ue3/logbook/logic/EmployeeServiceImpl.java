@@ -11,7 +11,7 @@ import swt6.ue3.logbook.domain.Employee;
  * @author: Dinu Marius-Constantin
  * @date: 14.03.2016
  */
-@Service("employeeService")
+@Service
 @Transactional
 public class EmployeeServiceImpl implements EmployeeService {
     @Autowired

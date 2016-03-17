@@ -14,7 +14,7 @@ public class MainMenu extends Menu {
     @Override
     public void run() {
         do {
-            input = console.readLine("> ");
+            input = viewWriter.readLine("> ");
 
             try {
 
@@ -46,9 +46,9 @@ public class MainMenu extends Menu {
                     printInvalidInput();
                 }
             } catch (Exception ex) {
-                console.println("Could not perform operation!");
-                console.println("CAUSE: " + ex.getMessage());
-                console.println("Return to main menu!");
+                viewWriter.println("Could not perform operation!");
+                viewWriter.println("CAUSE: " + ex.getMessage());
+                viewWriter.println("Return to main menu!");
                 ex.printStackTrace();
             }
 
@@ -57,19 +57,19 @@ public class MainMenu extends Menu {
 
     @Override
     public Menu printMenuOptions() {
-        console.println("Select an option:");
+        viewWriter.println("Select an option:");
         printSeparator();
-        console.setIndent(2);
-        console.println("[q] ... Quit");
-        console.println("[m] ... Print menu");
-        console.println("[p] ... Print data");
-        console.newLine();
-        console.println("[f] ... Find entities");
-        console.println("[c] ... Create entities");
-        console.println("[d] ... Delete entities");
-        console.println("[l] ... Link entities");
-        console.println("[u] ... Update entities");
-        console.resetIndent();
+        viewWriter.setIndent(2);
+        viewWriter.println("[q] ... Quit");
+        viewWriter.println("[m] ... Print menu");
+        viewWriter.println("[p] ... Print data");
+        viewWriter.newLine();
+        viewWriter.println("[f] ... Find entities");
+        viewWriter.println("[c] ... Create entities");
+        viewWriter.println("[d] ... Delete entities");
+        viewWriter.println("[l] ... Link entities");
+        viewWriter.println("[u] ... Update entities");
+        viewWriter.resetIndent();
         printSeparator();
         return this;
     }
@@ -77,4 +77,5 @@ public class MainMenu extends Menu {
     @Override
     public void close() {
     }
+
 }

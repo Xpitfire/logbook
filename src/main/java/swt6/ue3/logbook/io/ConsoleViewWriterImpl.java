@@ -15,30 +15,33 @@ import java.util.*;
  * @author: Dinu Marius-Constantin
  * @date: 10.03.2016
  */
-@Component("console")
-public class Console implements AutoCloseable {
+@Component
+public class ConsoleViewWriterImpl implements ViewWriter {
 
     private final BufferedReader in;
     private final PrintStream out;
     private final PrintStream err;
     private String indent;
 
-    public Console() {
+    public ConsoleViewWriterImpl() {
         in = new BufferedReader(new InputStreamReader(System.in));
         out = System.out;
         err = System.err;
     }
 
+    @Override
     public void print(Object object) {
         printIndent(out);
         out.print(object);
     }
 
+    @Override
     public void println(Object object) {
         printIndent(out);
         out.println(object);
     }
 
+    @Override
     public void printTableHeader(String... titles) {
         printIndent(out);
         out.print("_____________________________________________________________________________________");
@@ -53,6 +56,7 @@ public class Console implements AutoCloseable {
         newLine();
     }
 
+    @Override
     public void printTableRow(Object... columns) {
         printIndent(out);
         for (Object column : columns) {
@@ -61,14 +65,17 @@ public class Console implements AutoCloseable {
         newLine();
     }
 
+    @Override
     public void printException(Exception ex) {
         err.print(ex);
     }
 
+    @Override
     public String readLine() {
         return readLine(null);
     }
 
+    @Override
     public String readLine(String message) {
         if (message != null) {
             printIndent(out);
@@ -101,6 +108,7 @@ public class Console implements AutoCloseable {
         }
     }
 
+    @Override
     public void setIndent(int indent) {
         StringBuilder b = new StringBuilder();
         for (int i = 0; i < indent; i++) {
@@ -109,14 +117,17 @@ public class Console implements AutoCloseable {
         this.indent = b.toString();
     }
 
+    @Override
     public void resetIndent() {
         this.indent = null;
     }
 
+    @Override
     public void newLine() {
         out.println();
     }
 
+    @Override
     public String blockingReadCommand(String message, String... commands) throws CommandCanceledException {
         String result;
         for (String c : commands) {
@@ -141,6 +152,7 @@ public class Console implements AutoCloseable {
         return result;
     }
 
+    @Override
     public <T> T blockingTypedReadLine(String message, Class<T> clazz, boolean optional) {
         T result = null;
         String input;
@@ -195,10 +207,12 @@ public class Console implements AutoCloseable {
         return result;
     }
 
+    @Override
     public <T> T blockingTypedReadLine(String message, Class<T> clazz) {
         return blockingTypedReadLine(message, clazz, false);
     }
 
+    @Override
     public void printf(String s, Object... args) {
         printIndent(out);
         out.printf(s, args);

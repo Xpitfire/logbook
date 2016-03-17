@@ -2,7 +2,7 @@ package swt6.ue3.logbook.ui;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import swt6.ue3.logbook.io.CommandCanceledException;
-import swt6.ue3.logbook.io.Console;
+import swt6.ue3.logbook.io.ViewWriter;
 import swt6.ue3.logbook.logic.*;
 
 /**
@@ -14,7 +14,7 @@ public abstract class Menu implements AutoCloseable {
     protected String input;
 
     @Autowired
-    protected Console console;
+    protected ViewWriter viewWriter;
     @Autowired
     protected EmployeeService employeeService;
     @Autowired
@@ -31,12 +31,12 @@ public abstract class Menu implements AutoCloseable {
     public Menu() {
     }
 
-    public void setConsole(Console console) {
-        this.console = console;
+    public void setViewWriter(ViewWriter viewWriter) {
+        this.viewWriter = viewWriter;
     }
 
     public Menu printHeader() {
-        console.println(
+        viewWriter.println(
                 " _______             _                           ______                        ____ _______ \n" +
                         "(_______)           | |                         |  ___ \\                      / __ (_______)\n" +
                         " _____   ____  ____ | | ___  _   _  ____ ____   | | _ | |____   ____ ____    ( (__) )_____  \n" +
@@ -48,31 +48,31 @@ public abstract class Menu implements AutoCloseable {
     }
 
     protected Menu printMenuTile() {
-        console.println(String.format("===== [%s] =====", getMenuTitle().toUpperCase()));
+        viewWriter.println(String.format("===== [%s] =====", getMenuTitle().toUpperCase()));
         return this;
     }
 
     protected Menu printSeparator() {
-        console.println(
+        viewWriter.println(
                 "--------------------------------------------------------------------------------------------");
         return this;
     }
 
     protected Menu printInvalidInput() {
-        console.println("Invalid input!");
-        console.newLine();
+        viewWriter.println("Invalid input!");
+        viewWriter.newLine();
         printMenuOptions();
         return this;
     }
 
     protected Menu printUserCancelMessage() {
-        console.println("Operation canceled by user!");
-        console.println("Data may have been lost.");
+        viewWriter.println("Operation canceled by user!");
+        viewWriter.println("Data may have been lost.");
         return this;
     }
 
     protected Menu showConfirmationMessage() throws CommandCanceledException {
-        if (!console.blockingTypedReadLine("Are you sure you want to continue? (y/n)", Boolean.class)) {
+        if (!viewWriter.blockingTypedReadLine("Are you sure you want to continue? (y/n)", Boolean.class)) {
             throw new CommandCanceledException("Operation aborted by user!");
         }
         return this;

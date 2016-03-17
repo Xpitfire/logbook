@@ -16,7 +16,7 @@ import java.util.List;
  * @author: Dinu Marius-Constantin
  * @date: 14.03.2016
  */
-@Service("projectService")
+@Service
 @Transactional
 public class ProjectServiceImpl implements ProjectService {
 

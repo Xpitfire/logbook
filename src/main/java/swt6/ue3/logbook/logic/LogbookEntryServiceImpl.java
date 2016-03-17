@@ -11,7 +11,7 @@ import swt6.ue3.logbook.domain.LogbookEntry;
  * @author: Dinu Marius-Constantin
  * @date: 14.03.2016
  */
-@Service("logbookEntryService")
+@Service
 @Transactional
 public class LogbookEntryServiceImpl implements LogbookEntryService {
     @Autowired

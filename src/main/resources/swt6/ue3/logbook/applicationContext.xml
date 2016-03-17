@@ -40,11 +40,16 @@
         </property>
     </bean>
 
+    <bean id="viewWriter" class="swt6.ue3.logbook.io.ConsoleViewWriterImpl" />
+    <bean id="menu" class="swt6.ue3.logbook.ui.Menu" abstract="true">
+        <property name="viewWriter" ref="viewWriter" />
+    </bean>
+
     <!-- bean post-processor for JPA annotations -->
     <bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor"/>
 
     <!-- ==================== DAO & BUSINESS OBJECT DEFINITIONS ================= -->
-    <context:component-scan base-package="swt6.ue3.logbook.logic"/>
+    <context:component-scan base-package="swt6.ue3.logbook"/>
 
     <jpa:repositories base-package="swt6.ue3.logbook.dal"
                       entity-manager-factory-ref="emFactory"
@@ -57,11 +62,6 @@
 
     <!-- requires @Transactional annototations on business methods -->
     <tx:annotation-driven transaction-manager="transactionManagerJpa"/>
-
-    <bean id="console" class="swt6.ue3.logbook.io.Console" />
-    <bean id="menu" class="swt6.ue3.logbook.ui.MainMenu">
-        <property name="console" ref="console" />
-    </bean>
 
 </beans>
 

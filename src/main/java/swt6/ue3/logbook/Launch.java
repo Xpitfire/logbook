@@ -2,12 +2,8 @@ package swt6.ue3.logbook;
 
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import swt6.ue3.logbook.jpa.util.Util;
-import swt6.ue3.logbook.logic.EmployeeService;
 import swt6.ue3.logbook.ui.MainMenu;
 import swt6.ue3.logbook.ui.Menu;
-
-import javax.persistence.EntityManagerFactory;
 
 /**
  * @author: Dinu Marius-Constantin

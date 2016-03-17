@@ -12,7 +12,7 @@ import swt6.ue3.logbook.domain.Requirement;
  * @author: Dinu Marius-Constantin
  * @date: 14.03.2016
  */
-@Service("requirementService")
+@Service
 @Transactional
 public class RequirementServiceImpl implements RequirementService {
     @Autowired

@@ -1,17 +1,23 @@
-package swt6.ue3.logbook.ui;
+package swt6.ue3.logbook.controller.console;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import swt6.ue3.logbook.domain.LogbookEntry;
 import swt6.ue3.logbook.domain.Project;
-import swt6.ue3.logbook.io.CommandCanceledException;
+import swt6.ue3.logbook.view.console.CommandCanceledException;
 
 /**
  * @author: Dinu Marius-Constantin
  * @date: 10.03.2016
  */
-public class SubMenuPrintStatistics extends Menu {
+@Controller("printStatisticController")
+public class PrintStatisticConsoleController extends AbstractConsoleController {
+
+    @Autowired
+    private FindEntityConsoleController findEntityConsoleController;
 
     @Override
-    public String getMenuTitle() {
+    public String getTitle() {
         return "Print Statistics";
     }
 
@@ -67,7 +73,7 @@ public class SubMenuPrintStatistics extends Menu {
     public void printBurndownCharts() throws CommandCanceledException {
         viewWriter.println("*** PRINT BURNDOWN CHARTS ***");
         viewWriter.setIndent(2);
-        Project project = new SubMenuFindEntities().findProject();
+        Project project = findEntityConsoleController.findProject();
 
         double remainingHours = projectService.calculateEstimatedTotalHours(project);
         viewWriter.printf("Estimated Work: %s%n", remainingHours);
@@ -82,7 +88,7 @@ public class SubMenuPrintStatistics extends Menu {
         viewWriter.resetIndent();
     }
 
-    public Menu printAll() {
+    public AbstractConsoleController printAll() {
         printEmployees();
         printLogbookEntries();
         printProjects();
@@ -92,7 +98,7 @@ public class SubMenuPrintStatistics extends Menu {
         return this;
     }
 
-    public Menu printSprints() {
+    public AbstractConsoleController printSprints() {
         viewWriter.println("*** PRINT SPRINTS ***");
         viewWriter.setIndent(2);
         sprintService.findAll().forEach(viewWriter::println);
@@ -100,7 +106,7 @@ public class SubMenuPrintStatistics extends Menu {
         return this;
     }
 
-    public Menu printRequirements() {
+    public AbstractConsoleController printRequirements() {
         viewWriter.println("*** PRINT REQUIREMENTS ***");
         viewWriter.setIndent(2);
         requirementService.findAll().forEach(viewWriter::println);
@@ -108,7 +114,7 @@ public class SubMenuPrintStatistics extends Menu {
         return this;
     }
 
-    public Menu printTasks() {
+    public AbstractConsoleController printTasks() {
         viewWriter.println("*** PRINT TASKS ***");
         viewWriter.setIndent(2);
         taskService.findAll().forEach(viewWriter::println);
@@ -116,7 +122,7 @@ public class SubMenuPrintStatistics extends Menu {
         return this;
     }
 
-    public Menu printProjects() {
+    public AbstractConsoleController printProjects() {
         viewWriter.println("*** PRINT PROJECTS ***");
         viewWriter.setIndent(2);
         projectService.findAll().forEach(viewWriter::println);
@@ -124,7 +130,7 @@ public class SubMenuPrintStatistics extends Menu {
         return this;
     }
 
-    public Menu printLogbookEntries() {
+    public AbstractConsoleController printLogbookEntries() {
         viewWriter.println("*** PRINT LOGBOOK ENTRIES ***");
         viewWriter.setIndent(2);
         logbookEntryService.findAll().forEach(viewWriter::println);
@@ -132,7 +138,7 @@ public class SubMenuPrintStatistics extends Menu {
         return this;
     }
 
-    public Menu printEmployees() {
+    public AbstractConsoleController printEmployees() {
         viewWriter.println("*** PRINT EMPLOYEES ***");
         viewWriter.setIndent(2);
         employeeService.findAll().forEach(viewWriter::println);
@@ -141,7 +147,7 @@ public class SubMenuPrintStatistics extends Menu {
     }
 
     @Override
-    public Menu printMenuOptions() {
+    public AbstractConsoleController printMenuOptions() {
         viewWriter.println("Select an option:");
         printSeparator();
         viewWriter.setIndent(2);

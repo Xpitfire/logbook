@@ -1,21 +1,22 @@
-package swt6.ue3.logbook.ui;
+package swt6.ue3.logbook.controller.console;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import swt6.ue3.logbook.io.CommandCanceledException;
-import swt6.ue3.logbook.io.ViewWriter;
+import swt6.ue3.logbook.controller.AppController;
+import swt6.ue3.logbook.view.console.CommandCanceledException;
+import swt6.ue3.logbook.view.ViewWriter;
 import swt6.ue3.logbook.logic.*;
 
 /**
  * @author: Dinu Marius-Constantin
  * @date: 10.03.2016
  */
-public abstract class Menu implements AutoCloseable {
+public abstract class AbstractConsoleController implements AutoCloseable, AppController {
 
     protected String input;
 
     @Autowired
     protected ViewWriter viewWriter;
+
     @Autowired
     protected EmployeeService employeeService;
     @Autowired
@@ -29,14 +30,11 @@ public abstract class Menu implements AutoCloseable {
     @Autowired
     protected SprintService sprintService;
 
-    public Menu() {
-    }
-
     public void setViewWriter(ViewWriter viewWriter) {
         this.viewWriter = viewWriter;
     }
 
-    public Menu printHeader() {
+    public AbstractConsoleController printHeader() {
         viewWriter.println(
                 " _______             _                           ______                        ____ _______ \n" +
                         "(_______)           | |                         |  ___ \\                      / __ (_______)\n" +
@@ -48,38 +46,38 @@ public abstract class Menu implements AutoCloseable {
         return this;
     }
 
-    protected Menu printMenuTile() {
-        viewWriter.println(String.format("===== [%s] =====", getMenuTitle().toUpperCase()));
+    protected AbstractConsoleController printMenuTile() {
+        viewWriter.println(String.format("===== [%s] =====", getTitle().toUpperCase()));
         return this;
     }
 
-    protected Menu printSeparator() {
+    protected AbstractConsoleController printSeparator() {
         viewWriter.println(
                 "--------------------------------------------------------------------------------------------");
         return this;
     }
 
-    protected Menu printInvalidInput() {
+    protected AbstractConsoleController printInvalidInput() {
         viewWriter.println("Invalid input!");
         viewWriter.newLine();
         printMenuOptions();
         return this;
     }
 
-    protected Menu printUserCancelMessage() {
+    protected AbstractConsoleController printUserCancelMessage() {
         viewWriter.println("Operation canceled by user!");
         viewWriter.println("Data may have been lost.");
         return this;
     }
 
-    protected Menu showConfirmationMessage() throws CommandCanceledException {
+    protected AbstractConsoleController showConfirmationMessage() throws CommandCanceledException {
         if (!viewWriter.blockingTypedReadLine("Are you sure you want to continue? (y/n)", Boolean.class)) {
             throw new CommandCanceledException("Operation aborted by user!");
         }
         return this;
     }
 
-    public Menu printEntranceInfo() {
+    public AbstractConsoleController printEntranceInfo() {
         printMenuTile();
         printMenuOptions();
         return this;
@@ -88,9 +86,12 @@ public abstract class Menu implements AutoCloseable {
     /**
      * Enter menu blocks until the quit option is selected!
      */
-    public abstract void run();
-    protected abstract String getMenuTitle();
-    protected abstract Menu printMenuOptions();
+    protected abstract AbstractConsoleController printMenuOptions();
+
+    protected void runAndPrintOptions() {
+        printMenuOptions();
+        run();
+    }
 
     @Override
     public void close() { }

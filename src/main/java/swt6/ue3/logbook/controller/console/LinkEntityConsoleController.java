@@ -1,16 +1,24 @@
-package swt6.ue3.logbook.ui;
+package swt6.ue3.logbook.controller.console;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import swt6.ue3.logbook.domain.*;
-import swt6.ue3.logbook.io.CommandCanceledException;
+import swt6.ue3.logbook.view.console.CommandCanceledException;
 
 /**
  * @author: Dinu Marius-Constantin
  * @date: 10.03.2016
  */
-public class SubMenuLinkEntities extends Menu {
+@Controller("linkEntityController")
+public class LinkEntityConsoleController extends AbstractConsoleController {
+
+    @Autowired
+    private CreateEntityConsoleController createEntityConsoleController;
+    @Autowired
+    private FindEntityConsoleController findEntityConsoleController;
 
     @Override
-    public String getMenuTitle() {
+    public String getTitle() {
         return "Link Entities";
     }
 
@@ -54,9 +62,9 @@ public class SubMenuLinkEntities extends Menu {
         input = logbookEntryService.count() <= 0 ? "n" : viewWriter.blockingReadCommand("Please select an option? [n] = CREATE NEW LOGBOOK ENTRY, [s] = SELECT ONE FROM DATABASE", "n", "s");
 
         if (input.equalsIgnoreCase("n")) {
-            logbookEntry = new SubMenuCreateEntities().createLogbookEntry(false);
+            logbookEntry = createEntityConsoleController.createLogbookEntry(false);
         } else {
-            logbookEntry = new SubMenuFindEntities().findLogbookEntry();
+            logbookEntry = findEntityConsoleController.findLogbookEntry();
         }
         return logbookEntry;
     }
@@ -66,9 +74,9 @@ public class SubMenuLinkEntities extends Menu {
         input = taskService.count() <= 0 ? "n" : viewWriter.blockingReadCommand("Please select an option? [n] = CREATE NEW TASK, [s] = SELECT ONE FROM DATABASE", "n", "s");
 
         if (input.equalsIgnoreCase("n")) {
-            task = new SubMenuCreateEntities().createTask(false);
+            task = createEntityConsoleController.createTask(false);
         } else {
-            task = new SubMenuFindEntities().findTask();
+            task = findEntityConsoleController.findTask();
         }
         return task;
     }
@@ -78,9 +86,9 @@ public class SubMenuLinkEntities extends Menu {
         input = sprintService.count() <= 0 ? "n" : viewWriter.blockingReadCommand("Please select an option? [n] = CREATE NEW SPRINT, [s] = SELECT ONE FROM DATABASE", "n", "s");
 
         if (input.equalsIgnoreCase("n")) {
-            sprint = new SubMenuCreateEntities().createSprint(false);
+            sprint = createEntityConsoleController.createSprint(false);
         } else {
-            sprint = new SubMenuFindEntities().findSprint();
+            sprint = findEntityConsoleController.findSprint();
         }
         return sprint;
     }
@@ -90,9 +98,9 @@ public class SubMenuLinkEntities extends Menu {
         input = employeeService.count() <= 0 ? "n" : viewWriter.blockingReadCommand("Please select an option? [n] = CREATE NEW EMPLOYEE, [s] = SELECT ONE FROM DATABASE", "n", "s");
 
         if (input.equalsIgnoreCase("n")) {
-            employee = new SubMenuCreateEntities().createEmployee(false);
+            employee = createEntityConsoleController.createEmployee(false);
         } else {
-            employee = new SubMenuFindEntities().findEmployee();
+            employee = findEntityConsoleController.findEmployee();
         }
         return employee;
     }
@@ -102,9 +110,9 @@ public class SubMenuLinkEntities extends Menu {
         input = requirementService.count() <= 0 ? "n" : viewWriter.blockingReadCommand("Please select an option? [n] = CREATE NEW REQUIREMENT, [s] = SELECT ONE FROM DATABASE", "n", "s");
 
         if (input.equalsIgnoreCase("n")) {
-            requirement = new SubMenuCreateEntities().createRequirement(false);
+            requirement = createEntityConsoleController.createRequirement(false);
         } else {
-            requirement = new SubMenuFindEntities().findRequirement();
+            requirement = findEntityConsoleController.findRequirement();
         }
         return requirement;
     }
@@ -114,9 +122,9 @@ public class SubMenuLinkEntities extends Menu {
         input = projectService.count() <= 0 ? "n" : viewWriter.blockingReadCommand("Please select an option? [n] = CREATE NEW PROJECT, [s] = SELECT ONE FROM DATABASE", "n", "s");
 
         if (input.equalsIgnoreCase("n")) {
-            project = new SubMenuCreateEntities().createProject(false);
+            project = createEntityConsoleController.createProject(false);
         } else {
-            project = new SubMenuFindEntities().findProject();
+            project = findEntityConsoleController.findProject();
         }
         return project;
     }
@@ -138,7 +146,7 @@ public class SubMenuLinkEntities extends Menu {
 
     public Address linkAddressTo(Employee employee, boolean mandatory) throws CommandCanceledException {
         if (mandatory || viewWriter.blockingTypedReadLine("Optionally add an address? (y/n)", Boolean.class)) {
-            Address address = new SubMenuCreateEntities().createAddress();
+            Address address = createEntityConsoleController.createAddress();
             employee.setAddress(address);
             return address;
         }
@@ -225,7 +233,7 @@ public class SubMenuLinkEntities extends Menu {
     }
 
     @Override
-    public Menu printMenuOptions() {
+    public AbstractConsoleController printMenuOptions() {
         viewWriter.println("Select an option:");
         printSeparator();
         viewWriter.setIndent(2);

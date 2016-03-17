@@ -11,9 +11,9 @@ import org.springframework.transaction.support.TransactionSynchronizationManager
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 
-public class Util {
+public class JpaUtil {
 
-    private static final Logger logger = LoggerFactory.getLogger(Util.class);
+    private static final Logger logger = LoggerFactory.getLogger(JpaUtil.class);
 
     public static void beginTransaction(EntityManagerFactory entityManagerFactory) {
         EntityManager em = getEntityManager(entityManagerFactory);

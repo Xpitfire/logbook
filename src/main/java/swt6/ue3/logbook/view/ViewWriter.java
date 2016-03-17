@@ -1,4 +1,6 @@
-package swt6.ue3.logbook.io;
+package swt6.ue3.logbook.view;
+
+import swt6.ue3.logbook.view.console.CommandCanceledException;
 
 /**
  * @author: Dinu Marius-Constantin

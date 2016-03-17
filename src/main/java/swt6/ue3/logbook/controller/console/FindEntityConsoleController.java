@@ -1,7 +1,8 @@
-package swt6.ue3.logbook.ui;
+package swt6.ue3.logbook.controller.console;
 
+import org.springframework.stereotype.Controller;
 import swt6.ue3.logbook.domain.*;
-import swt6.ue3.logbook.io.CommandCanceledException;
+import swt6.ue3.logbook.view.console.CommandCanceledException;
 
 import java.util.HashMap;
 import java.util.List;
@@ -11,10 +12,11 @@ import java.util.Map;
  * @author: Dinu Marius-Constantin
  * @date: 10.03.2016
  */
-public class SubMenuFindEntities extends Menu {
+@Controller("findEntityController")
+public class FindEntityConsoleController extends AbstractConsoleController {
 
     @Override
-    public String getMenuTitle() {
+    public String getTitle() {
         return "Find Entities";
     }
 
@@ -58,7 +60,7 @@ public class SubMenuFindEntities extends Menu {
     }
 
     @Override
-    public Menu printMenuOptions() {
+    public AbstractConsoleController printMenuOptions() {
         viewWriter.println("Select an option:");
         printSeparator();
         viewWriter.setIndent(2);

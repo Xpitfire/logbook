@@ -40,8 +40,8 @@
         </property>
     </bean>
 
-    <bean id="viewWriter" class="swt6.ue3.logbook.io.ConsoleViewWriterImpl" />
-    <bean id="menu" class="swt6.ue3.logbook.ui.Menu" abstract="true">
+    <bean id="viewWriter" class="swt6.ue3.logbook.view.console.ViewWriterConsoleImpl" />
+    <bean id="menu" class="swt6.ue3.logbook.controller.console.AbstractConsoleController" abstract="true">
         <property name="viewWriter" ref="viewWriter" />
     </bean>
 

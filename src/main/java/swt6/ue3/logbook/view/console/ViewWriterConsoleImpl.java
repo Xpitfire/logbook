@@ -1,6 +1,7 @@
-package swt6.ue3.logbook.io;
+package swt6.ue3.logbook.view.console;
 
 import org.springframework.stereotype.Component;
+import swt6.ue3.logbook.view.ViewWriter;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -16,14 +17,14 @@ import java.util.*;
  * @date: 10.03.2016
  */
 @Component("consoleViewWriter")
-public class ConsoleViewWriterImpl implements ViewWriter {
+public class ViewWriterConsoleImpl implements ViewWriter {
 
     private final BufferedReader in;
     private final PrintStream out;
     private final PrintStream err;
     private String indent;
 
-    public ConsoleViewWriterImpl() {
+    public ViewWriterConsoleImpl() {
         in = new BufferedReader(new InputStreamReader(System.in));
         out = System.out;
         err = System.err;

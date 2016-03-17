@@ -1,7 +1,9 @@
-package swt6.ue3.logbook.ui;
+package swt6.ue3.logbook.controller.console;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import swt6.ue3.logbook.domain.*;
-import swt6.ue3.logbook.io.CommandCanceledException;
+import swt6.ue3.logbook.view.console.CommandCanceledException;
 
 import java.util.Date;
 
@@ -9,10 +11,14 @@ import java.util.Date;
  * @author: Dinu Marius-Constantin
  * @date: 10.03.2016
  */
-public class SubMenuCreateEntities extends Menu {
+@Controller("createEntityController")
+public class CreateEntityConsoleController extends AbstractConsoleController {
+
+    @Autowired
+    private LinkEntityConsoleController linkEntityConsoleController;
 
     @Override
-    public String getMenuTitle() {
+    public String getTitle() {
         return "Create Entities";
     }
 
@@ -64,18 +70,17 @@ public class SubMenuCreateEntities extends Menu {
     public Project createOrUpdateProject(Project value, boolean immediateSafe) throws CommandCanceledException {
         viewWriter.println("*** Project ***");
         Project project = value != null ? value : new Project();
-        SubMenuLinkEntities submenu = new SubMenuLinkEntities();
 
         if (modifyOnlyOnCreate(value))
-            project.setLeader(submenu.selectEmployee());
+            project.setLeader(linkEntityConsoleController.selectEmployee());
         if (askForSkipOnUpdate(value, "project name"))
             project.setName(viewWriter.blockingTypedReadLine("Project name", String.class));
         if (askForSkipOnUpdate(value, "link requirements"))
-            submenu.linkRequirementTo(project, false);
+            linkEntityConsoleController.linkRequirementTo(project, false);
         if (askForSkipOnUpdate(value, "link sprint"))
-            submenu.linkSprintTo(project, false);
+            linkEntityConsoleController.linkSprintTo(project, false);
         if (askForSkipOnUpdate(value, "link employee"))
-            submenu.linkEmployeeTo(project, false);
+            linkEntityConsoleController.linkEmployeeTo(project, false);
 
         if (immediateSafe) {
             projectService.save(project);
@@ -87,10 +92,9 @@ public class SubMenuCreateEntities extends Menu {
     public Sprint createSprint(boolean immediateSafe) throws CommandCanceledException {
         viewWriter.println("*** Sprint ***");
         Sprint sprint = new Sprint();
-        SubMenuLinkEntities submenu = new SubMenuLinkEntities();
         viewWriter.println("You require to select a project to continue:");
-        sprint.setProject(submenu.selectProject());
-        submenu.linkRequirementTo(sprint, false);
+        sprint.setProject(linkEntityConsoleController.selectProject());
+        linkEntityConsoleController.linkRequirementTo(sprint, false);
 
         if (immediateSafe) {
             sprintService.save(sprint);
@@ -138,7 +142,7 @@ public class SubMenuCreateEntities extends Menu {
                 temporaryEmployee.setHourlyRate(viewWriter.blockingTypedReadLine("Hourly rate", Double.class));
         }
         if (askForSkipOnUpdate(value, "hourly rate"))
-            new SubMenuLinkEntities().linkAddressTo(employee, false);
+            linkEntityConsoleController.linkAddressTo(employee, false);
         if (immediateSafe) {
             employeeService.save(employee);
             viewWriter.println("Successfully saved!");
@@ -166,12 +170,12 @@ public class SubMenuCreateEntities extends Menu {
         viewWriter.println("*** LogbookEntry ***");
         LogbookEntry logbookEntry = new LogbookEntry();
         viewWriter.println("You require to select an employee to continue:");
-        Employee employee = new SubMenuLinkEntities().selectEmployee();
+        Employee employee = linkEntityConsoleController.selectEmployee();
         logbookEntry.attachEmployee(employee);
         logbookEntry.setActivity(viewWriter.blockingTypedReadLine("Logbook activity", String.class));
         logbookEntry.setStartTime(viewWriter.blockingTypedReadLine("Start time (dd.MM.yyyy HH:mm)", Date.class));
         logbookEntry.setEndTime(viewWriter.blockingTypedReadLine("End time (dd.MM.yyyy HH:mm)", Date.class));
-        new SubMenuLinkEntities().linkTaskTo(logbookEntry, false);
+        linkEntityConsoleController.linkTaskTo(logbookEntry, false);
 
         if (immediateSafe) {
             logbookEntryService.save(logbookEntry);
@@ -193,10 +197,9 @@ public class SubMenuCreateEntities extends Menu {
             task.setDescription(viewWriter.blockingTypedReadLine("Description", String.class, true));
         if (modifyOnlyOnCreate(value)) {
             task.setEstimatedHours(viewWriter.blockingTypedReadLine("Estimated hours", Integer.class));
-            SubMenuLinkEntities subMenuLinkEntities = new SubMenuLinkEntities();
-            subMenuLinkEntities.linkLogbookEntryTo(task, false);
+            linkEntityConsoleController.linkLogbookEntryTo(task, false);
             viewWriter.println("You require to select a requirement to continue:");
-            task.attachRequirement(subMenuLinkEntities.selectRequirement());
+            task.attachRequirement(linkEntityConsoleController.selectRequirement());
         }
 
         if (immediateSafe) {
@@ -218,11 +221,10 @@ public class SubMenuCreateEntities extends Menu {
         if (askForSkipOnUpdate(value, "description"))
             requirement.setDescription(viewWriter.blockingTypedReadLine("Description", String.class));
         if (modifyOnlyOnCreate(value)) {
-            SubMenuLinkEntities subMenuLinkEntities = new SubMenuLinkEntities();
-            subMenuLinkEntities.linkTaskTo(requirement, false);
-            subMenuLinkEntities.linkSprintTo(requirement, false);
+            linkEntityConsoleController.linkTaskTo(requirement, false);
+            linkEntityConsoleController.linkSprintTo(requirement, false);
             viewWriter.println("You require to select a project to continue:");
-            requirement.attachProject(subMenuLinkEntities.selectProject());
+            requirement.attachProject(linkEntityConsoleController.selectProject());
         }
 
         if (immediateSafe) {
@@ -233,7 +235,7 @@ public class SubMenuCreateEntities extends Menu {
     }
 
     @Override
-    public Menu printMenuOptions() {
+    public AbstractConsoleController printMenuOptions() {
         viewWriter.println("Select an option:");
         printSeparator();
         viewWriter.setIndent(2);

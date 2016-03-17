@@ -1,19 +1,27 @@
-package swt6.ue3.logbook.ui;
+package swt6.ue3.logbook.controller.console;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import swt6.ue3.logbook.domain.Employee;
 import swt6.ue3.logbook.domain.Project;
 import swt6.ue3.logbook.domain.Requirement;
 import swt6.ue3.logbook.domain.Task;
-import swt6.ue3.logbook.io.CommandCanceledException;
+import swt6.ue3.logbook.view.console.CommandCanceledException;
 
 /**
  * @author: Dinu Marius-Constantin
  * @date: 10.03.2016
  */
-public class SubMenuUpdateEntities extends Menu {
+@Controller("updateEntityController")
+public class UpdateEntityConsoleController extends AbstractConsoleController {
+
+    @Autowired
+    private CreateEntityConsoleController createEntityConsoleController;
+    @Autowired
+    private FindEntityConsoleController findEntityConsoleController;
 
     @Override
-    public String getMenuTitle() {
+    public String getTitle() {
         return "Update Entities";
     }
 
@@ -48,38 +56,38 @@ public class SubMenuUpdateEntities extends Menu {
 
     public void updateEmployee() throws CommandCanceledException {
         viewWriter.println("*** Employee ***");
-        Employee employee = new SubMenuFindEntities().findEmployee();
-        employee = new SubMenuCreateEntities().createOrUpdateEmployee(employee, false);
+        Employee employee = findEntityConsoleController.findEmployee();
+        employee = createEntityConsoleController.createOrUpdateEmployee(employee, false);
         employeeService.save(employee);
         viewWriter.println("Successfully updated employee!");
     }
 
     public void updateProject() throws CommandCanceledException {
         viewWriter.println("*** Project ***");
-        Project project = new SubMenuFindEntities().findProject();
-        project = new SubMenuCreateEntities().createOrUpdateProject(project, false);
+        Project project = findEntityConsoleController.findProject();
+        project = createEntityConsoleController.createOrUpdateProject(project, false);
         projectService.save(project);
         viewWriter.println("Successfully updated project!");
     }
 
     public void updateTask() throws CommandCanceledException {
         viewWriter.println("*** Task ***");
-        Task task = new SubMenuFindEntities().findTask();
-        task = new SubMenuCreateEntities().createOrUpdateTask(task, false);
+        Task task = findEntityConsoleController.findTask();
+        task = createEntityConsoleController.createOrUpdateTask(task, false);
         taskService.save(task);
         viewWriter.println("Successfully updated task!");
     }
 
     public void updateRequirement() throws CommandCanceledException {
         viewWriter.println("*** Requirement ***");
-        Requirement requirement = new SubMenuFindEntities().findRequirement();
-        requirement = new SubMenuCreateEntities().createOrUpdateRequirement(requirement, false);
+        Requirement requirement = findEntityConsoleController.findRequirement();
+        requirement = createEntityConsoleController.createOrUpdateRequirement(requirement, false);
         requirementService.save(requirement);
         viewWriter.println("Successfully updated requirement!");
     }
 
     @Override
-    public Menu printMenuOptions() {
+    public AbstractConsoleController printMenuOptions() {
         viewWriter.println("Select an option:");
         printSeparator();
         viewWriter.setIndent(2);

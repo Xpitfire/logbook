@@ -1,16 +1,22 @@
-package swt6.ue3.logbook.ui;
+package swt6.ue3.logbook.controller.console;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import swt6.ue3.logbook.domain.*;
-import swt6.ue3.logbook.io.CommandCanceledException;
+import swt6.ue3.logbook.view.console.CommandCanceledException;
 
 /**
  * @author: Dinu Marius-Constantin
  * @date: 10.03.2016
  */
-public class SubMenuDeleteEntities extends Menu {
+@Controller("deleteEntityController")
+public class DeleteEntityConsoleController extends AbstractConsoleController {
+
+    @Autowired
+    private FindEntityConsoleController findEntityConsoleController;
 
     @Override
-    public String getMenuTitle() {
+    public String getTitle() {
         return "Delete Entities";
     }
 
@@ -48,49 +54,49 @@ public class SubMenuDeleteEntities extends Menu {
     }
 
     public void deleteTask() throws CommandCanceledException {
-        Task task = new SubMenuFindEntities().findTask();
+        Task task = findEntityConsoleController.findTask();
         showConfirmationMessage();
         taskService.remove(task);
         viewWriter.println("Successfully deleted!");
     }
 
     public void deleteSprint() throws CommandCanceledException {
-        Sprint sprint = new SubMenuFindEntities().findSprint();
+        Sprint sprint = findEntityConsoleController.findSprint();
         showConfirmationMessage();
         sprintService.remove(sprint);
         viewWriter.println("Successfully deleted!");
     }
 
     public void deleteRequirement() throws CommandCanceledException {
-        Requirement requirement = new SubMenuFindEntities().findRequirement();
+        Requirement requirement = findEntityConsoleController.findRequirement();
         showConfirmationMessage();
         requirementService.remove(requirement);
         viewWriter.println("Successfully deleted!");
     }
 
     public void deleteProject() throws CommandCanceledException {
-        Project project = new SubMenuFindEntities().findProject();
+        Project project = findEntityConsoleController.findProject();
         showConfirmationMessage();
         projectService.remove(project);
         viewWriter.println("Successfully deleted!");
     }
 
     public void deleteLogbookEntry() throws CommandCanceledException {
-        LogbookEntry logbookEntry = new SubMenuFindEntities().findLogbookEntry();
+        LogbookEntry logbookEntry = findEntityConsoleController.findLogbookEntry();
         showConfirmationMessage();
         logbookEntryService.remove(logbookEntry);
         viewWriter.println("Successfully deleted!");
     }
 
     public void deleteEmployee() throws CommandCanceledException {
-        Employee employee = new SubMenuFindEntities().findEmployee();
+        Employee employee = findEntityConsoleController.findEmployee();
         showConfirmationMessage();
         employeeService.remove(employee);
         viewWriter.println("Successfully deleted!");
     }
 
     @Override
-    public Menu printMenuOptions() {
+    public AbstractConsoleController printMenuOptions() {
         viewWriter.println("Select an option:");
         printSeparator();
         viewWriter.setIndent(2);

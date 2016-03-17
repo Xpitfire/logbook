@@ -1,4 +1,4 @@
-package swt6.ue3.logbook.io;
+package swt6.ue3.logbook.view.console;
 
 /**
  * @author: Dinu Marius-Constantin

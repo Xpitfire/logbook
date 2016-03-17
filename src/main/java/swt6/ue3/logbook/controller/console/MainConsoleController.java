@@ -1,16 +1,30 @@
-package swt6.ue3.logbook.ui;
+package swt6.ue3.logbook.controller.console;
 
-import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 
 /**
  * @author: Dinu Marius-Constantin
  * @date: 10.03.2016
  */
-@Component("mainMenu")
-public class MainMenu extends Menu {
+@Controller("mainController")
+public class MainConsoleController extends AbstractConsoleController {
+
+    @Autowired
+    private PrintStatisticConsoleController printStatisticConsoleController;
+    @Autowired
+    private FindEntityConsoleController findEntityConsoleController;
+    @Autowired
+    private CreateEntityConsoleController createEntityConsoleController;
+    @Autowired
+    private DeleteEntityConsoleController deleteEntityConsoleController;
+    @Autowired
+    private LinkEntityConsoleController linkEntityConsoleController;
+    @Autowired
+    private UpdateEntityConsoleController updateEntityConsoleController;
 
     @Override
-    public String getMenuTitle() {
+    public String getTitle() {
         return "Main Menu";
     }
 
@@ -21,27 +35,25 @@ public class MainMenu extends Menu {
 
             try {
 
-                System.out.println(employeeService.toString());
-
                 if (input.equalsIgnoreCase("m")) {
                     printMenuOptions();
                 } else if (input.equalsIgnoreCase("p")) {
-                    new SubMenuPrintStatistics().run();
+                    printStatisticConsoleController.runAndPrintOptions();
                     printEntranceInfo();
                 } else if (input.equalsIgnoreCase("f")) {
-                    new SubMenuFindEntities().run();
+                    findEntityConsoleController.runAndPrintOptions();
                     printEntranceInfo();
                 } else if (input.equalsIgnoreCase("c")) {
-                    new SubMenuCreateEntities().run();
+                    createEntityConsoleController.runAndPrintOptions();
                     printEntranceInfo();
                 } else if (input.equalsIgnoreCase("d")) {
-                    new SubMenuDeleteEntities().run();
+                    deleteEntityConsoleController.runAndPrintOptions();
                     printEntranceInfo();
                 } else if (input.equalsIgnoreCase("l")) {
-                    new SubMenuLinkEntities().run();
+                    linkEntityConsoleController.runAndPrintOptions();
                     printEntranceInfo();
                 } else if (input.equalsIgnoreCase("u")) {
-                    new SubMenuUpdateEntities().run();
+                    updateEntityConsoleController.runAndPrintOptions();
                     printEntranceInfo();
                 } else if (input.equalsIgnoreCase("q")) {
                     // skip
@@ -59,7 +71,7 @@ public class MainMenu extends Menu {
     }
 
     @Override
-    public Menu printMenuOptions() {
+    public AbstractConsoleController printMenuOptions() {
         viewWriter.println("Select an option:");
         printSeparator();
         viewWriter.setIndent(2);

@@ -3,7 +3,7 @@ package swt6.ue3.logbook;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
-import swt6.ue3.logbook.ui.Menu;
+import swt6.ue3.logbook.controller.console.AbstractConsoleController;
 
 /**
  * @author: Dinu Marius-Constantin
@@ -14,9 +14,8 @@ public class Application {
 
     public static void main(String[] args) {
         ApplicationContext applicationContext = SpringApplication.run(Application.class, args);
-        Menu menu = applicationContext.getBean("mainMenu", Menu.class);
-        menu.printHeader().printEntranceInfo();
-        menu.run();
+        AbstractConsoleController menu = applicationContext.getBean("mainController", AbstractConsoleController.class);
+        menu.printHeader().printEntranceInfo().run();
     }
 
 }

@@ -29,14 +29,14 @@ public class JpaInterceptor {
             participate = true;
         else {
             logger.trace("Opening EntityManager");
-            Util.openEntityManager(entityManagerFactory);
+            JpaUtil.openEntityManager(entityManagerFactory);
         }
 
         try {
             return pjp.proceed(); // delegates to method of target class.
         } finally {
             if (!participate) {
-                Util.closeEntityManager(entityManagerFactory);
+                JpaUtil.closeEntityManager(entityManagerFactory);
                 logger.trace("Closed EntityManager");
             }
         }

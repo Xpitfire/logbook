@@ -12,7 +12,7 @@ import swt6.ue3.logbook.domain.Sprint;
  * @author: Dinu Marius-Constantin
  * @date: 14.03.2016
  */
-@Service
+@Service("sprintService")
 @Transactional
 public class SprintServiceImpl implements SprintService {
     @Autowired

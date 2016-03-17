@@ -1,6 +1,7 @@
 package swt6.ue3.logbook.ui;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import swt6.ue3.logbook.io.CommandCanceledException;
 import swt6.ue3.logbook.io.ViewWriter;
 import swt6.ue3.logbook.logic.*;

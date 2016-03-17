@@ -15,7 +15,7 @@ import java.util.*;
  * @author: Dinu Marius-Constantin
  * @date: 10.03.2016
  */
-@Component
+@Component("consoleViewWriter")
 public class ConsoleViewWriterImpl implements ViewWriter {
 
     private final BufferedReader in;

@@ -1,9 +1,12 @@
 package swt6.ue3.logbook.ui;
 
+import org.springframework.stereotype.Component;
+
 /**
  * @author: Dinu Marius-Constantin
  * @date: 10.03.2016
  */
+@Component("mainMenu")
 public class MainMenu extends Menu {
 
     @Override

@@ -26,7 +26,7 @@ public class Task implements Serializable {
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE},
             fetch = FetchType.EAGER,
-            optional = true)
+            optional = false)
     private Requirement requirement;
 
     public Task() {

@@ -62,12 +62,6 @@ public class CreateControllerImpl implements CreateController {
             project.setLeader(linkController.selectEmployee());
         if (askForSkipOnUpdate(value, "project name"))
             project.setName(viewWriter.blockingTypedReadLine("Project name", String.class));
-        if (askForSkipOnUpdate(value, "link requirements"))
-            linkController.linkRequirementTo(project, false);
-        if (askForSkipOnUpdate(value, "link sprint"))
-            linkController.linkSprintTo(project, false);
-        if (askForSkipOnUpdate(value, "link employee"))
-            linkController.linkEmployeeTo(project, false);
 
         if (immediateSafe) {
             projectService.save(project);
@@ -82,7 +76,6 @@ public class CreateControllerImpl implements CreateController {
         Sprint sprint = new Sprint();
         viewWriter.println("You require to select a project to continue:");
         sprint.setProject(linkController.selectProject());
-        linkController.linkRequirementTo(sprint, false);
 
         if (immediateSafe) {
             sprintService.save(sprint);
@@ -168,7 +161,6 @@ public class CreateControllerImpl implements CreateController {
         logbookEntry.setActivity(viewWriter.blockingTypedReadLine("Logbook activity", String.class));
         logbookEntry.setStartTime(viewWriter.blockingTypedReadLine("Start time (dd.MM.yyyy HH:mm)", Date.class));
         logbookEntry.setEndTime(viewWriter.blockingTypedReadLine("End time (dd.MM.yyyy HH:mm)", Date.class));
-        linkController.linkTaskTo(logbookEntry, false);
 
         if (immediateSafe) {
             logbookEntryService.save(logbookEntry);
@@ -192,7 +184,6 @@ public class CreateControllerImpl implements CreateController {
             task.setDescription(viewWriter.blockingTypedReadLine("Description", String.class, true));
         if (modifyOnlyOnCreate(value)) {
             task.setEstimatedHours(viewWriter.blockingTypedReadLine("Estimated hours", Integer.class));
-            linkController.linkLogbookEntryTo(task, false);
             viewWriter.println("You require to select a requirement to continue:");
             task.attachRequirement(linkController.selectRequirement());
         }
@@ -218,8 +209,6 @@ public class CreateControllerImpl implements CreateController {
         if (askForSkipOnUpdate(value, "description"))
             requirement.setDescription(viewWriter.blockingTypedReadLine("Description", String.class));
         if (modifyOnlyOnCreate(value)) {
-            linkController.linkTaskTo(requirement, false);
-            linkController.linkSprintTo(requirement, false);
             viewWriter.println("You require to select a project to continue:");
             requirement.attachProject(linkController.selectProject());
         }

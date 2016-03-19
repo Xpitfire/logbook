@@ -155,9 +155,93 @@ public class LinkControllerImpl implements LinkController {
     }
 
     @Override
-    public LogbookEntry linkLogbookEntryTo(Object object, boolean mandatory) throws CommandCanceledException {
+    public Sprint linkSprintTo(Sprint s, Object object, boolean mandatory) {
+        if (mandatory || viewWriter.blockingTypedReadLine("Optionally add a sprint? (y/n)", Boolean.class)) {
+            Sprint sprint = s != null ? s : selectSprint();
+            if (object instanceof Project) {
+                ((Project)object).addSprint(sprint);
+            } else if (object instanceof Requirement) {
+                ((Requirement)object).attachSprint(sprint);
+            } else {
+                throw new UnsupportedOperationException("Add cannot be applied for this object type!");
+            }
+            return sprint;
+        }
+        return null;
+    }
+
+    @Override
+    public Project linkProjectTo(Project p, Object object, boolean mandatory) {
+        if (mandatory || viewWriter.blockingTypedReadLine("Optionally add a project? (y/n)", Boolean.class)) {
+            Project project = p != null ? p : selectProject();
+            if (object instanceof Requirement) {
+                ((Requirement)object).attachProject(project);
+            } else if (object instanceof Sprint) {
+                ((Sprint)object).attachProject(project);
+            } else if (object instanceof Employee) {
+                ((Employee)object).addProject(project);
+            } else {
+                throw new UnsupportedOperationException("Add cannot be applied for this object type!");
+            }
+            return project;
+        }
+        return null;
+    }
+
+    @Override
+    public Employee linkEmployeeTo(Employee e, Object object, boolean mandatory) {
+        if (mandatory || viewWriter.blockingTypedReadLine("Optionally add a employee? (y/n)", Boolean.class)) {
+            Employee employee = e != null ? e : selectEmployee();
+            if (object instanceof Project) {
+                ((Project)object).addMember(employee);
+            } else if (object instanceof LogbookEntry) {
+                ((LogbookEntry)object).attachEmployee(employee);
+            } else {
+                throw new UnsupportedOperationException("Add cannot be applied for this object type!");
+            }
+            return employee;
+        }
+        return null;
+    }
+
+    @Override
+    public Requirement linkRequirementTo(Requirement r, Object object, boolean mandatory) {
+        if (mandatory || viewWriter.blockingTypedReadLine("Optionally add a requirement? (y/n)", Boolean.class)) {
+            Requirement requirement = r != null ? r : selectRequirement();
+            if (object instanceof Sprint) {
+                ((Sprint)object).addRequirement(requirement);
+            } else if (object instanceof Task) {
+                ((Task)object).attachRequirement(requirement);
+            } else if (object instanceof Project) {
+                ((Project)object).addRequirement(requirement);
+            } else {
+                throw new UnsupportedOperationException("Add cannot be applied for this object type!");
+            }
+            return requirement;
+        }
+        return null;
+    }
+
+    @Override
+    public Task linkTaskTo(Task t, Object object, boolean mandatory) {
+        if (mandatory || viewWriter.blockingTypedReadLine("Optionally add a task? (y/n)", Boolean.class)) {
+            Task task = t != null ? t : selectTask();
+            if (object instanceof LogbookEntry) {
+                ((LogbookEntry)object).attachTask(task);
+            } else if (object instanceof Requirement) {
+                ((Requirement)object).addTask(task);
+            } else {
+                throw new UnsupportedOperationException("Add cannot be applied for this object type!");
+            }
+            return task;
+        }
+        return null;
+    }
+
+    @Override
+    public LogbookEntry linkLogbookEntryTo(LogbookEntry l, Object object, boolean mandatory) {
         if (mandatory || viewWriter.blockingTypedReadLine("Optionally add a logbook entry? (y/n)", Boolean.class)) {
-            LogbookEntry logbookEntry = selectLogbookEntry();
+            LogbookEntry logbookEntry = l != null ? l : selectLogbookEntry();
             if (object instanceof Task) {
                 ((Task)object).addLogbookEntries(logbookEntry);
             } else if (object instanceof Employee) {
@@ -181,87 +265,33 @@ public class LinkControllerImpl implements LinkController {
     }
 
     @Override
+    public LogbookEntry linkLogbookEntryTo(Object object, boolean mandatory) throws CommandCanceledException {
+        return linkLogbookEntryTo(null, object, mandatory);
+    }
+
+    @Override
     public Task linkTaskTo(Object object, boolean mandatory) throws CommandCanceledException {
-        if (mandatory || viewWriter.blockingTypedReadLine("Optionally add a task? (y/n)", Boolean.class)) {
-            Task task = selectTask();
-            if (object instanceof LogbookEntry) {
-                ((LogbookEntry)object).attachTask(task);
-            } else if (object instanceof Requirement) {
-                ((Requirement)object).addTask(task);
-            } else {
-                throw new UnsupportedOperationException("Add cannot be applied for this object type!");
-            }
-            return task;
-        }
-        return null;
+        return linkTaskTo(null, object, mandatory);
     }
 
     @Override
     public Requirement linkRequirementTo(Object object, boolean mandatory) throws CommandCanceledException {
-        if (mandatory || viewWriter.blockingTypedReadLine("Optionally add a requirement? (y/n)", Boolean.class)) {
-            Requirement requirement = selectRequirement();
-            if (object instanceof Sprint) {
-                ((Sprint)object).addRequirement(requirement);
-            } else if (object instanceof Task) {
-                ((Task)object).attachRequirement(requirement);
-            } else if (object instanceof Project) {
-                ((Project)object).addRequirement(requirement);
-            } else {
-                throw new UnsupportedOperationException("Add cannot be applied for this object type!");
-            }
-            return requirement;
-        }
-        return null;
+        return linkRequirementTo(null, object, mandatory);
     }
 
     @Override
     public Employee linkEmployeeTo(Object object, boolean mandatory) throws CommandCanceledException {
-        if (mandatory || viewWriter.blockingTypedReadLine("Optionally add a employee? (y/n)", Boolean.class)) {
-            Employee employee = selectEmployee();
-            if (object instanceof Project) {
-                ((Project)object).addMember(employee);
-            } else if (object instanceof LogbookEntry) {
-                ((LogbookEntry)object).attachEmployee(employee);
-            } else {
-                throw new UnsupportedOperationException("Add cannot be applied for this object type!");
-            }
-            return employee;
-        }
-        return null;
+        return linkEmployeeTo(null, object, mandatory);
     }
 
     @Override
     public Project linkProjectTo(Object object, boolean mandatory) throws CommandCanceledException {
-        if (mandatory || viewWriter.blockingTypedReadLine("Optionally add a project? (y/n)", Boolean.class)) {
-            Project project = selectProject();
-            if (object instanceof Requirement) {
-                ((Requirement)object).attachProject(project);
-            } else if (object instanceof Sprint) {
-                ((Sprint)object).attachProject(project);
-            } else if (object instanceof Employee) {
-                ((Employee)object).addProject(project);
-            } else {
-                throw new UnsupportedOperationException("Add cannot be applied for this object type!");
-            }
-            return project;
-        }
-        return null;
+        return linkProjectTo(null, object, mandatory);
     }
 
     @Override
     public Sprint linkSprintTo(Object object, boolean mandatory) throws CommandCanceledException {
-        if (mandatory || viewWriter.blockingTypedReadLine("Optionally add a sprint? (y/n)", Boolean.class)) {
-            Sprint sprint = selectSprint();
-            if (object instanceof Project) {
-                ((Project)object).addSprint(sprint);
-            } else if (object instanceof Requirement) {
-                ((Requirement)object).attachSprint(sprint);
-            } else {
-                throw new UnsupportedOperationException("Add cannot be applied for this object type!");
-            }
-            return sprint;
-        }
-        return null;
+        return linkSprintTo(null, object, mandatory);
     }
 
 }

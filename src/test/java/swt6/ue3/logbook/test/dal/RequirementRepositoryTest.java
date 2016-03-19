@@ -1,9 +1,9 @@
-package swt6.ue3.logbook.test;
+package swt6.ue3.logbook.test.dal;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import swt6.ue3.logbook.domain.Requirement;
+import swt6.ue3.logbook.test.BaseTest;
 
 import static org.junit.Assert.*;
 
@@ -11,7 +11,7 @@ import static org.junit.Assert.*;
  * @author: Dinu Marius-Constantin
  * @date: 14.03.2016
  */
-public class RequirementDaoTest extends BaseTest {
+public class RequirementRepositoryTest extends BaseTest {
 
     @Before
     @Override

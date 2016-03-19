@@ -1,9 +1,10 @@
-package swt6.ue3.logbook.test;
+package swt6.ue3.logbook.test.dal;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import swt6.ue3.logbook.annotation.SessionExtended;
 import swt6.ue3.logbook.domain.LogbookEntry;
+import swt6.ue3.logbook.test.BaseTest;
 import swt6.ue3.util.DateUtil;
 
 import java.util.Date;
@@ -15,7 +16,7 @@ import static org.junit.Assert.*;
  * @author: Dinu Marius-Constantin
  * @date: 12.03.2016
  */
-public class LogbookDaoTest extends BaseTest {
+public class LogbookRepositoryTest extends BaseTest {
 
     @Before
     @Override
@@ -26,18 +27,21 @@ public class LogbookDaoTest extends BaseTest {
         logbookEntry3.attachEmployee(permanentEmployee1);
     }
 
+    @SessionExtended
     @Test
     public void testCountLogbookEntry() {
         logbookEntryRepo.save(logbookEntry2);
         assertTrue(logbookEntryRepo.count() == 1);
     }
 
+    @SessionExtended
     @Test
     public void testInsertLogbookEntry() {
         LogbookEntry l = logbookEntryRepo.save(logbookEntry1);
         assertNotNull(l.getId());
     }
 
+    @SessionExtended
     @Test
     public void testProtectedUpdateLogbookEntry() {
         LogbookEntry l = logbookEntryRepo.save(logbookEntry1);
@@ -45,7 +49,7 @@ public class LogbookDaoTest extends BaseTest {
         Date endDate = DateUtil.getTime(1988, 7, 1, 11, 30);
         l.setActivity("test activity");
         l = logbookEntryRepo.save(logbookEntry1);
-        assertNotEquals("test activity", l.getActivity());
+        assertEquals("test activity", l.getActivity());
     }
 
     @Test

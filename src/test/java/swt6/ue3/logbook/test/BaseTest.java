@@ -3,7 +3,13 @@ package swt6.ue3.logbook.test;
 import com.ninja_squad.dbsetup.DbSetup;
 import com.ninja_squad.dbsetup.destination.DriverManagerDestination;
 import com.ninja_squad.dbsetup.operation.Operation;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.annotation.Rollback;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.transaction.annotation.Transactional;
+import swt6.ue3.logbook.controller.*;
 import swt6.ue3.logbook.dal.*;
 import swt6.ue3.logbook.domain.*;
 import swt6.ue3.util.DateUtil;
@@ -15,6 +21,10 @@ import static com.ninja_squad.dbsetup.Operations.sequenceOf;
  * @author: Dinu Marius-Constantin
  * @date: 12.03.2016
  */
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = {"classpath:/swt6/ue3/logbook/test/applicationContext-test.xml"})
+@Transactional(transactionManager = "transactionManagerJpa")
+@Rollback
 public abstract class BaseTest {
 
     @Autowired
@@ -29,6 +39,19 @@ public abstract class BaseTest {
     protected RequirementRepository requirementRepo;
     @Autowired
     protected SprintRepository sprintRepo;
+
+    @Autowired
+    protected CreateController createController;
+    @Autowired
+    protected DeleteController deleteController;
+    @Autowired
+    protected FindController findController;
+    @Autowired
+    protected LinkController linkController;
+    @Autowired
+    protected PrintController printController;
+    @Autowired
+    protected UpdateController updateController;
 
     protected Employee permanentEmployee1;
     protected Employee permanentEmployee2;

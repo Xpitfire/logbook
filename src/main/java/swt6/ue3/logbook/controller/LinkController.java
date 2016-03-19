@@ -23,6 +23,13 @@ public interface LinkController {
     Address linkAddressTo(Employee employee, boolean mandatory);
     LogbookEntry linkLogbookEntryTo(Object object, boolean mandatory);
 
+    Sprint linkSprintTo(Sprint sprint, Object object, boolean mandatory);
+    Project linkProjectTo(Project project, Object object, boolean mandatory);
+    Employee linkEmployeeTo(Employee employee, Object object, boolean mandatory);
+    Requirement linkRequirementTo(Requirement requirement, Object object, boolean mandatory);
+    Task linkTaskTo(Task task, Object object, boolean mandatory);
+    LogbookEntry linkLogbookEntryTo(LogbookEntry logbookEntry, Object object, boolean mandatory);
+
     void linkLogbookEntryToTask();
     void linkLogbookEntryToEmployee();
     void linkSprintToProject();

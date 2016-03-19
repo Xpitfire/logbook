@@ -30,23 +30,23 @@ public class PrintStatisticConsoleController extends AbstractConsoleController {
                 if (input.equalsIgnoreCase("m")) {
                     printMenuOptions();
                 } else if (input.equalsIgnoreCase("a")) {
-                    printAll();
+                    printEntityAll();
                 } else if (input.equalsIgnoreCase("e")) {
-                    printEmployees();
+                    printEntityEmployees();
                 } else if (input.equalsIgnoreCase("l")) {
-                    printLogbookEntries();
+                    printEntityLogbookEntries();
                 } else if (input.equalsIgnoreCase("p")) {
-                    printProjects();
+                    printEntityProjects();
                 } else if (input.equalsIgnoreCase("r")) {
-                    printRequirements();
+                    printEntityRequirements();
                 } else if (input.equalsIgnoreCase("s")) {
-                    printSprints();
+                    printEntitySprints();
                 } else if (input.equalsIgnoreCase("u")) {
-                    printBurndownCharts();
+                    printStatsBurndownCharts();
                 } else if (input.equalsIgnoreCase("c")) {
-                    printProjectTotalCosts();
+                    printStatsProjectTotalCosts();
                 } else if (input.equalsIgnoreCase("t")) {
-                    printTasks();
+                    printEntityTasks();
                 } else if (input.equalsIgnoreCase("b")) {
                     // skip
                 } else {
@@ -60,7 +60,7 @@ public class PrintStatisticConsoleController extends AbstractConsoleController {
         } while (!input.equalsIgnoreCase("b"));
     }
 
-    public void printProjectTotalCosts() {
+    public void printStatsProjectTotalCosts() {
         viewWriter.println("*** PRINT PROJECT COSTS ***");
         viewWriter.setIndent(2);
         viewWriter.printTableHeader("Projects", "Total costs (€)");
@@ -70,7 +70,7 @@ public class PrintStatisticConsoleController extends AbstractConsoleController {
         viewWriter.resetIndent();
     }
 
-    public void printBurndownCharts() throws CommandCanceledException {
+    public void printStatsBurndownCharts() throws CommandCanceledException {
         viewWriter.println("*** PRINT BURNDOWN CHARTS ***");
         viewWriter.setIndent(2);
         Project project = findEntityConsoleController.findProject();
@@ -88,17 +88,17 @@ public class PrintStatisticConsoleController extends AbstractConsoleController {
         viewWriter.resetIndent();
     }
 
-    public AbstractConsoleController printAll() {
-        printEmployees();
-        printLogbookEntries();
-        printProjects();
-        printTasks();
-        printSprints();
-        printRequirements();
+    public AbstractConsoleController printEntityAll() {
+        printEntityEmployees();
+        printEntityLogbookEntries();
+        printEntityProjects();
+        printEntityTasks();
+        printEntitySprints();
+        printEntityRequirements();
         return this;
     }
 
-    public AbstractConsoleController printSprints() {
+    public AbstractConsoleController printEntitySprints() {
         viewWriter.println("*** PRINT SPRINTS ***");
         viewWriter.setIndent(2);
         sprintService.findAll().forEach(viewWriter::println);
@@ -106,7 +106,7 @@ public class PrintStatisticConsoleController extends AbstractConsoleController {
         return this;
     }
 
-    public AbstractConsoleController printRequirements() {
+    public AbstractConsoleController printEntityRequirements() {
         viewWriter.println("*** PRINT REQUIREMENTS ***");
         viewWriter.setIndent(2);
         requirementService.findAll().forEach(viewWriter::println);
@@ -114,7 +114,7 @@ public class PrintStatisticConsoleController extends AbstractConsoleController {
         return this;
     }
 
-    public AbstractConsoleController printTasks() {
+    public AbstractConsoleController printEntityTasks() {
         viewWriter.println("*** PRINT TASKS ***");
         viewWriter.setIndent(2);
         taskService.findAll().forEach(viewWriter::println);
@@ -122,7 +122,7 @@ public class PrintStatisticConsoleController extends AbstractConsoleController {
         return this;
     }
 
-    public AbstractConsoleController printProjects() {
+    public AbstractConsoleController printEntityProjects() {
         viewWriter.println("*** PRINT PROJECTS ***");
         viewWriter.setIndent(2);
         projectService.findAll().forEach(viewWriter::println);
@@ -130,7 +130,7 @@ public class PrintStatisticConsoleController extends AbstractConsoleController {
         return this;
     }
 
-    public AbstractConsoleController printLogbookEntries() {
+    public AbstractConsoleController printEntityLogbookEntries() {
         viewWriter.println("*** PRINT LOGBOOK ENTRIES ***");
         viewWriter.setIndent(2);
         logbookEntryService.findAll().forEach(viewWriter::println);
@@ -138,7 +138,7 @@ public class PrintStatisticConsoleController extends AbstractConsoleController {
         return this;
     }
 
-    public AbstractConsoleController printEmployees() {
+    public AbstractConsoleController printEntityEmployees() {
         viewWriter.println("*** PRINT EMPLOYEES ***");
         viewWriter.setIndent(2);
         employeeService.findAll().forEach(viewWriter::println);

@@ -2,6 +2,9 @@ package swt6.ue3.logbook.controller.console;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+import swt6.ue3.logbook.annotation.SessionExtended;
 import swt6.ue3.logbook.domain.*;
 import swt6.ue3.logbook.view.console.CommandCanceledException;
 
@@ -67,6 +70,7 @@ public class CreateEntityConsoleController extends AbstractConsoleController {
         return createOrUpdateProject(null, immediateSafe);
     }
 
+    @SessionExtended
     public Project createOrUpdateProject(Project value, boolean immediateSafe) throws CommandCanceledException {
         viewWriter.println("*** Project ***");
         Project project = value != null ? value : new Project();
@@ -89,6 +93,7 @@ public class CreateEntityConsoleController extends AbstractConsoleController {
         return project;
     }
 
+    @SessionExtended
     public Sprint createSprint(boolean immediateSafe) throws CommandCanceledException {
         viewWriter.println("*** Sprint ***");
         Sprint sprint = new Sprint();
@@ -107,6 +112,7 @@ public class CreateEntityConsoleController extends AbstractConsoleController {
         return createOrUpdateEmployee(null, immediateSafe);
     }
 
+    @SessionExtended
     public Employee createOrUpdateEmployee(Employee value, boolean immediateSafe) throws CommandCanceledException {
         viewWriter.println("*** Employee ***");
         Employee employee = value;
@@ -166,6 +172,7 @@ public class CreateEntityConsoleController extends AbstractConsoleController {
         return address;
     }
 
+    @SessionExtended
     public LogbookEntry createLogbookEntry(boolean immediateSafe) throws CommandCanceledException {
         viewWriter.println("*** LogbookEntry ***");
         LogbookEntry logbookEntry = new LogbookEntry();
@@ -188,6 +195,7 @@ public class CreateEntityConsoleController extends AbstractConsoleController {
         return createOrUpdateTask(null, immediateSafe);
     }
 
+    @SessionExtended
     public Task createOrUpdateTask(Task value, boolean immediateSafe) throws CommandCanceledException {
         viewWriter.println("*** Task ***");
         Task task = value != null ? value : new Task();
@@ -213,6 +221,7 @@ public class CreateEntityConsoleController extends AbstractConsoleController {
         return createOrUpdateRequirement(null, immediateSafe);
     }
 
+    @SessionExtended
     public Requirement createOrUpdateRequirement(Requirement value, boolean immediateSafe) throws CommandCanceledException {
         viewWriter.println("*** Requirement ***");
         Requirement requirement = value != null ? value : new Requirement();

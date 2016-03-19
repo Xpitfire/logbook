@@ -33,23 +33,17 @@
         <property name="jpaProperties">
             <props>
                 <prop key="hibernate.dialect">${hibernate.dialect}</prop>
-                <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.show_sql">false</prop>
                 <prop key="hibernate.format_sql">false</prop>
-                <prop key="hibernate.hbm2ddl.auto">create</prop>
+                <prop key="hibernate.hbm2ddl.auto">update</prop>
             </props>
         </property>
-    </bean>
-
-    <bean id="viewWriter" class="swt6.ue3.logbook.view.console.ViewWriterConsoleImpl" />
-    <bean id="menu" class="swt6.ue3.logbook.controller.console.AbstractConsoleController" abstract="true">
-        <property name="viewWriter" ref="viewWriter" />
     </bean>
 
     <!-- bean post-processor for JPA annotations -->
     <bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor"/>
 
     <!-- ==================== DAO & BUSINESS OBJECT DEFINITIONS ================= -->
-    <context:component-scan base-package="swt6.ue3.logbook"/>
 
     <jpa:repositories base-package="swt6.ue3.logbook.dal"
                       entity-manager-factory-ref="emFactory"

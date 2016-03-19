@@ -40,11 +40,6 @@
         </property>
     </bean>
 
-    <bean id="viewWriter" class="swt6.ue3.logbook.view.console.ViewWriterConsoleImpl" />
-    <bean id="menu" class="swt6.ue3.logbook.controller.console.AbstractConsoleController" abstract="true">
-        <property name="viewWriter" ref="viewWriter" />
-    </bean>
-
     <!-- bean post-processor for JPA annotations -->
     <bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor"/>
 
@@ -62,6 +57,8 @@
 
     <!-- requires @Transactional annototations on business methods -->
     <tx:annotation-driven transaction-manager="transactionManagerJpa"/>
+
+    <aop:aspectj-autoproxy proxy-target-class="true"/>
 
 </beans>
 

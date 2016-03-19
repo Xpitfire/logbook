@@ -2,133 +2,159 @@ package swt6.ue3.logbook.controller.console;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import swt6.ue3.logbook.controller.CreateController;
+import swt6.ue3.logbook.controller.FindController;
+import swt6.ue3.logbook.controller.LinkController;
 import swt6.ue3.logbook.domain.*;
-import swt6.ue3.logbook.view.console.CommandCanceledException;
+import swt6.ue3.logbook.logic.*;
+import swt6.ue3.logbook.view.ViewWriter;
+import swt6.ue3.logbook.view.exception.CommandCanceledException;
 
 /**
  * @author: Dinu Marius-Constantin
- * @date: 10.03.2016
+ * @date: 19.03.2016
  */
 @Controller("linkEntityController")
-public class LinkEntityConsoleController extends AbstractConsoleController {
+public class LinkControllerImpl implements LinkController {
+
+    private String input;
 
     @Autowired
-    private CreateEntityConsoleController createEntityConsoleController;
+    private ViewWriter viewWriter;
+
     @Autowired
-    private FindEntityConsoleController findEntityConsoleController;
+    private EmployeeService employeeService;
+    @Autowired
+    private LogbookEntryService logbookEntryService;
+    @Autowired
+    private TaskService taskService;
+    @Autowired
+    private ProjectService projectService;
+    @Autowired
+    private RequirementService requirementService;
+    @Autowired
+    private SprintService sprintService;
+
+    @Autowired
+    private CreateController createController;
+
+    @Autowired
+    private FindController findController;
 
     @Override
-    public String getTitle() {
-        return "Link Entities";
-    }
-
-    @Override
-    public void run() {
-        do {
-            input = viewWriter.readLine("> ");
-
-            try {
-                if (input.equalsIgnoreCase("m")) {
-                    printMenuOptions();
-                } else if (input.equalsIgnoreCase("lt")) {
-                    logbookEntryService.save(linkLogbookEntryTo(selectTask(), true));
-                } else if (input.equalsIgnoreCase("le")) {
-                    logbookEntryService.save(linkLogbookEntryTo(selectEmployee(), true));
-                } else if (input.equalsIgnoreCase("sp")) {
-                    sprintService.save(linkSprintTo(selectProject(), true));
-                } else if (input.equalsIgnoreCase("sr")) {
-                    sprintService.save(linkSprintTo(selectRequirement(), true));
-                } else if (input.equalsIgnoreCase("pr")) {
-                    projectService.save(linkProjectTo(selectRequirement(), true));
-                } else if (input.equalsIgnoreCase("pe")) {
-                    projectService.save(linkProjectTo(selectEmployee(), true));
-                } else if (input.equalsIgnoreCase("rt")) {
-                    requirementService.save(linkRequirementTo(selectTask(), true));
-                } else if (input.equalsIgnoreCase("b")) {
-                    // skip
-                } else {
-                    printInvalidInput();
-                }
-            } catch (CommandCanceledException ex) {
-                printUserCancelMessage();
-                printEntranceInfo();
-            }
-
-        } while (!input.equalsIgnoreCase("b"));
-    }
-
     public LogbookEntry selectLogbookEntry() throws CommandCanceledException {
         LogbookEntry logbookEntry;
         input = logbookEntryService.count() <= 0 ? "n" : viewWriter.blockingReadCommand("Please select an option? [n] = CREATE NEW LOGBOOK ENTRY, [s] = SELECT ONE FROM DATABASE", "n", "s");
 
         if (input.equalsIgnoreCase("n")) {
-            logbookEntry = createEntityConsoleController.createLogbookEntry(false);
+            logbookEntry = createController.createLogbookEntry(false);
         } else {
-            logbookEntry = findEntityConsoleController.findLogbookEntry();
+            logbookEntry = findController.findLogbookEntry();
         }
         return logbookEntry;
     }
 
+    @Override
     public Task selectTask() throws CommandCanceledException {
         Task task;
         input = taskService.count() <= 0 ? "n" : viewWriter.blockingReadCommand("Please select an option? [n] = CREATE NEW TASK, [s] = SELECT ONE FROM DATABASE", "n", "s");
 
         if (input.equalsIgnoreCase("n")) {
-            task = createEntityConsoleController.createTask(false);
+            task = createController.createTask(false);
         } else {
-            task = findEntityConsoleController.findTask();
+            task = findController.findTask();
         }
         return task;
     }
 
+    @Override
     public Sprint selectSprint() throws CommandCanceledException {
         Sprint sprint;
         input = sprintService.count() <= 0 ? "n" : viewWriter.blockingReadCommand("Please select an option? [n] = CREATE NEW SPRINT, [s] = SELECT ONE FROM DATABASE", "n", "s");
 
         if (input.equalsIgnoreCase("n")) {
-            sprint = createEntityConsoleController.createSprint(false);
+            sprint = createController.createSprint(false);
         } else {
-            sprint = findEntityConsoleController.findSprint();
+            sprint = findController.findSprint();
         }
         return sprint;
     }
 
+    @Override
     public Employee selectEmployee() throws CommandCanceledException {
         Employee employee;
         input = employeeService.count() <= 0 ? "n" : viewWriter.blockingReadCommand("Please select an option? [n] = CREATE NEW EMPLOYEE, [s] = SELECT ONE FROM DATABASE", "n", "s");
 
         if (input.equalsIgnoreCase("n")) {
-            employee = createEntityConsoleController.createEmployee(false);
+            employee = createController.createEmployee(false);
         } else {
-            employee = findEntityConsoleController.findEmployee();
+            employee = findController.findEmployee();
         }
         return employee;
     }
 
+    @Override
     public Requirement selectRequirement() throws CommandCanceledException {
         Requirement requirement;
         input = requirementService.count() <= 0 ? "n" : viewWriter.blockingReadCommand("Please select an option? [n] = CREATE NEW REQUIREMENT, [s] = SELECT ONE FROM DATABASE", "n", "s");
 
         if (input.equalsIgnoreCase("n")) {
-            requirement = createEntityConsoleController.createRequirement(false);
+            requirement = createController.createRequirement(false);
         } else {
-            requirement = findEntityConsoleController.findRequirement();
+            requirement = findController.findRequirement();
         }
         return requirement;
     }
 
+    @Override
     public Project selectProject() throws CommandCanceledException {
         Project project;
         input = projectService.count() <= 0 ? "n" : viewWriter.blockingReadCommand("Please select an option? [n] = CREATE NEW PROJECT, [s] = SELECT ONE FROM DATABASE", "n", "s");
 
         if (input.equalsIgnoreCase("n")) {
-            project = createEntityConsoleController.createProject(false);
+            project = createController.createProject(false);
         } else {
-            project = findEntityConsoleController.findProject();
+            project = findController.findProject();
         }
         return project;
     }
 
+    @Override
+    public void linkLogbookEntryToTask() {
+        logbookEntryService.save(linkLogbookEntryTo(selectTask(), true));
+    }
+
+    @Override
+    public void linkLogbookEntryToEmployee() {
+        logbookEntryService.save(linkLogbookEntryTo(selectEmployee(), true));
+    }
+
+    @Override
+    public void linkSprintToProject() {
+        sprintService.save(linkSprintTo(selectProject(), true));
+    }
+
+    @Override
+    public void linkSprintToRequirement() {
+        sprintService.save(linkSprintTo(selectRequirement(), true));
+    }
+
+    @Override
+    public void linkProjectToRequirement() {
+        projectService.save(linkProjectTo(selectRequirement(), true));
+    }
+
+    @Override
+    public void linkProjectToEmployee() {
+        projectService.save(linkProjectTo(selectEmployee(), true));
+    }
+
+    @Override
+    public void linkRequirementToTask() {
+        requirementService.save(linkRequirementTo(selectTask(), true));
+    }
+
+    @Override
     public LogbookEntry linkLogbookEntryTo(Object object, boolean mandatory) throws CommandCanceledException {
         if (mandatory || viewWriter.blockingTypedReadLine("Optionally add a logbook entry? (y/n)", Boolean.class)) {
             LogbookEntry logbookEntry = selectLogbookEntry();
@@ -144,15 +170,17 @@ public class LinkEntityConsoleController extends AbstractConsoleController {
         return null;
     }
 
+    @Override
     public Address linkAddressTo(Employee employee, boolean mandatory) throws CommandCanceledException {
         if (mandatory || viewWriter.blockingTypedReadLine("Optionally add an address? (y/n)", Boolean.class)) {
-            Address address = createEntityConsoleController.createAddress();
+            Address address = createController.createAddress();
             employee.setAddress(address);
             return address;
         }
         return null;
     }
 
+    @Override
     public Task linkTaskTo(Object object, boolean mandatory) throws CommandCanceledException {
         if (mandatory || viewWriter.blockingTypedReadLine("Optionally add a task? (y/n)", Boolean.class)) {
             Task task = selectTask();
@@ -168,6 +196,7 @@ public class LinkEntityConsoleController extends AbstractConsoleController {
         return null;
     }
 
+    @Override
     public Requirement linkRequirementTo(Object object, boolean mandatory) throws CommandCanceledException {
         if (mandatory || viewWriter.blockingTypedReadLine("Optionally add a requirement? (y/n)", Boolean.class)) {
             Requirement requirement = selectRequirement();
@@ -185,6 +214,7 @@ public class LinkEntityConsoleController extends AbstractConsoleController {
         return null;
     }
 
+    @Override
     public Employee linkEmployeeTo(Object object, boolean mandatory) throws CommandCanceledException {
         if (mandatory || viewWriter.blockingTypedReadLine("Optionally add a employee? (y/n)", Boolean.class)) {
             Employee employee = selectEmployee();
@@ -200,6 +230,7 @@ public class LinkEntityConsoleController extends AbstractConsoleController {
         return null;
     }
 
+    @Override
     public Project linkProjectTo(Object object, boolean mandatory) throws CommandCanceledException {
         if (mandatory || viewWriter.blockingTypedReadLine("Optionally add a project? (y/n)", Boolean.class)) {
             Project project = selectProject();
@@ -217,6 +248,7 @@ public class LinkEntityConsoleController extends AbstractConsoleController {
         return null;
     }
 
+    @Override
     public Sprint linkSprintTo(Object object, boolean mandatory) throws CommandCanceledException {
         if (mandatory || viewWriter.blockingTypedReadLine("Optionally add a sprint? (y/n)", Boolean.class)) {
             Sprint sprint = selectSprint();
@@ -232,23 +264,4 @@ public class LinkEntityConsoleController extends AbstractConsoleController {
         return null;
     }
 
-    @Override
-    public AbstractConsoleController printMenuOptions() {
-        viewWriter.println("Select an option:");
-        printSeparator();
-        viewWriter.setIndent(2);
-        viewWriter.println("[b] ... Back to previous menu");
-        viewWriter.println("[m] ... Print menu");
-        viewWriter.newLine();
-        viewWriter.println("[lt] ... Link logbook entry with task");
-        viewWriter.println("[le] ... Link logbook entry with employee");
-        viewWriter.println("[pr] ... Link project with requirement");
-        viewWriter.println("[pe] ... Link project with employee");
-        viewWriter.println("[rt] ... Link requirement with task");
-        viewWriter.println("[sp] ... Link sprint with project");
-        viewWriter.println("[sr] ... Link sprint with requirement");
-        viewWriter.resetIndent();
-        printSeparator();
-        return this;
-    }
 }

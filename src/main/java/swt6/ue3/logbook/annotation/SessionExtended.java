@@ -9,7 +9,7 @@ import java.lang.annotation.Target;
  * @author: Dinu Marius-Constantin
  * @date: 19.03.2016
  */
-@Target({ElementType.METHOD})
+@Target({ElementType.METHOD, ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface SessionExtended {
 }

@@ -1,4 +1,4 @@
-package swt6.ue3.logbook.view.console;
+package swt6.ue3.logbook.view.exception;
 
 /**
  * @author: Dinu Marius-Constantin

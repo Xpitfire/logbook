@@ -2,6 +2,9 @@ package swt6.ue3.logbook.view.console;
 
 import org.springframework.stereotype.Component;
 import swt6.ue3.logbook.view.ViewWriter;
+import swt6.ue3.logbook.view.exception.CommandCanceledException;
+import swt6.ue3.logbook.view.exception.IllegalBooleanLogicException;
+import swt6.ue3.logbook.view.exception.IllegalDateFormatException;
 
 import java.io.BufferedReader;
 import java.io.IOException;

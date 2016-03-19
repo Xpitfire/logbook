@@ -2,18 +2,38 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b22af082-7d80-4594-b483-2a60ccf06234" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/annotation/SessionExtended.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.ids" afterPath="$PROJECT_DIR$/.idea/dataSources.ids" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/controller/ConfirmationConsumer.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/controller/CreateController.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/controller/DeleteController.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/controller/FindController.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/controller/LinkController.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/controller/PrintController.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/controller/UpdateController.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/controller/console/CreateControllerImpl.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/controller/console/DeleteControllerImpl.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/controller/console/FindControllerImpl.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/controller/console/LinkControllerImpl.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/controller/console/PrintControllerImpl.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/controller/console/UpdateControllerImpl.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/AppConfig.java" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/AppConfig.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/Application.java" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/Application.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/annotation/SessionExtended.java" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/annotation/SessionExtended.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/aspect/LoggingAspect.java" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/aspect/LoggingAspect.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/aspect/SessionInterceptorAspect.java" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/aspect/SessionInterceptorAspect.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/controller/console/CreateEntityConsoleController.java" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/controller/console/CreateEntityConsoleController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/controller/console/PrintStatisticConsoleController.java" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/controller/console/PrintStatisticConsoleController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/logic/AppService.java" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/logic/AppService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/swt6/ue3/logbook/applicationContext.xml" afterPath="$PROJECT_DIR$/src/main/resources/swt6/ue3/logbook/applicationContext.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/swt6/ue3/logbook/jpa.properties" afterPath="$PROJECT_DIR$/src/main/resources/swt6/ue3/logbook/jpa.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/swt6/ue3/logbook/test/applicationContext-test.xml" afterPath="$PROJECT_DIR$/src/main/resources/swt6/ue3/logbook/test/applicationContext-test.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/view/ViewWriter.java" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/view/ViewWriter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/view/console/ViewWriterConsoleImpl.java" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/view/console/ViewWriterConsoleImpl.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/controller/AppController.java" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/view/AppViewBase.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/controller/console/AbstractConsoleController.java" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/view/console/AbstractConsoleView.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/controller/console/CreateEntityConsoleController.java" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/view/console/CreateEntityConsoleView.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/controller/console/DeleteEntityConsoleController.java" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/view/console/DeleteEntityConsoleView.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/controller/console/FindEntityConsoleController.java" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/view/console/FindEntityConsoleView.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/controller/console/LinkEntityConsoleController.java" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/view/console/LinkEntityConsoleView.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/controller/console/MainConsoleController.java" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/view/console/MainConsoleView.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/controller/console/PrintStatisticConsoleController.java" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/view/console/PrintStatisticConsoleView.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/controller/console/UpdateEntityConsoleController.java" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/view/console/UpdateEntityConsoleView.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/view/console/CommandCanceledException.java" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/view/exception/CommandCanceledException.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/view/console/IllegalBooleanLogicException.java" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/view/exception/IllegalBooleanLogicException.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/view/console/IllegalDateFormatException.java" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/view/exception/IllegalDateFormatException.java" />
     </list>
     <ignored path="logbook.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -53,84 +73,7 @@
     <favorites_list name="logbook" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="450">
-      <file leaf-file-name="CreateEntityConsoleController.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/controller/console/CreateEntityConsoleController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.2724359">
-              <caret line="22" column="13" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SessionExtended.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/annotation/SessionExtended.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="12" column="8" selection-start-line="12" selection-start-column="8" selection-end-line="12" selection-end-column="8" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AbstractConsoleController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/controller/console/AbstractConsoleController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="90" column="30" selection-start-line="90" selection-start-column="30" selection-end-line="90" selection-end-column="30" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Application.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/Application.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="17" column="47" selection-start-line="17" selection-start-column="47" selection-end-line="17" selection-end-column="47" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AppController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/controller/AppController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="8" column="10" selection-start-line="8" selection-start-column="10" selection-end-line="8" selection-end-column="10" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SessionInterceptorAspect.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/aspect/SessionInterceptorAspect.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MainConsoleController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/controller/console/MainConsoleController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="23" selection-end-column="72" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="450" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -152,41 +95,9 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/view/MainConsoleController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/view/Application.java" />
-        <option value="$PROJECT_DIR$/_log.out" />
-        <option value="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/view/console/ViewWriterConsoleImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/controller/AbstractConsoleController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/controller/CreateEntityConsoleController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/controller/MainConsoleController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/controller/DeleteEntityConsoleController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/controller/FindEntityConsoleController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/controller/LinkEntityConsoleController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/controller/PrintStatisticConsoleController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/controller/UpdateEntityConsoleController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/view/ViewWriter.java" />
-        <option value="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/controller/console/UpdateEntityConsoleController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/controller/console/DeleteEntityConsoleController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/controller/console/AbstractConsoleController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/controller/console/MainConsoleController.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/swt6/ue3/logbook/test/jpa.properties" />
-        <option value="$PROJECT_DIR$/src/test/java/swt6/ue3/logbook/test/BaseTest.java" />
-        <option value="$PROJECT_DIR$/src/test/java/swt6/ue3/logbook/test/LogbookDaoTest.java" />
-        <option value="$PROJECT_DIR$/src/test/java/swt6/ue3/logbook/test/ProjectDaoTest.java" />
-        <option value="$PROJECT_DIR$/src/test/java/swt6/ue3/logbook/test/RequirementDaoTest.java" />
-        <option value="$PROJECT_DIR$/src/test/java/swt6/ue3/logbook/test/SprintDaoTest.java" />
-        <option value="$PROJECT_DIR$/src/test/java/swt6/ue3/logbook/test/TaskDaoTest.java" />
-        <option value="$PROJECT_DIR$/src/test/java/swt6/ue3/logbook/test/TransactionTest.java" />
-        <option value="$PROJECT_DIR$/src/test/java/swt6/ue3/logbook/test/CreateClassRunner.java" />
-        <option value="$PROJECT_DIR$/src/test/java/swt6/ue3/logbook/test/PrepareTestRunner.java" />
-        <option value="$PROJECT_DIR$/src/test/java/swt6/ue3/logbook/test/EmployeeDaoTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/jpa/util/JpaInterceptor.java" />
-        <option value="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/jpa/util/SessionInterceptor.java" />
-        <option value="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/Application.java" />
         <option value="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/jpa/util/SessionInterceptorAspect.java" />
         <option value="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/aop/SessionInterceptorAspect.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/aspect/LoggingAspect.java" />
         <option value="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/controller/console/PrintStatisticConsoleController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/swt6/ue3/logbook/jpa.properties" />
         <option value="$PROJECT_DIR$/src/main/resources/swt6/ue3/logbook/test/applicationContext-test.xml" />
@@ -194,15 +105,47 @@
         <option value="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/logic/AppService.java" />
         <option value="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/aspect/SessionManaged.java" />
         <option value="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/annotation/SessionManaged.java" />
-        <option value="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/annotation/SessionExtended.java" />
         <option value="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/controller/console/FindEntityConsoleController.java" />
         <option value="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/AppConfig.java" />
         <option value="$PROJECT_DIR$/src/main/resources/swt6/ue3/logbook/applicationContext.xml" />
         <option value="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/controller/console/LinkEntityConsoleController.java" />
         <option value="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/controller/console/CreateEntityConsoleController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/aspect/SessionInterceptorAspect.java" />
         <option value="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/view/console/CreateEntityView.java" />
         <option value="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/view/ViewBase.java" />
+        <option value="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/Application.java" />
+        <option value="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/controller/console/AbstractConsoleController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/view/console/UpdateEntityConsoleController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/view/AppController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/view/AppViewBase.java" />
+        <option value="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/controller/console/CreateEntityController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/controller/DeleteEntityController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/view/console/CommandCanceledException.java" />
+        <option value="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/annotation/SessionExtended.java" />
+        <option value="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/controller/DeleteController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/controller/FindController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/view/console/DeleteEntityConsoleView.java" />
+        <option value="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/view/console/CreateEntityConsoleView.java" />
+        <option value="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/view/console/AbstractConsoleView.java" />
+        <option value="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/controller/ConfirmationConsumer.java" />
+        <option value="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/controller/LinkController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/view/console/UpdateEntityConsoleView.java" />
+        <option value="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/controller/UpdateController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/view/console/PrintStatisticConsoleView.java" />
+        <option value="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/controller/console/UpdateControllerImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/controller/console/LinkControllerImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/controller/console/FindControllerImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/controller/console/DeleteControllerImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/controller/PrintController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/controller/console/PrintControllerImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/view/console/FindEntityConsoleView.java" />
+        <option value="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/view/console/LinkEntityConsoleView.java" />
+        <option value="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/controller/CreateController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/controller/console/CreateControllerImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/aspect/SessionInterceptorAspect.java" />
+        <option value="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/aspect/LoggingAspect.java" />
+        <option value="$PROJECT_DIR$/src/test/java/swt6/ue3/logbook/test/EmployeeDaoTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/view/exception/CommandCanceledException.java" />
+        <option value="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/view/exception/IllegalDateFormatException.java" />
       </list>
     </option>
   </component>
@@ -499,181 +442,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="logic" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="logbook" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="UE3" />
+              <option name="myItemId" value="view" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ue3" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="logbook" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dal" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="logbook" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="UE3" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ue3" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="logbook" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="controller" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="logbook" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="UE3" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ue3" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="logbook" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="controller" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="console" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="logbook" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="UE3" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ue3" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="logbook" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="aspect" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="logbook" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="UE3" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ue3" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="logbook" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="annotation" />
+              <option name="myItemId" value="exception" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -716,11 +489,11 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\Cloud\OneDrive\Dokumente\FH-Hagenberg\16-SS_SEv\SWT6UE\Home\UE3\src\main\java\swt6\ue3\logbook\view\exception" />
+      <recent name="E:\Cloud\OneDrive\Dokumente\FH-Hagenberg\16-SS_SEv\SWT6UE\Home\UE3\src\main\java\swt6\ue3\logbook\controller" />
+      <recent name="E:\Cloud\OneDrive\Dokumente\FH-Hagenberg\16-SS_SEv\SWT6UE\Home\UE3\src\main\java\swt6\ue3\logbook\view" />
       <recent name="E:\Cloud\OneDrive\Dokumente\FH-Hagenberg\16-SS_SEv\SWT6UE\Home\UE3\src\main\java\swt6\ue3\logbook\view\console" />
       <recent name="E:\Cloud\OneDrive\Dokumente\FH-Hagenberg\16-SS_SEv\SWT6UE\Home\UE3\src\main\java\swt6\ue3\logbook\annotation" />
-      <recent name="E:\Cloud\OneDrive\Dokumente\FH-Hagenberg\16-SS_SEv\SWT6UE\Home\UE3\src\main\java\swt6\ue3\logbook" />
-      <recent name="E:\Cloud\OneDrive\Dokumente\FH-Hagenberg\16-SS_SEv\SWT6UE\Home\UE3\src\main\java\swt6\ue3\logbook\controller\console" />
-      <recent name="E:\Cloud\OneDrive\Dokumente\FH-Hagenberg\16-SS_SEv\SWT6UE\Home\UE3\src\main\java\swt6\ue3\logbook\view" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\Cloud\OneDrive\Dokumente\FH-Hagenberg\16-SS_SEv\SWT6UE\Home\UE3\src\main\resources\swt6\ue3\logbook\test" />
@@ -730,6 +503,7 @@
       <recent name="E:\Cloud\OneDrive\Dokumente\FH-Hagenberg\16-SS_SEv\SWT6UE\Home\UE2\src\main\java\swt6\ue2\logbook\jpa\util" />
     </key>
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="swt6.ue3.logbook.controller" />
       <recent name="swt6.ue2.logbook.ui" />
       <recent name="swt6.ue2.logbook.io" />
       <recent name="swt6.ue2.logbook.domain" />
@@ -1317,7 +1091,7 @@
       <workItem from="1458201488142" duration="4489000" />
       <workItem from="1458217412999" duration="253000" />
       <workItem from="1458217819654" duration="11750000" />
-      <workItem from="1458387360227" duration="13495000" />
+      <workItem from="1458387360227" duration="19995000" />
     </task>
     <servers />
   </component>
@@ -1354,7 +1128,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="190504000" />
+    <option name="totallyTimeSpent" value="197004000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="32" width="1936" height="1056" extended-state="6" />
@@ -1368,19 +1142,19 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31078225" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31078225" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18489583" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18489583" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16197917" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980973" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30021143" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30021143" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1405,28 +1179,9 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/aspect/SessionInterceptorAspect.java</url>
-          <line>45</line>
-          <properties />
-          <option name="timeStamp" value="58" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/controller/console/CreateEntityConsoleController.java</url>
-          <line>176</line>
+          <url>file://$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/view/console/CreateEntityConsoleView.java</url>
           <properties />
           <option name="timeStamp" value="61" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/aspect/SessionInterceptorAspect.java</url>
-          <line>34</line>
-          <properties />
-          <option name="timeStamp" value="62" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/aspect/SessionInterceptorAspect.java</url>
-          <line>31</line>
-          <properties />
-          <option name="timeStamp" value="67" />
         </line-breakpoint>
       </breakpoints>
       <option name="time" value="68" />
@@ -1438,131 +1193,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/test/java/swt6/ue3/logbook/test/BaseTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="51" column="82" selection-start-line="51" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/swt6/ue3/logbook/test/EmployeeDaoTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="25" column="41" selection-start-line="25" selection-start-column="41" selection-end-line="25" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/hibernate/hibernate-entitymanager/4.3.11.Final/hibernate-entitymanager-4.3.11.Final.jar!/org/hibernate/jpa/HibernateEntityManagerFactory.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.19932999">
-          <caret line="13" column="18" selection-start-line="13" selection-start-column="4" selection-end-line="13" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/swt6/ue3/logbook/jpa.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="5" column="52" selection-start-line="5" selection-start-column="52" selection-end-line="5" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/swt6/ue3/logbook/test/jpa.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.13621795">
-          <caret line="5" column="52" selection-start-line="5" selection-start-column="19" selection-end-line="5" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="dbDummy://dbtable:/54dec339/51d8dc67-1fd9-4370-862a-0fd03aef3713/APP.PERMANENT_EMPLOYEE">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-aop/4.2.5.RELEASE/spring-aop-4.2.5.RELEASE.jar!/org/springframework/aop/support/AopUtils.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.518518">
-          <caret line="159" column="25" selection-start-line="159" selection-start-column="25" selection-end-line="159" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/logic/LogbookEntryService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="8" column="17" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/dal/LogbookEntryRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="9" column="17" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/dal/ProjectRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="9" column="17" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/dal/RequirementRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="9" column="68" selection-start-line="9" selection-start-column="68" selection-end-line="9" selection-end-column="68" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/dal/SprintRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="9" column="17" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/dal/TaskRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.21451104">
-          <caret line="9" column="17" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-aop/4.2.5.RELEASE/spring-aop-4.2.5.RELEASE-sources.jar!/org/springframework/aop/aspectj/AbstractAspectJAdvice.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="627" column="0" selection-start-line="627" selection-start-column="0" selection-end-line="627" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/view/console/ViewWriterConsoleImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="18" column="6" selection-start-line="18" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-context/4.2.5.RELEASE/spring-context-4.2.5.RELEASE-sources.jar!/org/springframework/stereotype/Service.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.536859">
@@ -1632,14 +1262,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/view/console/CommandCanceledException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.16346154">
-          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/logic/EmployeeServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.2996795">
@@ -1683,16 +1305,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/aspect/LoggingAspect.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="18" column="22" selection-start-line="18" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-context/4.2.5.RELEASE/spring-context-4.2.5.RELEASE-sources.jar!/org/springframework/stereotype/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1708,14 +1320,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="306" column="0" selection-start-line="306" selection-start-column="0" selection-end-line="306" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/_log.out">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33333334">
-          <caret line="1099" column="46" selection-start-line="1099" selection-start-column="46" selection-end-line="1099" selection-end-column="46" />
           <folding />
         </state>
       </provider>
@@ -1754,86 +1358,118 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/controller/console/FindEntityConsoleController.java">
+    <entry file="file://$PROJECT_DIR$/_log.out">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="99" column="0" selection-start-line="99" selection-start-column="0" selection-end-line="99" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.33333334">
+          <caret line="5918" column="125" selection-start-line="5918" selection-start-column="125" selection-end-line="5918" selection-end-column="125" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/controller/console/UpdateEntityConsoleController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/view/console/MainConsoleView.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+          <caret line="30" column="13" selection-start-line="30" selection-start-column="13" selection-end-line="30" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/controller/console/DeleteEntityConsoleController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/controller/UpdateController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="15" column="40" selection-start-line="15" selection-start-column="40" selection-end-line="15" selection-end-column="40" />
+        <state vertical-scroll-proportion="0.36468646">
+          <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/controller/console/PrintStatisticConsoleController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/controller/PrintController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="48" column="31" selection-start-line="48" selection-start-column="31" selection-end-line="48" selection-end-column="31" />
+        <state vertical-scroll-proportion="0.5176282">
+          <caret line="19" column="39" selection-start-line="19" selection-start-column="39" selection-end-line="19" selection-end-column="39" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/controller/console/LinkEntityConsoleController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/view/console/LinkEntityConsoleView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="3" column="49" selection-start-line="3" selection-start-column="49" selection-end-line="3" selection-end-column="49" />
+        <state vertical-scroll-proportion="0.08415841">
+          <caret line="3" column="48" selection-start-line="3" selection-start-column="48" selection-end-line="3" selection-end-column="48" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/aspect/SessionInterceptorAspect.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/view/console/UpdateEntityConsoleView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.9537954">
+          <caret line="36" column="45" selection-start-line="36" selection-start-column="45" selection-end-line="36" selection-end-column="45" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/controller/AppController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/view/console/PrintStatisticConsoleView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="8" column="10" selection-start-line="8" selection-start-column="10" selection-end-line="8" selection-end-column="10" />
+        <state vertical-scroll-proportion="0.6171617">
+          <caret line="24" column="46" selection-start-line="24" selection-start-column="46" selection-end-line="24" selection-end-column="46" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/view/console/FindEntityConsoleView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.08415841">
+          <caret line="3" column="48" selection-start-line="3" selection-start-column="48" selection-end-line="3" selection-end-column="48" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/view/console/DeleteEntityConsoleView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.10726073">
+          <caret line="4" column="52" selection-start-line="4" selection-start-column="52" selection-end-line="4" selection-end-column="52" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/view/console/AbstractConsoleView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.04620462">
+          <caret line="4" column="40" selection-start-line="4" selection-start-column="40" selection-end-line="4" selection-end-column="40" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/view/console/CreateEntityConsoleView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.0759076">
+          <caret line="4" column="52" selection-start-line="4" selection-start-column="52" selection-end-line="4" selection-end-column="52" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/Application.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="17" column="47" selection-start-line="17" selection-start-column="47" selection-end-line="17" selection-end-column="47" />
+          <caret line="17" column="35" selection-start-line="17" selection-start-column="35" selection-end-line="17" selection-end-column="35" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/controller/console/AbstractConsoleController.java">
+    <entry file="file://$PROJECT_DIR$/src/test/java/swt6/ue3/logbook/test/EmployeeDaoTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="90" column="30" selection-start-line="90" selection-start-column="30" selection-end-line="90" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/controller/console/MainConsoleController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="23" selection-end-column="72" />
+          <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1841,18 +1477,178 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/annotation/SessionExtended.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="12" column="8" selection-start-line="12" selection-start-column="8" selection-end-line="12" selection-end-column="8" />
+          <caret line="13" column="27" selection-start-line="13" selection-start-column="27" selection-end-line="13" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/controller/console/DeleteControllerImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="35" column="40" selection-start-line="35" selection-start-column="40" selection-end-line="35" selection-end-column="40" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/controller/console/CreateEntityConsoleController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/controller/console/FindControllerImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.2724359">
-          <caret line="22" column="13" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="24" column="11" selection-start-line="24" selection-start-column="11" selection-end-line="24" selection-end-column="11" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/controller/console/PrintControllerImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="156" column="33" selection-start-line="156" selection-start-column="33" selection-end-line="156" selection-end-column="33" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/controller/console/UpdateControllerImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="31" column="44" selection-start-line="31" selection-start-column="44" selection-end-line="31" selection-end-column="44" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/controller/ConfirmationConsumer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="8" column="31" selection-start-line="8" selection-start-column="31" selection-end-line="8" selection-end-column="31" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/controller/CreateController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/controller/DeleteController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/controller/FindController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/controller/LinkController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="30" column="33" selection-start-line="30" selection-start-column="33" selection-end-line="31" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/controller/console/LinkControllerImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="156" column="13" selection-start-line="156" selection-start-column="13" selection-end-line="156" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#5155#5156#0" expanded="true" />
+            <element signature="e#5233#5234#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/view/exception/CommandCanceledException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="6" column="62" selection-start-line="6" selection-start-column="62" selection-end-line="6" selection-end-column="62" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/view/exception/IllegalBooleanLogicException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/view/exception/IllegalDateFormatException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/view/AppViewBase.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="8" column="10" selection-start-line="8" selection-start-column="10" selection-end-line="8" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/view/ViewWriter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="8" column="17" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/view/console/ViewWriterConsoleImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="18" column="6" selection-start-line="18" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/aspect/SessionInterceptorAspect.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="22" column="22" selection-start-line="22" selection-start-column="22" selection-end-line="22" selection-end-column="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/aspect/LoggingAspect.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/controller/console/CreateControllerImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.6356467">
+          <caret line="49" column="0" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

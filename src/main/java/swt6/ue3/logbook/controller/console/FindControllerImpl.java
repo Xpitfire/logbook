@@ -1,8 +1,12 @@
 package swt6.ue3.logbook.controller.console;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import swt6.ue3.logbook.controller.FindController;
 import swt6.ue3.logbook.domain.*;
-import swt6.ue3.logbook.view.console.CommandCanceledException;
+import swt6.ue3.logbook.logic.*;
+import swt6.ue3.logbook.view.ViewWriter;
+import swt6.ue3.logbook.view.exception.CommandCanceledException;
 
 import java.util.HashMap;
 import java.util.List;
@@ -10,74 +14,30 @@ import java.util.Map;
 
 /**
  * @author: Dinu Marius-Constantin
- * @date: 10.03.2016
+ * @date: 19.03.2016
  */
 @Controller("findEntityController")
-public class FindEntityConsoleController extends AbstractConsoleController {
+public class FindControllerImpl implements FindController {
+
+    private String input;
+
+    @Autowired
+    private ViewWriter viewWriter;
+
+    @Autowired
+    private EmployeeService employeeService;
+    @Autowired
+    private LogbookEntryService logbookEntryService;
+    @Autowired
+    private TaskService taskService;
+    @Autowired
+    private ProjectService projectService;
+    @Autowired
+    private RequirementService requirementService;
+    @Autowired
+    private SprintService sprintService;
 
     @Override
-    public String getTitle() {
-        return "Find Entities";
-    }
-
-    @Override
-    public void run() {
-        do {
-            input = viewWriter.readLine("> ");
-
-            try {
-                if (input.equalsIgnoreCase("m")) {
-                    printMenuOptions();
-                } else if (input.equalsIgnoreCase("e")) {
-                    Employee employee = findEmployee();
-                    viewWriter.println(employee);
-                } else if (input.equalsIgnoreCase("l")) {
-                    LogbookEntry logbookEntry = findLogbookEntry();
-                    viewWriter.println(logbookEntry);
-                } else if (input.equalsIgnoreCase("p")) {
-                    Project project = findProject();
-                    viewWriter.println(project);
-                } else if (input.equalsIgnoreCase("r")) {
-                    Requirement requirement = findRequirement();
-                    viewWriter.println(requirement);
-                } else if (input.equalsIgnoreCase("s")) {
-                    Sprint sprint = findSprint();
-                    viewWriter.println(sprint);
-                } else if (input.equalsIgnoreCase("t")) {
-                    Task task = findTask();
-                    viewWriter.println(task);
-                } else if (input.equalsIgnoreCase("b")) {
-                    // skip
-                } else {
-                    printInvalidInput();
-                }
-            } catch (CommandCanceledException ex) {
-                printUserCancelMessage();
-                printEntranceInfo();
-            }
-
-        } while (!input.equalsIgnoreCase("b"));
-    }
-
-    @Override
-    public AbstractConsoleController printMenuOptions() {
-        viewWriter.println("Select an option:");
-        printSeparator();
-        viewWriter.setIndent(2);
-        viewWriter.println("[b] ... Back to previous menu");
-        viewWriter.println("[m] ... Print menu");
-        viewWriter.newLine();
-        viewWriter.println("[e] ... Find employee");
-        viewWriter.println("[l] ... Find logbook entry");
-        viewWriter.println("[p] ... Find project");
-        viewWriter.println("[r] ... Find requirement");
-        viewWriter.println("[s] ... Find sprint");
-        viewWriter.println("[t] ... Find task");
-        viewWriter.resetIndent();
-        printSeparator();
-        return this;
-    }
-
     public Sprint findSprint() throws CommandCanceledException {
         List<Sprint> sprints = sprintService.findAll();
         String[] tempCmdList = new String[sprints.size()];
@@ -88,6 +48,7 @@ public class FindEntityConsoleController extends AbstractConsoleController {
         return sprintCmdMapping.get(input);
     }
 
+    @Override
     public Project findProject() throws CommandCanceledException {
         List<Project> projects = projectService.findAll();
         String[] tempCmdList = new String[projects.size()];
@@ -98,6 +59,7 @@ public class FindEntityConsoleController extends AbstractConsoleController {
         return projectCmdMapping.get(input);
     }
 
+    @Override
     public Employee findEmployee() throws CommandCanceledException {
         List<Employee> employees = employeeService.findAll();
         String[] tempCmdList = new String[employees.size()];
@@ -108,6 +70,7 @@ public class FindEntityConsoleController extends AbstractConsoleController {
         return employeeCmdMapping.get(input);
     }
 
+    @Override
     public Task findTask() throws CommandCanceledException {
         List<Task> tasks = taskService.findAll();
         String[] tempCmdList = new String[tasks.size()];
@@ -118,6 +81,7 @@ public class FindEntityConsoleController extends AbstractConsoleController {
         return taskCmdMapping.get(input);
     }
 
+    @Override
     public Requirement findRequirement() throws CommandCanceledException {
         List<Requirement> requirements = requirementService.findAll();
         String[] tempCmdList = new String[requirements.size()];
@@ -128,6 +92,7 @@ public class FindEntityConsoleController extends AbstractConsoleController {
         return requirementCmdMapping.get(input);
     }
 
+    @Override
     public LogbookEntry findLogbookEntry() throws CommandCanceledException {
         List<LogbookEntry> logbookEntries = logbookEntryService.findAll();
         String[] tempCmdList = new String[logbookEntries.size()];
@@ -147,4 +112,5 @@ public class FindEntityConsoleController extends AbstractConsoleController {
             viewWriter.newLine();
         }
     }
+
 }

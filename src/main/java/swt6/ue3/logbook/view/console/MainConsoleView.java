@@ -1,4 +1,4 @@
-package swt6.ue3.logbook.controller.console;
+package swt6.ue3.logbook.view.console;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,20 +8,20 @@ import org.springframework.stereotype.Controller;
  * @date: 10.03.2016
  */
 @Controller("mainController")
-public class MainConsoleController extends AbstractConsoleController {
+public class MainConsoleView extends AbstractConsoleView {
 
     @Autowired
-    private PrintStatisticConsoleController printStatisticConsoleController;
+    private PrintStatisticConsoleView printStatisticConsoleController;
     @Autowired
-    private FindEntityConsoleController findEntityConsoleController;
+    private FindEntityConsoleView findEntityConsoleController;
     @Autowired
-    private CreateEntityConsoleController createEntityConsoleController;
+    private CreateEntityConsoleView createEntityConsoleController;
     @Autowired
-    private DeleteEntityConsoleController deleteEntityConsoleController;
+    private DeleteEntityConsoleView deleteEntityConsoleController;
     @Autowired
-    private LinkEntityConsoleController linkEntityConsoleController;
+    private LinkEntityConsoleView linkEntityConsoleController;
     @Autowired
-    private UpdateEntityConsoleController updateEntityConsoleController;
+    private UpdateEntityConsoleView updateEntityConsoleController;
 
     @Override
     public String getTitle() {
@@ -36,29 +36,29 @@ public class MainConsoleController extends AbstractConsoleController {
             try {
 
                 if (input.equalsIgnoreCase("m")) {
-                    printMenuOptions();
+                    showMenuOptions();
                 } else if (input.equalsIgnoreCase("p")) {
-                    printStatisticConsoleController.runAndPrintOptions();
-                    printEntranceInfo();
+                    printStatisticConsoleController.runAndShowOptions();
+                    showEntranceInfo();
                 } else if (input.equalsIgnoreCase("f")) {
-                    findEntityConsoleController.runAndPrintOptions();
-                    printEntranceInfo();
+                    findEntityConsoleController.runAndShowOptions();
+                    showEntranceInfo();
                 } else if (input.equalsIgnoreCase("c")) {
-                    createEntityConsoleController.runAndPrintOptions();
-                    printEntranceInfo();
+                    createEntityConsoleController.runAndShowOptions();
+                    showEntranceInfo();
                 } else if (input.equalsIgnoreCase("d")) {
-                    deleteEntityConsoleController.runAndPrintOptions();
-                    printEntranceInfo();
+                    deleteEntityConsoleController.runAndShowOptions();
+                    showEntranceInfo();
                 } else if (input.equalsIgnoreCase("l")) {
-                    linkEntityConsoleController.runAndPrintOptions();
-                    printEntranceInfo();
+                    linkEntityConsoleController.runAndShowOptions();
+                    showEntranceInfo();
                 } else if (input.equalsIgnoreCase("u")) {
-                    updateEntityConsoleController.runAndPrintOptions();
-                    printEntranceInfo();
+                    updateEntityConsoleController.runAndShowOptions();
+                    showEntranceInfo();
                 } else if (input.equalsIgnoreCase("q")) {
                     // skip
                 } else {
-                    printInvalidInput();
+                    showInvalidInput();
                 }
             } catch (Exception ex) {
                 viewWriter.println("Could not perform operation!");
@@ -71,9 +71,9 @@ public class MainConsoleController extends AbstractConsoleController {
     }
 
     @Override
-    public AbstractConsoleController printMenuOptions() {
+    public AbstractConsoleView showMenuOptions() {
         viewWriter.println("Select an option:");
-        printSeparator();
+        showSeparator();
         viewWriter.setIndent(2);
         viewWriter.println("[q] ... Quit");
         viewWriter.println("[m] ... Print menu");
@@ -85,7 +85,7 @@ public class MainConsoleController extends AbstractConsoleController {
         viewWriter.println("[l] ... Link entities");
         viewWriter.println("[u] ... Update entities");
         viewWriter.resetIndent();
-        printSeparator();
+        showSeparator();
         return this;
     }
 

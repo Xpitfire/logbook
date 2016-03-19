@@ -18,7 +18,7 @@ public class LoggingAspect {
 
     private Logger logger = LoggerFactory.getLogger(Application.class);
 
-    @After("execution(* swt6.ue3.logbook.logic..*Service.*(..))")
+    @After("execution(public * swt6.ue3.logbook.logic..*Service.*(..))")
     public void logMethodEnterAdvice(JoinPoint jp) {
         String methodName = jp.getSignature().getName();
         logger.info("[INFO-LOG-ASPECT] ", methodName);

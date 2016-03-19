@@ -12,7 +12,6 @@ import org.springframework.orm.jpa.EntityManagerHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.support.TransactionSynchronizationManager;
 import swt6.ue3.logbook.Application;
-import swt6.ue3.logbook.view.ViewWriter;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -24,12 +23,9 @@ public class SessionInterceptorAspect {
     private Logger logger = LoggerFactory.getLogger(Application.class);
 
     @Autowired
-    private ViewWriter viewWriter;
-
-    @Autowired
     private EntityManagerFactory entityManagerFactory;
 
-    @Around("@annotation(swt6.ue3.logbook.annotation.SessionExtended) && execution(public * swt6.ue3.logbook..*(..))")
+    @Around("execution(public * swt6.ue3.logbook.controller..*(..)) || @annotation(swt6.ue3.logbook.annotation.SessionExtended)")
     public Object extendSessionAdvice(ProceedingJoinPoint pjp) throws Throwable {
         boolean participate = false;
         if (TransactionSynchronizationManager.hasResource(entityManagerFactory))
@@ -39,11 +35,9 @@ public class SessionInterceptorAspect {
             openEntityManager();
         }
         Object returnValue;
-        viewWriter.println("###### >>>> transaction started");
         try {
             returnValue = pjp.proceed();
         } finally {
-            viewWriter.println("###### <<<< transaction closed");
             if (!participate) {
                 closeEntityManager();
                 logger.trace("Closed EntityManager");

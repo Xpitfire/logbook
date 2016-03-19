@@ -2,61 +2,43 @@ package swt6.ue3.logbook.controller.console;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
-import swt6.ue3.logbook.annotation.SessionExtended;
+import swt6.ue3.logbook.controller.CreateController;
+import swt6.ue3.logbook.controller.LinkController;
 import swt6.ue3.logbook.domain.*;
-import swt6.ue3.logbook.view.console.CommandCanceledException;
+import swt6.ue3.logbook.logic.*;
+import swt6.ue3.logbook.view.ViewWriter;
+import swt6.ue3.logbook.view.exception.CommandCanceledException;
 
 import java.util.Date;
 
 /**
  * @author: Dinu Marius-Constantin
- * @date: 10.03.2016
+ * @date: 19.03.2016
  */
 @Controller("createEntityController")
-public class CreateEntityConsoleController extends AbstractConsoleController {
+public class CreateControllerImpl implements CreateController {
+
+    private String input;
 
     @Autowired
-    private LinkEntityConsoleController linkEntityConsoleController;
+    private ViewWriter viewWriter;
 
-    @Override
-    public String getTitle() {
-        return "Create Entities";
-    }
+    @Autowired
+    private LinkController linkController;
 
-    @Override
-    public void run() {
-        do {
-            input = viewWriter.readLine("> ");
+    @Autowired
+    private EmployeeService employeeService;
+    @Autowired
+    private LogbookEntryService logbookEntryService;
+    @Autowired
+    private TaskService taskService;
+    @Autowired
+    private ProjectService projectService;
+    @Autowired
+    private RequirementService requirementService;
+    @Autowired
+    private SprintService sprintService;
 
-            try {
-                if (input.equalsIgnoreCase("m")) {
-                    printMenuOptions();
-                } else if (input.equalsIgnoreCase("e")) {
-                    createEmployee(true);
-                } else if (input.equalsIgnoreCase("l")) {
-                    createLogbookEntry(true);
-                } else if (input.equalsIgnoreCase("p")) {
-                    createProject(true);
-                } else if (input.equalsIgnoreCase("r")) {
-                    createRequirement(true);
-                } else if (input.equalsIgnoreCase("s")) {
-                    createSprint(true);
-                } else if (input.equalsIgnoreCase("t")) {
-                    createTask(true);
-                } else if (input.equalsIgnoreCase("b")) {
-                    // skip
-                } else {
-                    printInvalidInput();
-                }
-            } catch (CommandCanceledException ex) {
-                printUserCancelMessage();
-                printEntranceInfo();
-            }
-
-        } while (!input.equalsIgnoreCase("b"));
-    }
 
     private boolean askForSkipOnUpdate(Object entity, String field) {
         return entity == null || viewWriter.blockingTypedReadLine(String.format("Update %s? (y/n)", field), Boolean.class);
@@ -66,25 +48,26 @@ public class CreateEntityConsoleController extends AbstractConsoleController {
         return value == null;
     }
 
+    @Override
     public Project createProject(boolean immediateSafe) throws CommandCanceledException {
         return createOrUpdateProject(null, immediateSafe);
     }
 
-    @SessionExtended
+    @Override
     public Project createOrUpdateProject(Project value, boolean immediateSafe) throws CommandCanceledException {
         viewWriter.println("*** Project ***");
         Project project = value != null ? value : new Project();
 
         if (modifyOnlyOnCreate(value))
-            project.setLeader(linkEntityConsoleController.selectEmployee());
+            project.setLeader(linkController.selectEmployee());
         if (askForSkipOnUpdate(value, "project name"))
             project.setName(viewWriter.blockingTypedReadLine("Project name", String.class));
         if (askForSkipOnUpdate(value, "link requirements"))
-            linkEntityConsoleController.linkRequirementTo(project, false);
+            linkController.linkRequirementTo(project, false);
         if (askForSkipOnUpdate(value, "link sprint"))
-            linkEntityConsoleController.linkSprintTo(project, false);
+            linkController.linkSprintTo(project, false);
         if (askForSkipOnUpdate(value, "link employee"))
-            linkEntityConsoleController.linkEmployeeTo(project, false);
+            linkController.linkEmployeeTo(project, false);
 
         if (immediateSafe) {
             projectService.save(project);
@@ -93,13 +76,13 @@ public class CreateEntityConsoleController extends AbstractConsoleController {
         return project;
     }
 
-    @SessionExtended
+    @Override
     public Sprint createSprint(boolean immediateSafe) throws CommandCanceledException {
         viewWriter.println("*** Sprint ***");
         Sprint sprint = new Sprint();
         viewWriter.println("You require to select a project to continue:");
-        sprint.setProject(linkEntityConsoleController.selectProject());
-        linkEntityConsoleController.linkRequirementTo(sprint, false);
+        sprint.setProject(linkController.selectProject());
+        linkController.linkRequirementTo(sprint, false);
 
         if (immediateSafe) {
             sprintService.save(sprint);
@@ -108,11 +91,12 @@ public class CreateEntityConsoleController extends AbstractConsoleController {
         return sprint;
     }
 
+    @Override
     public Employee createEmployee(boolean immediateSafe) throws CommandCanceledException {
         return createOrUpdateEmployee(null, immediateSafe);
     }
 
-    @SessionExtended
+    @Override
     public Employee createOrUpdateEmployee(Employee value, boolean immediateSafe) throws CommandCanceledException {
         viewWriter.println("*** Employee ***");
         Employee employee = value;
@@ -148,7 +132,7 @@ public class CreateEntityConsoleController extends AbstractConsoleController {
                 temporaryEmployee.setHourlyRate(viewWriter.blockingTypedReadLine("Hourly rate", Double.class));
         }
         if (askForSkipOnUpdate(value, "hourly rate"))
-            linkEntityConsoleController.linkAddressTo(employee, false);
+            linkController.linkAddressTo(employee, false);
         if (immediateSafe) {
             employeeService.save(employee);
             viewWriter.println("Successfully saved!");
@@ -156,10 +140,12 @@ public class CreateEntityConsoleController extends AbstractConsoleController {
         return employee;
     }
 
+    @Override
     public Address createAddress() {
         return createOrUpdateAddress(null);
     }
 
+    @Override
     public Address createOrUpdateAddress(Address value) {
         viewWriter.println("*** Address ***");
         Address address = value != null ? value : new Address();
@@ -172,17 +158,17 @@ public class CreateEntityConsoleController extends AbstractConsoleController {
         return address;
     }
 
-    @SessionExtended
+    @Override
     public LogbookEntry createLogbookEntry(boolean immediateSafe) throws CommandCanceledException {
         viewWriter.println("*** LogbookEntry ***");
         LogbookEntry logbookEntry = new LogbookEntry();
         viewWriter.println("You require to select an employee to continue:");
-        Employee employee = linkEntityConsoleController.selectEmployee();
+        Employee employee = linkController.selectEmployee();
         logbookEntry.attachEmployee(employee);
         logbookEntry.setActivity(viewWriter.blockingTypedReadLine("Logbook activity", String.class));
         logbookEntry.setStartTime(viewWriter.blockingTypedReadLine("Start time (dd.MM.yyyy HH:mm)", Date.class));
         logbookEntry.setEndTime(viewWriter.blockingTypedReadLine("End time (dd.MM.yyyy HH:mm)", Date.class));
-        linkEntityConsoleController.linkTaskTo(logbookEntry, false);
+        linkController.linkTaskTo(logbookEntry, false);
 
         if (immediateSafe) {
             logbookEntryService.save(logbookEntry);
@@ -191,11 +177,12 @@ public class CreateEntityConsoleController extends AbstractConsoleController {
         return logbookEntry;
     }
 
+    @Override
     public Task createTask(boolean immediateSafe) throws CommandCanceledException {
         return createOrUpdateTask(null, immediateSafe);
     }
 
-    @SessionExtended
+    @Override
     public Task createOrUpdateTask(Task value, boolean immediateSafe) throws CommandCanceledException {
         viewWriter.println("*** Task ***");
         Task task = value != null ? value : new Task();
@@ -205,9 +192,9 @@ public class CreateEntityConsoleController extends AbstractConsoleController {
             task.setDescription(viewWriter.blockingTypedReadLine("Description", String.class, true));
         if (modifyOnlyOnCreate(value)) {
             task.setEstimatedHours(viewWriter.blockingTypedReadLine("Estimated hours", Integer.class));
-            linkEntityConsoleController.linkLogbookEntryTo(task, false);
+            linkController.linkLogbookEntryTo(task, false);
             viewWriter.println("You require to select a requirement to continue:");
-            task.attachRequirement(linkEntityConsoleController.selectRequirement());
+            task.attachRequirement(linkController.selectRequirement());
         }
 
         if (immediateSafe) {
@@ -217,11 +204,12 @@ public class CreateEntityConsoleController extends AbstractConsoleController {
         return task;
     }
 
+    @Override
     public Requirement createRequirement(boolean immediateSafe) throws CommandCanceledException {
         return createOrUpdateRequirement(null, immediateSafe);
     }
 
-    @SessionExtended
+    @Override
     public Requirement createOrUpdateRequirement(Requirement value, boolean immediateSafe) throws CommandCanceledException {
         viewWriter.println("*** Requirement ***");
         Requirement requirement = value != null ? value : new Requirement();
@@ -230,10 +218,10 @@ public class CreateEntityConsoleController extends AbstractConsoleController {
         if (askForSkipOnUpdate(value, "description"))
             requirement.setDescription(viewWriter.blockingTypedReadLine("Description", String.class));
         if (modifyOnlyOnCreate(value)) {
-            linkEntityConsoleController.linkTaskTo(requirement, false);
-            linkEntityConsoleController.linkSprintTo(requirement, false);
+            linkController.linkTaskTo(requirement, false);
+            linkController.linkSprintTo(requirement, false);
             viewWriter.println("You require to select a project to continue:");
-            requirement.attachProject(linkEntityConsoleController.selectProject());
+            requirement.attachProject(linkController.selectProject());
         }
 
         if (immediateSafe) {
@@ -241,25 +229,6 @@ public class CreateEntityConsoleController extends AbstractConsoleController {
             viewWriter.println("Successfully saved!");
         }
         return requirement;
-    }
-
-    @Override
-    public AbstractConsoleController printMenuOptions() {
-        viewWriter.println("Select an option:");
-        printSeparator();
-        viewWriter.setIndent(2);
-        viewWriter.println("[b] ... Back to previous menu");
-        viewWriter.println("[m] ... Print menu");
-        viewWriter.newLine();
-        viewWriter.println("[e] ... Create employee");
-        viewWriter.println("[l] ... Create logbook entry");
-        viewWriter.println("[p] ... Create project");
-        viewWriter.println("[r] ... Create requirement");
-        viewWriter.println("[s] ... Create sprint");
-        viewWriter.println("[t] ... Create task");
-        viewWriter.resetIndent();
-        printSeparator();
-        return this;
     }
 
 }

@@ -1,45 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b22af082-7d80-4594-b483-2a60ccf06234" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/controller/InteractiveController.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/controller/console/InteractiveControllerImpl.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/view/console/InteractiveConsoleView.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/java/swt6/ue3/logbook/test/service/IntegrationTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/derby.log" afterPath="$PROJECT_DIR$/derby.log" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/logbook.iml" afterPath="$PROJECT_DIR$/logbook.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/AppConfig.java" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/AppConfig.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/Application.java" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/Application.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/aspect/SessionInterceptorAspect.java" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/aspect/SessionInterceptorAspect.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/controller/FindController.java" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/controller/FindController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/controller/PrintController.java" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/controller/PrintController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/controller/console/CreateControllerImpl.java" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/controller/console/CreateControllerImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/controller/console/FindControllerImpl.java" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/controller/console/FindControllerImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/controller/console/PrintControllerImpl.java" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/controller/console/PrintControllerImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/domain/Project.java" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/domain/Project.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/logic/AppService.java" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/logic/AppService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/logic/EmployeeServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/logic/EmployeeServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/logic/ProjectService.java" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/logic/ProjectService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/logic/ProjectServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/logic/ProjectServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/logic/RequirementServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/logic/RequirementServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/logic/TaskServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/logic/TaskServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/view/console/AbstractConsoleView.java" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/view/console/AbstractConsoleView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/view/console/CreateEntityConsoleView.java" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/view/console/CreateEntityConsoleView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/view/console/DeleteEntityConsoleView.java" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/view/console/DeleteEntityConsoleView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/view/console/FindEntityConsoleView.java" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/view/console/FindEntityConsoleView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/view/console/LinkEntityConsoleView.java" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/view/console/LinkEntityConsoleView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/view/console/MainConsoleView.java" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/view/console/MainConsoleView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/view/console/PrintStatisticConsoleView.java" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/view/console/PrintStatisticConsoleView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/view/console/UpdateEntityConsoleView.java" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/view/console/UpdateEntityConsoleView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/swt6/ue3/logbook/test/applicationContext-test.xml" afterPath="$PROJECT_DIR$/src/main/resources/swt6/ue3/logbook/test/applicationContext-test.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/swt6/ue3/logbook/test/jpa.properties" afterPath="$PROJECT_DIR$/src/main/resources/swt6/ue3/logbook/test/jpa.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/swt6/ue3/logbook/test/BaseTest.java" afterPath="$PROJECT_DIR$/src/test/java/swt6/ue3/logbook/test/BaseTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/swt6/ue3/logbook/test/dal/LogbookRepositoryTest.java" afterPath="$PROJECT_DIR$/src/test/java/swt6/ue3/logbook/test/dal/LogbookRepositoryTest.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/annotation/SessionExtended.java" afterPath="$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/annotation/ExtendedSession.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/resources/applicationContext.xml" afterPath="$PROJECT_DIR$/src/main/resources/swt6/ue3/logbook/applicationContext.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/resources/jpa.properties" afterPath="$PROJECT_DIR$/src/main/resources/swt6/ue3/logbook/jpa.properties" />
-    </list>
+    <list default="true" id="b22af082-7d80-4594-b483-2a60ccf06234" name="Default" comment="" />
     <ignored path="logbook.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -78,7 +40,43 @@
     <favorites_list name="logbook" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file leaf-file-name="BaseTest.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/test/java/swt6/ue3/logbook/test/BaseTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.32329637">
+              <caret line="28" column="32" selection-start-line="28" selection-start-column="32" selection-end-line="28" selection-end-column="32" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="IntegrationTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/swt6/ue3/logbook/test/service/IntegrationTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="110" column="0" selection-start-line="110" selection-start-column="0" selection-end-line="110" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TaskServiceImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/logic/TaskServiceImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="31" column="5" selection-start-line="31" selection-start-column="5" selection-end-line="31" selection-end-column="5" />
+              <folding>
+                <element signature="e#842#843#0" expanded="true" />
+                <element signature="e#901#902#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -1396,7 +1394,7 @@
       <workItem from="1458217819654" duration="11750000" />
       <workItem from="1458387360227" duration="25697000" />
       <workItem from="1458581274343" duration="11832000" />
-      <workItem from="1458603930870" duration="8144000" />
+      <workItem from="1458603930870" duration="9008000" />
     </task>
     <servers />
   </component>
@@ -1433,11 +1431,11 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="222682000" />
+    <option name="totallyTimeSpent" value="223546000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="32" width="1936" height="1056" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1459,7 +1457,7 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30338266" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30338266" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1510,14 +1508,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/logic/SprintService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="8" column="17" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/logic/RequirementService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1573,16 +1563,6 @@
         <state vertical-scroll-proportion="0.21794872">
           <caret line="8" column="17" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/swt6/ue3/logbook/test/service/IntegrationTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.934295">
-          <caret line="110" column="0" selection-start-line="110" selection-start-column="0" selection-end-line="110" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1941,12 +1921,30 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/swt6/ue3/logbook/logic/TaskServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.53882724">
+        <state vertical-scroll-proportion="0.0">
           <caret line="31" column="5" selection-start-line="31" selection-start-column="5" selection-end-line="31" selection-end-column="5" />
           <folding>
             <element signature="e#842#843#0" expanded="true" />
             <element signature="e#901#902#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/swt6/ue3/logbook/test/service/IntegrationTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="110" column="0" selection-start-line="110" selection-start-column="0" selection-end-line="110" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/swt6/ue3/logbook/test/BaseTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.32329637">
+          <caret line="28" column="32" selection-start-line="28" selection-start-column="32" selection-end-line="28" selection-end-column="32" />
+          <folding />
         </state>
       </provider>
     </entry>

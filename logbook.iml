@@ -17,6 +17,8 @@
         <fileset id="fileset" name="Spring Application Context" removed="false">
           <file>file://$MODULE_DIR$/src/main/resources/swt6/ue3/logbook/applicationContext.xml</file>
           <file>file://$MODULE_DIR$/src/main/resources/swt6/ue3/logbook/test/applicationContext-test.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources/applicationContext.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources/applicationContext.xml</file>
         </fileset>
       </configuration>
     </facet>

@@ -1,13 +1,13 @@
 package swt6.ue3.logbook.view.console;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Component;
 
 /**
  * @author: Dinu Marius-Constantin
  * @date: 10.03.2016
  */
-@Controller("mainController")
+@Component("mainView")
 public class MainConsoleView extends AbstractConsoleView {
 
     @Autowired
@@ -22,6 +22,8 @@ public class MainConsoleView extends AbstractConsoleView {
     private LinkEntityConsoleView linkEntityConsoleController;
     @Autowired
     private UpdateEntityConsoleView updateEntityConsoleController;
+    @Autowired
+    private InteractiveConsoleView interactiveConsoleView;
 
     @Override
     public String getTitle() {
@@ -55,6 +57,9 @@ public class MainConsoleView extends AbstractConsoleView {
                 } else if (input.equalsIgnoreCase("u")) {
                     updateEntityConsoleController.runAndShowOptions();
                     showEntranceInfo();
+                } else if (input.equalsIgnoreCase("i")) {
+                    interactiveConsoleView.runAndShowOptions();
+                    showEntranceInfo();
                 } else if (input.equalsIgnoreCase("q")) {
                     // skip
                 } else {
@@ -84,6 +89,7 @@ public class MainConsoleView extends AbstractConsoleView {
         viewWriter.println("[d] ... Delete entities");
         viewWriter.println("[l] ... Link entities");
         viewWriter.println("[u] ... Update entities");
+        viewWriter.println("[i] ... Interactive mode");
         viewWriter.resetIndent();
         showSeparator();
         return this;

@@ -2,7 +2,6 @@ package swt6.ue3.logbook.logic;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import swt6.ue3.logbook.dal.ProjectRepository;
@@ -23,23 +22,19 @@ public class ProjectServiceImpl implements ProjectService {
     @Autowired
     private ProjectRepository projectRepository;
 
-    private static final int WORK_DAYS_PER_YEAR = 220;
-    private static final int HOURS_PER_DAY = 24;
     private static final double WEEKS_PER_MONTH = 4.33;
 
-    public double convertHoursToDays(int hours) {
-        return hours / HOURS_PER_DAY;
-    }
-
+    @Override
     public double calculateHoursDifference(Date startDate, Date endDate) {
         long secs = (endDate.getTime() - startDate.getTime()) / 1000;
         double hours = secs / 3600;
         return hours;
     }
 
+    @Override
     public double calculateTotalCosts(Project project) {
         double totalCosts = 0.0;
-        double ratePerHour;
+        double ratePerHour = 0.0;
 
         List<Employee> allEmployees = new ArrayList<>(project.getMembers());
         allEmployees.add(project.getLeader());
@@ -51,7 +46,9 @@ public class ProjectServiceImpl implements ProjectService {
                 ratePerHour = te.getHourlyRate();
             } else {
                 PermanentEmployee pe = (PermanentEmployee)employee;
-                ratePerHour = pe.getSalary() / pe.getHoursPerWeek() / WEEKS_PER_MONTH;
+                if (pe.getSalary() != null && pe.getHoursPerWeek() != null && pe.getHoursPerWeek() > 0)
+                    ratePerHour = pe.getSalary() / pe.getHoursPerWeek();
+                ratePerHour /= WEEKS_PER_MONTH;
             }
             for (LogbookEntry l : employee.getLogbookEntries()) {
                 if (project.getId() == l.getTask().getRequirement().getProject().getId()) {
@@ -63,20 +60,7 @@ public class ProjectServiceImpl implements ProjectService {
         return totalCosts;
     }
 
-    private double calculateActualTotalHours(Project project) {
-        double hoursPerProject = 0.0;
-        for (Employee e : project.getMembers()) {
-            double hoursPerEmployee = 0.0;
-            for (LogbookEntry l : e.getLogbookEntries()) {
-                if (project.getId() == l.getTask().getRequirement().getProject().getId()) {
-                    hoursPerEmployee += calculateHoursDifference(l.getStartTime(), l.getEndTime());
-                }
-            }
-            hoursPerProject += hoursPerEmployee;
-        }
-        return hoursPerProject;
-    }
-
+    @Override
     public double calculateEstimatedTotalHours(Project project) {
         double hoursPerProject = 0.0;
         for (Requirement requirement : project.getRequirements()) {
@@ -85,6 +69,39 @@ public class ProjectServiceImpl implements ProjectService {
             }
         }
         return hoursPerProject;
+    }
+
+    @Override
+    public double calculateEstimatedTotalHours(Sprint sprint) {
+        double hoursPerProject = 0.0;
+        for (Requirement requirement : sprint.getRequirements()) {
+            for (Task task : requirement.getTasks()) {
+                hoursPerProject += task.getEstimatedHours();
+            }
+        }
+        return hoursPerProject;
+    }
+
+    @Override
+    public void updateProjectLeader(Project project, Employee leader) {
+        project.attachLeader(leader);
+        project.setId(getRepository().save(project).getId());
+    }
+
+    @Override
+    public void addProjectMember(Project project, Employee... members) {
+        for (Employee e : members) {
+            project.addMember(e);
+        }
+        project.setId(getRepository().save(project).getId());
+    }
+
+    @Override
+    public void removeProjectMember(Project project, Employee... members) {
+        for (Employee e : members) {
+            project.removeMember(e);
+        }
+        project.setId(getRepository().save(project).getId());
     }
 
     @Override

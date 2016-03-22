@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import swt6.ue3.logbook.controller.*;
 import swt6.ue3.logbook.dal.*;
 import swt6.ue3.logbook.domain.*;
+import swt6.ue3.logbook.logic.*;
 import swt6.ue3.util.DateUtil;
 
 import static com.ninja_squad.dbsetup.Operations.deleteAllFrom;
@@ -41,21 +42,22 @@ public abstract class BaseTest {
     protected SprintRepository sprintRepo;
 
     @Autowired
-    protected CreateController createController;
+    protected ProjectService projectService;
     @Autowired
-    protected DeleteController deleteController;
+    protected EmployeeService employeeService;
     @Autowired
-    protected FindController findController;
+    protected LogbookEntryService logbookEntryService;
     @Autowired
-    protected LinkController linkController;
+    protected RequirementService requirementService;
     @Autowired
-    protected PrintController printController;
+    protected SprintService sprintService;
     @Autowired
-    protected UpdateController updateController;
+    protected TaskService taskService;
 
-    protected Employee permanentEmployee1;
-    protected Employee permanentEmployee2;
-    protected Employee temporaryEmployee1;
+
+    protected PermanentEmployee permanentEmployee1;
+    protected PermanentEmployee permanentEmployee2;
+    protected TemporaryEmployee temporaryEmployee1;
     protected Project project1;
     protected Project project2;
     protected LogbookEntry logbookEntry1;
@@ -109,7 +111,7 @@ public abstract class BaseTest {
 
         task1 = new Task("DEV", "Write the code", 20);
         task2 = new Task("TST", "Test the classes", 10);
-        task3 = new Task("DEV", "Designing the UI", 5);
+        task3 = new Task("DUI", "Designing the UI", 5);
 
         requirement1 = new Requirement("REQ1", "Develop an application");
         requirement2 = new Requirement("REQ2", "Test the database");

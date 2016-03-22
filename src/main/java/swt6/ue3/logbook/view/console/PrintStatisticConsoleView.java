@@ -41,7 +41,7 @@ public class PrintStatisticConsoleView extends AbstractConsoleView {
                 } else if (input.equalsIgnoreCase("s")) {
                     printController.printEntitySprints();
                 } else if (input.equalsIgnoreCase("u")) {
-                    printController.printStatsBurndownCharts();
+                    printController.printStatsBurnDownChartPerProjectSprint();
                 } else if (input.equalsIgnoreCase("c")) {
                     printController.printStatsProjectTotalCosts();
                 } else if (input.equalsIgnoreCase("t")) {
@@ -53,6 +53,9 @@ public class PrintStatisticConsoleView extends AbstractConsoleView {
                 }
             } catch (CommandCanceledException ex) {
                 showUserCancelMessage();
+                showEntranceInfo();
+            } catch (IllegalStateException isx) {
+                showInvalidStateMessage(isx.getMessage());
                 showEntranceInfo();
             }
 

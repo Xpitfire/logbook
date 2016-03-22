@@ -48,6 +48,9 @@ public class FindEntityConsoleView extends AbstractConsoleView {
             } catch (CommandCanceledException ex) {
                 showUserCancelMessage();
                 showEntranceInfo();
+            } catch (IllegalStateException isx) {
+                showInvalidStateMessage(isx.getMessage());
+                showEntranceInfo();
             }
 
         } while (!input.equalsIgnoreCase("b"));

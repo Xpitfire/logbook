@@ -2,7 +2,7 @@ package swt6.ue3.logbook.test.dal;
 
 import org.junit.Before;
 import org.junit.Test;
-import swt6.ue3.logbook.annotation.SessionExtended;
+import swt6.ue3.logbook.annotation.ExtendedSession;
 import swt6.ue3.logbook.domain.LogbookEntry;
 import swt6.ue3.logbook.test.BaseTest;
 import swt6.ue3.util.DateUtil;
@@ -27,21 +27,21 @@ public class LogbookRepositoryTest extends BaseTest {
         logbookEntry3.attachEmployee(permanentEmployee1);
     }
 
-    @SessionExtended
+    @ExtendedSession
     @Test
     public void testCountLogbookEntry() {
         logbookEntryRepo.save(logbookEntry2);
         assertTrue(logbookEntryRepo.count() == 1);
     }
 
-    @SessionExtended
+    @ExtendedSession
     @Test
     public void testInsertLogbookEntry() {
         LogbookEntry l = logbookEntryRepo.save(logbookEntry1);
         assertNotNull(l.getId());
     }
 
-    @SessionExtended
+    @ExtendedSession
     @Test
     public void testProtectedUpdateLogbookEntry() {
         LogbookEntry l = logbookEntryRepo.save(logbookEntry1);

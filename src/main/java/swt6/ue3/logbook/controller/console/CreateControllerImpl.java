@@ -185,7 +185,7 @@ public class CreateControllerImpl implements CreateController {
         if (modifyOnlyOnCreate(value)) {
             task.setEstimatedHours(viewWriter.blockingTypedReadLine("Estimated hours", Integer.class));
             viewWriter.println("You require to select a requirement to continue:");
-            task.attachRequirement(linkController.selectRequirement());
+            task.setRequirement(linkController.selectRequirement());
         }
 
         if (immediateSafe) {

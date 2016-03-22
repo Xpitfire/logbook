@@ -6,7 +6,10 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import swt6.ue3.logbook.dal.TaskRepository;
+import swt6.ue3.logbook.domain.Requirement;
 import swt6.ue3.logbook.domain.Task;
+
+import java.util.List;
 
 /**
  * @author: Dinu Marius-Constantin
@@ -21,5 +24,10 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public JpaRepository<Task, String> getRepository() {
         return taskRepository;
+    }
+
+    @Override
+    public Task save(Task entity) {
+        return getRepository().saveAndFlush(entity);
     }
 }

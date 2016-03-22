@@ -7,6 +7,9 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import swt6.ue3.logbook.dal.EmployeeRepository;
 import swt6.ue3.logbook.domain.Employee;
+import swt6.ue3.logbook.domain.Project;
+
+import java.util.List;
 
 /**
  * @author: Dinu Marius-Constantin
@@ -22,5 +25,4 @@ public class EmployeeServiceImpl implements EmployeeService {
     public JpaRepository<Employee, Long> getRepository() {
         return employeeRepo;
     }
-
 }

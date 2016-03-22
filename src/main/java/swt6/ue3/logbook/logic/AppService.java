@@ -16,6 +16,11 @@ public interface AppService<T extends Serializable, ID extends Serializable> {
     JpaRepository<T, ID> getRepository();
 
     @Transactional(propagation = Propagation.REQUIRED)
+    default T findOne(ID id) {
+        return getRepository().findOne(id);
+    }
+
+    @Transactional(propagation = Propagation.REQUIRED)
     default List<T> findAll() {
         return getRepository().findAll();
     }
@@ -30,6 +35,7 @@ public interface AppService<T extends Serializable, ID extends Serializable> {
         getRepository().delete(entity);
     }
 
+    @Transactional(propagation = Propagation.SUPPORTS)
     default Long count() {
         return getRepository().count();
     }

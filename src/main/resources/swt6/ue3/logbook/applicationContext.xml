@@ -13,7 +13,7 @@
 
     <!-- ========================= RESOURCE DEFINITIONS ========================= -->
 
-    <context:property-placeholder location="jpa.properties"/>
+    <context:property-placeholder location="swt6/ue3/logbook/jpa.properties"/>
 
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
           destroy-method="close">
@@ -44,17 +44,16 @@
     <bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor"/>
 
     <!-- ==================== DAO & BUSINESS OBJECT DEFINITIONS ================= -->
-
     <jpa:repositories base-package="swt6.ue3.logbook.dal"
                       entity-manager-factory-ref="emFactory"
                       transaction-manager-ref="transactionManagerJpa"/>
 
-    <!-- ======================== TRANSACTION DEFINIONS ========================= -->
+    <!-- ======================== TRANSACTION DEFINITIONS ========================= -->
     <bean id="transactionManagerJpa" class="org.springframework.orm.jpa.JpaTransactionManager">
         <property name="entityManagerFactory" ref="emFactory"/>
     </bean>
 
-    <!-- requires @Transactional annototations on business methods -->
+    <!-- requires @Transactional annotations on business methods -->
     <tx:annotation-driven transaction-manager="transactionManagerJpa"/>
 
     <aop:aspectj-autoproxy proxy-target-class="true"/>

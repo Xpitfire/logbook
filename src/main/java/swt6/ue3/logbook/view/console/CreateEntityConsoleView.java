@@ -48,10 +48,15 @@ public class CreateEntityConsoleView extends AbstractConsoleView {
             } catch (CommandCanceledException ex) {
                 showUserCancelMessage();
                 showEntranceInfo();
+            } catch (IllegalStateException isx) {
+                showInvalidStateMessage(isx.getMessage());
+                showEntranceInfo();
             }
 
         } while (!input.equalsIgnoreCase("b"));
     }
+
+
 
     @Override
     public AbstractConsoleView showMenuOptions() {

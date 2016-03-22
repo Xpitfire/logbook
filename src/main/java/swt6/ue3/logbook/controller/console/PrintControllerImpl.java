@@ -36,7 +36,7 @@ public class PrintControllerImpl implements PrintController {
     private FindController findController;
 
     @Override
-    public void printStatsProjectTotalCosts() {
+    public PrintController printStatsProjectTotalCosts() {
         viewWriter.println("*** PRINT PROJECT COSTS ***");
         viewWriter.setIndent(2);
         viewWriter.printTableHeader("Projects", "Total costs (€)");
@@ -44,25 +44,29 @@ public class PrintControllerImpl implements PrintController {
             viewWriter.printTableRow(p.getName(), String.format("%.2f", projectService.calculateTotalCosts(p)));
         }
         viewWriter.resetIndent();
+        return this;
     }
 
     @Override
-    public void printStatsBurndownCharts() throws CommandCanceledException {
-        viewWriter.println("*** PRINT BURNDOWN CHARTS ***");
+    public PrintController printStatsBurnDownChartPerProjectSprint() throws CommandCanceledException {
+        viewWriter.println("*** PRINT BURN-DOWN CHARTS ***");
         viewWriter.setIndent(2);
         Project project = findController.findProject();
+        Sprint sprint = findController.findSprint(project);
 
-        double remainingHours = projectService.calculateEstimatedTotalHours(project);
-        viewWriter.printf("Estimated Work: %s%n", remainingHours);
+        double estimatedTotalHours = projectService.calculateEstimatedTotalHours(sprint);
+        viewWriter.printf("Estimated Work: %s%n", estimatedTotalHours);
         viewWriter.printTableHeader("Dates", "Actual Work (hrs)", "Remaining Work (hrs)");
+
         for (LogbookEntry logbookEntry : logbookEntryService.findAll()) {
-            if (logbookEntry.getTask().getRequirement().getProject().getId() == project.getId()) {
+            if (logbookEntry.getTask().getRequirement().getProject().getId().equals(project.getId())) {
                 double actualWork = projectService.calculateHoursDifference(logbookEntry.getStartTime(), logbookEntry.getEndTime());
-                remainingHours -= actualWork;
-                viewWriter.printTableRow(logbookEntry.getEndTime(), String.format("%.0f", actualWork), String.format("%.0f", remainingHours));
+                estimatedTotalHours -= actualWork;
+                viewWriter.printTableRow(logbookEntry.getEndTime(), String.format("%.0f", actualWork), String.format("%.0f", estimatedTotalHours));
             }
         }
         viewWriter.resetIndent();
+        return this;
     }
 
     @Override
@@ -133,42 +137,60 @@ public class PrintControllerImpl implements PrintController {
     @Override
     public PrintController printEntityProject() {
         Project project = findController.findProject();
+        viewWriter.println("*** PRINT SELECTED PROJECT ***");
+        viewWriter.setIndent(2);
         viewWriter.println(project);
+        viewWriter.resetIndent();
         return this;
     }
 
     @Override
     public PrintController printEntitySprint() {
         Sprint sprint = findController.findSprint();
+        viewWriter.println("*** PRINT SELECTED SPRINT ***");
+        viewWriter.setIndent(2);
         viewWriter.println(sprint);
+        viewWriter.resetIndent();
         return this;
     }
 
     @Override
     public PrintController printEntityRequirement() {
         Requirement requirement = findController.findRequirement();
+        viewWriter.println("*** PRINT SELECTED REQUIREMENT ***");
+        viewWriter.setIndent(2);
         viewWriter.println(requirement);
+        viewWriter.resetIndent();
         return this;
     }
 
     @Override
     public PrintController printEntityTask() {
         Task task = findController.findTask();
+        viewWriter.println("*** PRINT SELECTED TASK ***");
+        viewWriter.setIndent(2);
         viewWriter.println(task);
+        viewWriter.resetIndent();
         return this;
     }
 
     @Override
     public PrintController printEntityEmployee() {
         Employee employee = findController.findEmployee();
+        viewWriter.println("*** PRINT SELECTED EMPLOYEE ***");
+        viewWriter.setIndent(2);
         viewWriter.println(employee);
+        viewWriter.resetIndent();
         return this;
     }
 
     @Override
     public PrintController printEntityLogbookEntry() {
         LogbookEntry logbookEntry = findController.findLogbookEntry();
+        viewWriter.println("*** PRINT SELECTED LOGBOOK ENTRY ***");
+        viewWriter.setIndent(2);
         viewWriter.println(logbookEntry);
+        viewWriter.resetIndent();
         return this;
     }
 

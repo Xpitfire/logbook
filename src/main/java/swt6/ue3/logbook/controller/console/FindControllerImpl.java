@@ -11,6 +11,7 @@ import swt6.ue3.logbook.view.exception.CommandCanceledException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 /**
  * @author: Dinu Marius-Constantin
@@ -39,13 +40,26 @@ public class FindControllerImpl implements FindController {
 
     @Override
     public Sprint findSprint() throws CommandCanceledException {
+        return findSprint(null);
+    }
+
+    @Override
+    public Sprint findSprint(Project project) {
         List<Sprint> sprints = sprintService.findAll();
-        String[] tempCmdList = new String[sprints.size()];
-        Map<String, Sprint> sprintCmdMapping = new HashMap<>();
-        viewWriter.setIndent(2);
-        initializeDataCollections(sprints, tempCmdList, sprintCmdMapping);
-        input = viewWriter.blockingReadCommand("Select a sprint: ", tempCmdList);
-        return sprintCmdMapping.get(input);
+        Optional<Sprint> sprintOptional = null;
+        if (project != null) {
+            sprintOptional = sprints.stream().filter(
+                    sprint -> project.equals(sprint.getProject())).findFirst();
+        }
+        if (sprintOptional.get() != null) {
+            return sprintOptional.get();
+        } else {
+            String[] tempCmdList = new String[sprints.size()];
+            Map<String, Sprint> sprintCmdMapping = new HashMap<>();
+            initializeDataCollections(sprints, tempCmdList, sprintCmdMapping);
+            input = viewWriter.blockingReadCommand("Select a sprint: [0]..[n]", tempCmdList);
+            return sprintCmdMapping.get(input);
+        }
     }
 
     @Override
@@ -53,9 +67,8 @@ public class FindControllerImpl implements FindController {
         List<Project> projects = projectService.findAll();
         String[] tempCmdList = new String[projects.size()];
         Map<String, Project> projectCmdMapping = new HashMap<>();
-        viewWriter.setIndent(2);
         initializeDataCollections(projects, tempCmdList, projectCmdMapping);
-        input = viewWriter.blockingReadCommand("Select a project: ", tempCmdList);
+        input = viewWriter.blockingReadCommand("Select a project: [0]..[n]", tempCmdList);
         return projectCmdMapping.get(input);
     }
 
@@ -64,9 +77,8 @@ public class FindControllerImpl implements FindController {
         List<Employee> employees = employeeService.findAll();
         String[] tempCmdList = new String[employees.size()];
         Map<String, Employee> employeeCmdMapping = new HashMap<>();
-        viewWriter.setIndent(2);
         initializeDataCollections(employees, tempCmdList, employeeCmdMapping);
-        input = viewWriter.blockingReadCommand("Select an employee: ", tempCmdList);
+        input = viewWriter.blockingReadCommand("Select an employee: [0]..[n]", tempCmdList);
         return employeeCmdMapping.get(input);
     }
 
@@ -75,9 +87,8 @@ public class FindControllerImpl implements FindController {
         List<Task> tasks = taskService.findAll();
         String[] tempCmdList = new String[tasks.size()];
         Map<String, Task> taskCmdMapping = new HashMap<>();
-        viewWriter.setIndent(2);
         initializeDataCollections(tasks, tempCmdList, taskCmdMapping);
-        input = viewWriter.blockingReadCommand("Select a task: ", tempCmdList);
+        input = viewWriter.blockingReadCommand("Select a task: [0]..[n]", tempCmdList);
         return taskCmdMapping.get(input);
     }
 
@@ -86,9 +97,8 @@ public class FindControllerImpl implements FindController {
         List<Requirement> requirements = requirementService.findAll();
         String[] tempCmdList = new String[requirements.size()];
         Map<String, Requirement> requirementCmdMapping = new HashMap<>();
-        viewWriter.setIndent(2);
         initializeDataCollections(requirements, tempCmdList, requirementCmdMapping);
-        input = viewWriter.blockingReadCommand("Select a requirement: ", tempCmdList);
+        input = viewWriter.blockingReadCommand("Select a requirement: [0]..[n]", tempCmdList);
         return requirementCmdMapping.get(input);
     }
 
@@ -97,20 +107,25 @@ public class FindControllerImpl implements FindController {
         List<LogbookEntry> logbookEntries = logbookEntryService.findAll();
         String[] tempCmdList = new String[logbookEntries.size()];
         Map<String, LogbookEntry> logbookCmdMapping = new HashMap<>();
-        viewWriter.setIndent(2);
         initializeDataCollections(logbookEntries, tempCmdList, logbookCmdMapping);
-        input = viewWriter.blockingReadCommand("Select a logbook entry: ", tempCmdList);
+        input = viewWriter.blockingReadCommand("Select a logbook entry: [0]..[n]", tempCmdList);
         return logbookCmdMapping.get(input);
     }
 
-    private <T> void initializeDataCollections(List<T> entities, String[] tempCmdList, Map<String, T> entityCmdMapping) {
+    public  <T> void initializeDataCollections(List<T> entities, String[] tempCmdList, Map<String, T> entityCmdMapping) {
         for (int i = 0; i < entities.size(); i++) {
             tempCmdList[i] = String.valueOf(i);
             entityCmdMapping.put(tempCmdList[i], entities.get(i));
+            viewWriter.setIndent(2);
             viewWriter.print(i);
+            viewWriter.resetIndent();
+            if (i < 10) viewWriter.print(" ");
+            if (i < 100) viewWriter.print(" ");
+            viewWriter.print(" | ");
             viewWriter.print(entities.get(i));
             viewWriter.newLine();
         }
+        viewWriter.resetIndent();
     }
 
 }

@@ -25,7 +25,7 @@ public class SessionInterceptorAspect {
     @Autowired
     private EntityManagerFactory entityManagerFactory;
 
-    @Around("execution(public * swt6.ue3.logbook.controller..*(..)) || @annotation(swt6.ue3.logbook.annotation.SessionExtended)")
+    @Around("execution(public * swt6.ue3.logbook.controller..*(..)) || @annotation(swt6.ue3.logbook.annotation.ExtendedSession)")
     public Object extendSessionAdvice(ProceedingJoinPoint pjp) throws Throwable {
         boolean participate = false;
         if (TransactionSynchronizationManager.hasResource(entityManagerFactory))

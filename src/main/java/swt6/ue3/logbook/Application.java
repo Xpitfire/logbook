@@ -14,7 +14,7 @@ public class Application {
 
     public static void main(String[] args) {
         ApplicationContext applicationContext = SpringApplication.run(Application.class, args);
-        AbstractConsoleView menu = applicationContext.getBean("mainController", AbstractConsoleView.class);
+        AbstractConsoleView menu = applicationContext.getBean("mainView", AbstractConsoleView.class);
         menu.showHeader().showEntranceInfo().run();
     }
 

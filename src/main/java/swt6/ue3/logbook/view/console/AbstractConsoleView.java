@@ -46,6 +46,12 @@ public abstract class AbstractConsoleView implements AutoCloseable, AppViewBase 
         return this;
     }
 
+    protected AbstractConsoleView showInvalidStateMessage(String message) {
+        viewWriter.printf("Process canceled due to invalid operation: %s%n", message);
+        viewWriter.println("Data may have been lost.");
+        return this;
+    }
+
     protected AbstractConsoleView showUserCancelMessage() {
         viewWriter.println("Operation canceled by user!");
         viewWriter.println("Data may have been lost.");
